@@ -1,0 +1,16 @@
+{
+	"hello": "Hello",
+	"defaultName": "Guest",
+	"searchHint": "Search by events, teams",
+	"tournaments": "Tournaments",
+	"topEvents": "Top events",
+	"notApplicable": "N/A",
+	"today": "Today",
+	"football": "Football",
+	"basketball": "Basketball",
+	"tennis": "Tennis",
+	"mma": "MMA",
+	"noEvents": "No events",
+	"writeCommentHint": "Write a comment",
+	"settings": "Settings"
+}

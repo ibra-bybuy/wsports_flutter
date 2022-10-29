@@ -1,0 +1,16 @@
+{
+	"hello": "Привет",
+	"defaultName": "Гость",
+	"searchHint": "Искать эвенты, команды",
+	"tournaments": "Турниры",
+	"topEvents": "Топ эвенты",
+	"notApplicable": "N/A",
+	"today": "Сегодня",
+	"football": "Футбол",
+	"basketball": "Баскетбол",
+	"tennis": "Теннис",
+	"mma": "ММА",
+	"noEvents": "Нет эвентов",
+	"writeCommentHint": "Написать комментарий",
+	"settings": "Настройки"
+}

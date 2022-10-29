@@ -1,0 +1,50 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+
+import '../../../../core/components/shimmer/shimmer.dart';
+import '../../../../core/functions/size_config.dart';
+
+class EventAvatar extends StatelessWidget {
+  final String imageUrl;
+  final double? fixedSize;
+  const EventAvatar({super.key, required this.imageUrl, this.fixedSize});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = fixedSize ?? SizeConfig(context, 90.0)();
+    const borderRadius = BorderRadius.all(Radius.circular(60.0));
+    return CachedNetworkImage(
+      imageUrl: imageUrl,
+      height: size,
+      fadeInDuration: const Duration(milliseconds: 20),
+      fit: BoxFit.fitWidth,
+      errorWidget: (context, err, _) => const SizedBox(),
+      placeholder: (context, str) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: Colors.grey,
+            borderRadius: borderRadius,
+          ),
+          child: CustomShimmer(
+            child: SizedBox(
+              height: size,
+              width: size,
+            ),
+          ),
+        );
+      },
+      imageBuilder: (context, image) {
+        return Container(
+          decoration: BoxDecoration(
+            borderRadius: borderRadius,
+            image: DecorationImage(
+              image: image,
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+          width: size,
+        );
+      },
+    );
+  }
+}
