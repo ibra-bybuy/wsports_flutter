@@ -7,6 +7,9 @@ class CustomTextField extends StatelessWidget {
   final Color? borderColor;
   final bool autofocus;
   final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
   const CustomTextField({
     super.key,
     this.hint,
@@ -14,6 +17,9 @@ class CustomTextField extends StatelessWidget {
     this.borderColor,
     this.autofocus = false,
     this.controller,
+    this.onChanged,
+    this.validator,
+    this.autovalidateMode,
   });
 
   @override
@@ -21,6 +27,8 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       autofocus: autofocus,
+      validator: validator,
+      autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
           fillColor: const Color(0XFFF3F4F5),
           filled: true,
@@ -50,6 +58,7 @@ class CustomTextField extends StatelessWidget {
           hintStyle: GoogleFonts.roboto(
             color: Colors.black,
           )),
+      onChanged: onChanged,
     );
   }
 }

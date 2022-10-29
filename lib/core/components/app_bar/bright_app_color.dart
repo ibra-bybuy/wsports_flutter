@@ -12,7 +12,7 @@ class BrightAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SimpleAppBar(
       title: title,
-      backgroundColor: null,
+      backgroundColor: Colors.white,
       shadowColor: null,
       systemUiOverlayStyle: null,
       titleColor: Colors.black,

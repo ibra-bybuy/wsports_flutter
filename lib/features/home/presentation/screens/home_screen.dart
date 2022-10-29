@@ -7,7 +7,6 @@ import 'package:watch_sports/features/home/presentation/widgets/categories.dart'
 import 'package:watch_sports/i18n/i18n.dart';
 import 'package:watch_sports/router/app_router.dart';
 import 'package:watch_sports/setup.dart';
-import '../../../../core/cubits/cached/user_cubit/user_cubit.dart';
 import '../../../../core/cubits/custom/string_cubit.dart/string_cubit.dart';
 import '../cubits/events/events_cubit.dart';
 import '../widgets/banners_builder.dart';
@@ -22,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final user = getIt<UserCubit>();
   final bannersCubit = getIt<BannersCubit>();
   final eventsCubit = getIt<EventsCubit>();
   final horizontalPadding = 15.0;
@@ -43,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(name: user.name),
+      appBar: const MainAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

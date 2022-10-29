@@ -15,7 +15,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BrightAppBar(title: strings.settings),
-      body: const SizedBox(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+        ),
+      ),
     );
   }
 }

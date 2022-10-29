@@ -12,5 +12,8 @@
 	"mma": "MMA",
 	"noEvents": "No events",
 	"writeCommentHint": "Write a comment",
-	"settings": "Settings"
+	"settings": "Settings",
+	"nameHint": "Your name",
+	"save": "Save",
+	"incorrectValue": "Incorrect value"
 }
