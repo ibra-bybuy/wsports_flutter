@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:watch_sports/core/components/app_bar/search_app_bar.dart';
 import 'package:watch_sports/core/components/app_bar/welcome_card.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,13 +15,11 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: const [
           SizedBox(height: 15.0),
           AppBarWelcomeCard(),
-          SizedBox(height: 20.0),
-          SearchAppBar(),
         ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 2.5);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 1.5);
 }
