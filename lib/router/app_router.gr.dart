@@ -39,7 +39,7 @@ class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: CommentSectionScreen(
           key: args.key,
-          eventName: args.eventName,
+          eventId: args.eventId,
         ),
       );
     },
@@ -123,13 +123,13 @@ class EventDetailsRouteArgs {
 class CommentSectionRoute extends PageRouteInfo<CommentSectionRouteArgs> {
   CommentSectionRoute({
     Key? key,
-    required String eventName,
+    required String eventId,
   }) : super(
           CommentSectionRoute.name,
           path: '/comment-section-screen',
           args: CommentSectionRouteArgs(
             key: key,
-            eventName: eventName,
+            eventId: eventId,
           ),
         );
 
@@ -139,16 +139,16 @@ class CommentSectionRoute extends PageRouteInfo<CommentSectionRouteArgs> {
 class CommentSectionRouteArgs {
   const CommentSectionRouteArgs({
     this.key,
-    required this.eventName,
+    required this.eventId,
   });
 
   final Key? key;
 
-  final String eventName;
+  final String eventId;
 
   @override
   String toString() {
-    return 'CommentSectionRouteArgs{key: $key, eventName: $eventName}';
+    return 'CommentSectionRouteArgs{key: $key, eventId: $eventId}';
   }
 }
 

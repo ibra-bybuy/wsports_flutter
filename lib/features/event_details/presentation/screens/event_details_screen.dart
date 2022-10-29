@@ -5,10 +5,14 @@ import 'package:watch_sports/core/models/event.dart';
 import 'package:watch_sports/features/comment_section/presentation/screens/comment_section_screen.dart';
 import 'package:watch_sports/features/event_details/presentation/widgets/team_card.dart';
 import 'package:watch_sports/providers/video/basic_video_provider.dart';
+import 'package:watch_sports/providers/websocket/websocket_provider.dart';
 
 import '../../../../core/components/app_bar/simple_app_bar.dart';
 import '../../../../core/components/bottom_sheet/dragger.dart';
 import '../../../../providers/video/video_provider.dart';
+import '../../../../providers/websocket/socket_io.dart';
+import '../../../../setup.dart';
+import '../../../comment_section/presentation/cubits/comment_section_cubit.dart';
 import '../../../comment_section/presentation/widgets/comment_field.dart';
 import '../widgets/date_card.dart';
 
@@ -26,6 +30,8 @@ class EventDetailsScreen extends StatefulWidget {
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
   final horizontalPadding = 25.0;
   late final VideoProvider videoProvider;
+  final commentSectionCubit = getIt<CommentSectionCubit>();
+  final wsProvider = getIt<WebSocketProvider>(instanceName: socketIoImpl);
 
   @override
   void initState() {
@@ -35,12 +41,15 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     videoProvider.init(onInit: () {
       setState(() {});
     });
+
+    commentSectionCubit.initSocket(widget.event.id);
   }
 
   @override
   void dispose() {
     super.dispose();
     videoProvider.dispose();
+    commentSectionCubit.disposeSocket();
   }
 
   @override
@@ -83,9 +92,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
             onTap: () {
               showBarModalBottomSheet(
                 context: context,
-                builder: (context) => CommentSectionScreen(
-                  eventName: widget.event.name,
-                ),
+                builder: (context) =>
+                    CommentSectionScreen(eventId: widget.event.id),
                 barrierColor: Colors.transparent,
               );
             },

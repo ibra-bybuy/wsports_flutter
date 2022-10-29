@@ -39,6 +39,18 @@ class Comment extends Equatable {
     );
   }
 
+  List<Map<String, dynamic>> toWebSocket() {
+    return [toMap()];
+  }
+
+  static List<Comment>? fromWebSocket(List<Map<String, dynamic>> data) {
+    try {
+      return data.map((e) => Comment.fromMap(e)).toList();
+    } catch (_) {
+      return null;
+    }
+  }
+
   @override
   bool get stringify => true;
 

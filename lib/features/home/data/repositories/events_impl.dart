@@ -21,6 +21,7 @@ class EventsRepositoryImpl implements EventsRepository {
       if (category == "" || category == "football") {
         items.add(
           const Event(
+            id: "1",
             name: "Premiere League",
             startTime: "2022-10-20 13:27:00",
             team1: Team(
@@ -38,6 +39,7 @@ class EventsRepositoryImpl implements EventsRepository {
       if (category == "" || category == "mma") {
         items.add(
           const Event(
+            id: "2",
             name: "UFC 280",
             startTime: "2022-10-20 17:27:00",
             team1: Team(

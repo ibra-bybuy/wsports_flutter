@@ -10,8 +10,8 @@ import '../cubits/comment_section_cubit.dart';
 import '../widgets/bottom_area.dart';
 
 class CommentSectionScreen extends StatefulWidget {
-  final String eventName;
-  const CommentSectionScreen({Key? key, required this.eventName})
+  final String eventId;
+  const CommentSectionScreen({Key? key, required this.eventId})
       : super(key: key);
 
   @override
@@ -27,32 +27,8 @@ class _CommentSectionScreenState extends State<CommentSectionScreen> {
   void initState() {
     super.initState();
 
-    commentsCubit = commentSectionCubit.getCommentsCubit(widget.eventName);
-    commentsCubit.add(items);
+    commentsCubit = commentSectionCubit.getCommentsCubit(widget.eventId);
   }
-
-  final items = [
-    Comment(
-      name: "Ibra",
-      body: "Lool",
-      createdAt: DateTime.now().toString(),
-    ),
-    Comment(
-      name: "Ibra 1",
-      body: "Are you dead or are you alive",
-      createdAt: DateTime.now().toString(),
-    ),
-    Comment(
-      name: "Ibra 2",
-      body: "lala",
-      createdAt: DateTime.now().toString(),
-    ),
-    Comment(
-      name: "Ibra 3",
-      body: "hahahahaha",
-      createdAt: DateTime.now().toString(),
-    )
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +71,9 @@ class _CommentSectionScreenState extends State<CommentSectionScreen> {
               textEditingController: commentEditingCotroller,
               onSend: () {
                 commentSectionCubit.send(
-                    commentEditingCotroller.text, widget.eventName);
+                  commentEditingCotroller.text,
+                  widget.eventId,
+                );
                 commentEditingCotroller.clear();
               },
             ),
