@@ -14,10 +14,10 @@ import 'core/cubits/cached/urls_cubit/urls_cubit.dart' as _i21;
 import 'core/cubits/cached/user_cubit/user_cubit.dart' as _i22;
 import 'features/comment_section/data/repositories/comment_section_impl.dart'
     as _i30;
-import 'features/comment_section/data/sources/comment_section_network.dart'
-    as _i8;
 import 'features/comment_section/data/sources/comment_section_source.dart'
     as _i7;
+import 'features/comment_section/data/sources/comment_section_websocket.dart'
+    as _i8;
 import 'features/comment_section/domain/repositories/comment_section_repository.dart'
     as _i29;
 import 'features/comment_section/domain/usecases/comment_section_usecase.dart'
@@ -72,7 +72,7 @@ _i1.GetIt $initGetIt(
   gh.lazySingleton<_i4.BannersSource>(() => _i5.BannersNetworkSource());
   gh.lazySingleton<_i6.CachedBannersCubit>(() => _i6.CachedBannersCubit());
   gh.lazySingleton<_i7.CommentSectionSource>(
-      () => _i8.CommentSectionNetworkSource());
+      () => _i8.CommentSectionWebsocketSource());
   gh.factory<_i9.EventDetailsCubit>(() => _i9.EventDetailsCubit());
   gh.lazySingleton<_i10.EventDetailsSource>(
       () => _i11.EventDetailsNetworkSource());

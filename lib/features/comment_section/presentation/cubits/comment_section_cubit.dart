@@ -6,7 +6,10 @@ import 'package:watch_sports/core/cubits/custom/comments_cubit/comments_cubit.da
 import 'package:watch_sports/core/models/comment.dart';
 import 'package:watch_sports/providers/websocket/socket_io.dart';
 import 'package:watch_sports/providers/websocket/websocket_provider.dart';
+import '../../data/models/ws_comment_request.dart';
 import 'comment_section_state.dart';
+
+const _event = "comment";
 
 @LazySingleton()
 class CommentSectionCubit extends Cubit<CommentSectionState> {
@@ -23,9 +26,9 @@ class CommentSectionCubit extends Cubit<CommentSectionState> {
     final commentSectionCubit = getCommentsCubit(eventId);
     webSocketProvider.connect(url: urlsCubit.state.commentsUrl);
     webSocketProvider.onEvent(eventId, (data) {
-      final comments = Comment.fromWebSocket(data);
-      if (comments != null) {
-        commentSectionCubit.add(comments);
+      final response = WsCommentRequest.fromJson(data);
+      if (response != null) {
+        commentSectionCubit.add(response.comments);
       }
     });
   }
@@ -38,7 +41,13 @@ class CommentSectionCubit extends Cubit<CommentSectionState> {
 
   void send(String text, String eventId) {
     final comment = _makeComment(text);
-    webSocketProvider.emit(eventId, data: comment.toWebSocket());
+    webSocketProvider.emit(
+      _event,
+      data: WsCommentRequest(
+        comments: [comment.toCommentApi],
+        event: eventId,
+      ).toJson(),
+    );
   }
 
   CommentsCubit getCommentsCubit(String eventId) {

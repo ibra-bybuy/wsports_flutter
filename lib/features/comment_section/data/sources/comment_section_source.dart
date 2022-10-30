@@ -1,3 +1,1 @@
-abstract class CommentSectionSource  {
-  
-}
+abstract class CommentSectionSource {}
