@@ -1,6 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:watch_sports/core/models/comment.dart';
-
+import '../../../../core/models/comment.dart';
 import '../repositories/comment_section_repository.dart';
 
 @LazySingleton()
@@ -9,7 +8,27 @@ class CommentSectionUsecase implements CommentSectionRepository {
   const CommentSectionUsecase(this.repository);
 
   @override
-  Future<void> sendComment(String event, List<Comment> comments) {
-    return repository.sendComment(event, comments);
+  Future<void> init() {
+    return repository.init();
+  }
+
+  @override
+  Future<void> dispose() {
+    return repository.dispose();
+  }
+
+  @override
+  void onNewToken(void Function(String p1) fn) {
+    return repository.onNewToken(fn);
+  }
+
+  @override
+  Future<bool> sendComment(String eventId, Comment entities) {
+    return repository.sendComment(eventId, entities);
+  }
+
+  @override
+  void onNewComment(String eventId, void Function(Comment p1) fn) {
+    return repository.onNewComment(eventId, fn);
   }
 }

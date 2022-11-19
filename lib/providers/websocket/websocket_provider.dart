@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 enum WebSocketStatus { connected, disconnected }
 
 abstract class WebSocketProvider {
@@ -5,8 +7,8 @@ abstract class WebSocketProvider {
   void disconnect();
   void dispose();
 
-  void emit(String event, {dynamic data});
-  void onEvent(String event, Function(dynamic) call);
+  void emit(String event, {Uint8List data});
+  void onEvent(String event, Function(Uint8List) call);
 
   WebSocketStatus get status;
 }

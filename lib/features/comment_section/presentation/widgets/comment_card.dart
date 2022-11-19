@@ -22,12 +22,19 @@ class CommentCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            GoogleText(
+              comment.name,
+              maxLines: 1,
+              fontWeight: FontWeight.bold,
+              fontSize: SizeConfig(context, 13)(),
+            ),
+            const SizedBox(width: 5.0),
             Expanded(
               child: GoogleText(
-                comment.name,
+                comment.device,
                 maxLines: 1,
-                fontWeight: FontWeight.bold,
-                fontSize: SizeConfig(context, 13)(),
+                color: Colors.grey,
+                fontSize: SizeConfig(context, 09)(),
               ),
             ),
             if (comment.createdAtDateTime != null) ...[

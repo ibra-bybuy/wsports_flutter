@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/providers/logger/logger_provider.dart';
 import 'package:watch_sports/providers/websocket/websocket_provider.dart';
@@ -62,10 +63,13 @@ class SocketIo extends WebSocketProvider {
   }
 
   @override
-  void onEvent(String event, Function(dynamic p1) call) {
+  void onEvent(String event, Function(Uint8List p1) call) {
     socket?.on(event, (data) {
-      call.call(data);
-      logger.i("WebSocket onEvent $event data: $data");
+      if (data is List) {
+        final intList = List<dynamic>.from(data).cast<int>();
+        call.call(Uint8List.fromList(intList));
+        logger.i("WebSocket onEvent $event data: $data");
+      }
     });
   }
 }

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package comment;
+
+import "proto/user.proto";
+
+message CommentProto {
+    string body = 1;
+    user.UserProto user = 2;
+    string dateTime = 3;
+    string eventId = 4;
+    string device = 5;
+}

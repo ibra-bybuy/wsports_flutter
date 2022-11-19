@@ -1,0 +1,6 @@
+syntax = "proto3";
+package token;
+
+message TokenProto {
+    string token = 1;
+}

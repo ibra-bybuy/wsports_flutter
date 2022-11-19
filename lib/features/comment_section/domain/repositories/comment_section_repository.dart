@@ -1,5 +1,10 @@
-import '../../../../core/models/comment.dart';
+import 'package:watch_sports/core/models/comment.dart';
 
 abstract class CommentSectionRepository {
-  Future<void> sendComment(String event, List<Comment> comments);
+  void onNewToken(void Function(String) fn);
+  Future<void> dispose();
+  Future<void> init();
+
+  Future<bool> sendComment(String eventId, Comment entities);
+  void onNewComment(String eventId, void Function(Comment) fn);
 }

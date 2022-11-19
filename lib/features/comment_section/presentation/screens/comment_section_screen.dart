@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/listview/listview_builder.dart';
 import 'package:watch_sports/core/cubits/custom/comments_cubit/comments_cubit.dart';
 import 'package:watch_sports/core/models/comment.dart';
+import 'package:watch_sports/features/comment_section/presentation/cubits/send_comment/send_comment_cubit.dart';
 import 'package:watch_sports/features/comment_section/presentation/widgets/comment_card.dart';
 
 import '../../../../setup.dart';
@@ -21,6 +22,7 @@ class CommentSectionScreen extends StatefulWidget {
 class _CommentSectionScreenState extends State<CommentSectionScreen> {
   final commentEditingCotroller = TextEditingController();
   final commentSectionCubit = getIt<CommentSectionCubit>();
+  final sendCommentCubit = getIt<SendCommentCubit>();
   late final CommentsCubit commentsCubit;
 
   @override
@@ -70,9 +72,9 @@ class _CommentSectionScreenState extends State<CommentSectionScreen> {
             child: CommentBottomArea(
               textEditingController: commentEditingCotroller,
               onSend: () {
-                commentSectionCubit.send(
-                  commentEditingCotroller.text,
+                sendCommentCubit.send(
                   widget.eventId,
+                  commentEditingCotroller.text,
                 );
                 commentEditingCotroller.clear();
               },

@@ -1,26 +1,31 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+
 import 'package:watch_sports/features/comment_section/data/models/comment.dart';
 
 class Comment extends Equatable {
   final String name;
   final String body;
   final String createdAt;
+  final String device;
   const Comment({
     this.name = '',
     this.body = '',
     this.createdAt = '',
+    this.device = '',
   });
 
   Comment copyWith({
     String? name,
     String? body,
     String? createdAt,
+    String? device,
   }) {
     return Comment(
       name: name ?? this.name,
       body: body ?? this.body,
       createdAt: createdAt ?? this.createdAt,
+      device: device ?? this.device,
     );
   }
 
@@ -29,6 +34,7 @@ class Comment extends Equatable {
       'name': name,
       'body': body,
       'createdAt': createdAt,
+      'device': device,
     };
   }
 
@@ -37,6 +43,7 @@ class Comment extends Equatable {
       name: (map["name"] ?? '') as String,
       body: (map["body"] ?? '') as String,
       createdAt: (map["createdAt"] ?? '') as String,
+      device: (map["device"] ?? '') as String,
     );
   }
 
@@ -56,7 +63,7 @@ class Comment extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [name, body, createdAt];
+  List<Object> get props => [name, body, createdAt, device];
 
   DateTime? get createdAtDateTime {
     return DateTime.tryParse(createdAt);
