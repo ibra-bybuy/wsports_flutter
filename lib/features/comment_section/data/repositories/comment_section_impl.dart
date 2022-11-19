@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/core/extensions/comment.dart';
 import 'package:watch_sports/core/extensions/comment_proto.dart';
+import 'package:watch_sports/generated/proto/comment_request.pbserver.dart';
 import '../../../../core/models/comment.dart';
 import '../../domain/repositories/comment_section_repository.dart';
 import '../sources/comment_section_source.dart';
@@ -28,8 +29,14 @@ class CommentSectionRepositoryImpl implements CommentSectionRepository {
   }
 
   @override
-  Future<bool> sendComment(String eventId, Comment entities) async {
-    source.sendComment(entities.toProto(eventId));
+  Future<bool> sendComment(
+      String eventId, String token, Comment entities) async {
+    source.sendComment(
+      CommentRequestProto(
+        token: token,
+        comment: entities.toProto(eventId),
+      ),
+    );
 
     return true;
   }

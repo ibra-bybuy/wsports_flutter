@@ -23,7 +23,7 @@ class CommentSectionCubit extends Cubit<CommentSectionState> {
     });
 
     usecase.onNewComment(eventId, (comment) {
-      commentSectionCubit.add([comment]);
+      commentSectionCubit.setCommentRead(comment.id);
     });
   }
 

@@ -3,47 +3,62 @@ import 'package:equatable/equatable.dart';
 
 import 'package:watch_sports/features/comment_section/data/models/comment.dart';
 
+enum CommentStatus { sending, sent, error }
+
 class Comment extends Equatable {
+  final String id;
   final String name;
   final String body;
   final String createdAt;
   final String device;
+  // enum
+  final CommentStatus status;
   const Comment({
+    this.id = '',
     this.name = '',
     this.body = '',
     this.createdAt = '',
     this.device = '',
+    this.status = CommentStatus.sending,
   });
 
   Comment copyWith({
+    String? id,
     String? name,
     String? body,
     String? createdAt,
     String? device,
+    CommentStatus? status,
   }) {
     return Comment(
+      id: id ?? this.id,
       name: name ?? this.name,
       body: body ?? this.body,
       createdAt: createdAt ?? this.createdAt,
       device: device ?? this.device,
+      status: status ?? this.status,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'name': name,
       'body': body,
       'createdAt': createdAt,
       'device': device,
+      'status': status.index,
     };
   }
 
   factory Comment.fromMap(Map<String, dynamic> map) {
     return Comment(
+      id: (map["id"] ?? '') as String,
       name: (map["name"] ?? '') as String,
       body: (map["body"] ?? '') as String,
       createdAt: (map["createdAt"] ?? '') as String,
       device: (map["device"] ?? '') as String,
+      status: CommentStatus.values[(map['status'] ?? 0) as int],
     );
   }
 
@@ -63,7 +78,16 @@ class Comment extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [name, body, createdAt, device];
+  List<Object> get props {
+    return [
+      id,
+      name,
+      body,
+      createdAt,
+      device,
+      status,
+    ];
+  }
 
   DateTime? get createdAtDateTime {
     return DateTime.tryParse(createdAt);
@@ -72,4 +96,7 @@ class Comment extends Equatable {
   CommentApi get toCommentApi {
     return CommentApi(name: name, body: body, createdAt: createdAt);
   }
+
+  bool get isSending => status == CommentStatus.sending;
+  bool get isError => status == CommentStatus.error;
 }

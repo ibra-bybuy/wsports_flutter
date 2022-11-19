@@ -18,6 +18,7 @@ class CommentProto extends $pb.GeneratedMessage {
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dateTime', protoName: 'dateTime')
     ..aOS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'eventId', protoName: 'eventId')
     ..aOS(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'device')
+    ..aOS(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'id')
     ..hasRequiredFields = false
   ;
 
@@ -28,6 +29,7 @@ class CommentProto extends $pb.GeneratedMessage {
     $core.String? dateTime,
     $core.String? eventId,
     $core.String? device,
+    $core.String? id,
   }) {
     final _result = create();
     if (body != null) {
@@ -44,6 +46,9 @@ class CommentProto extends $pb.GeneratedMessage {
     }
     if (device != null) {
       _result.device = device;
+    }
+    if (id != null) {
+      _result.id = id;
     }
     return _result;
   }
@@ -114,5 +119,14 @@ class CommentProto extends $pb.GeneratedMessage {
   $core.bool hasDevice() => $_has(4);
   @$pb.TagNumber(5)
   void clearDevice() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.String get id => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set id($core.String v) { $_setString(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasId() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearId() => clearField(6);
 }
 

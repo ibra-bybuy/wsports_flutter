@@ -23,8 +23,8 @@ class CommentSectionUsecase implements CommentSectionRepository {
   }
 
   @override
-  Future<bool> sendComment(String eventId, Comment entities) {
-    return repository.sendComment(eventId, entities);
+  Future<bool> sendComment(String eventId, String token, Comment entities) {
+    return repository.sendComment(eventId, token, entities);
   }
 
   @override

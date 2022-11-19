@@ -5,6 +5,6 @@ abstract class CommentSectionRepository {
   Future<void> dispose();
   Future<void> init();
 
-  Future<bool> sendComment(String eventId, Comment entities);
+  Future<bool> sendComment(String eventId, String token, Comment entities);
   void onNewComment(String eventId, void Function(Comment) fn);
 }

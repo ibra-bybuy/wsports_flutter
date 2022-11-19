@@ -1,0 +1,9 @@
+syntax = "proto3";
+package comment;
+
+import "proto/comment.proto";
+
+message CommentRequestProto {
+    string token = 1;
+    comment.CommentProto comment = 2;
+}

@@ -17,8 +17,9 @@ const CommentProto$json = const {
     const {'1': 'dateTime', '3': 3, '4': 1, '5': 9, '10': 'dateTime'},
     const {'1': 'eventId', '3': 4, '4': 1, '5': 9, '10': 'eventId'},
     const {'1': 'device', '3': 5, '4': 1, '5': 9, '10': 'device'},
+    const {'1': 'id', '3': 6, '4': 1, '5': 9, '10': 'id'},
   ],
 };
 
 /// Descriptor for `CommentProto`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List commentProtoDescriptor = $convert.base64Decode('CgxDb21tZW50UHJvdG8SEgoEYm9keRgBIAEoCVIEYm9keRIjCgR1c2VyGAIgASgLMg8udXNlci5Vc2VyUHJvdG9SBHVzZXISGgoIZGF0ZVRpbWUYAyABKAlSCGRhdGVUaW1lEhgKB2V2ZW50SWQYBCABKAlSB2V2ZW50SWQSFgoGZGV2aWNlGAUgASgJUgZkZXZpY2U=');
+final $typed_data.Uint8List commentProtoDescriptor = $convert.base64Decode('CgxDb21tZW50UHJvdG8SEgoEYm9keRgBIAEoCVIEYm9keRIjCgR1c2VyGAIgASgLMg8udXNlci5Vc2VyUHJvdG9SBHVzZXISGgoIZGF0ZVRpbWUYAyABKAlSCGRhdGVUaW1lEhgKB2V2ZW50SWQYBCABKAlSB2V2ZW50SWQSFgoGZGV2aWNlGAUgASgJUgZkZXZpY2USDgoCaWQYBiABKAlSAmlk');

@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/generated/proto/comment.pb.dart';
+import 'package:watch_sports/generated/proto/comment_request.pbserver.dart';
 import 'package:watch_sports/generated/proto/token.pb.dart';
 import '../../../../core/cubits/cached/urls_cubit/urls_cubit.dart';
 import '../../../../providers/websocket/socket_io.dart';
@@ -34,7 +35,7 @@ class CommentSectionWebsocketSource implements CommentSectionSource {
   }
 
   @override
-  Future<void> sendComment(CommentProto comment) async {
+  Future<void> sendComment(CommentRequestProto comment) async {
     webSocketProvider.emit("/comment", data: comment.writeToBuffer());
   }
 

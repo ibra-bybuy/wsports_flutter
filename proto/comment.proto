@@ -9,4 +9,5 @@ message CommentProto {
     string dateTime = 3;
     string eventId = 4;
     string device = 5;
+    string id = 6;
 }

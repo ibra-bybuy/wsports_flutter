@@ -6,6 +6,7 @@ import '../models/comment.dart';
 extension CommentExt on Comment {
   CommentProto toProto(String eventId) {
     return CommentProto(
+      id: id,
       body: body,
       user: UserProto(
         name: name,

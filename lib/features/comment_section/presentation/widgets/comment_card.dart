@@ -4,6 +4,8 @@ import 'package:watch_sports/core/functions/date_functions.dart';
 import 'package:watch_sports/core/functions/size_config.dart';
 import 'package:watch_sports/core/models/comment.dart';
 
+import 'comment_body.dart';
+
 class CommentCard extends StatelessWidget {
   final Comment comment;
   final bool showDivider;
@@ -47,10 +49,7 @@ class CommentCard extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 5.0),
-        GoogleText(
-          comment.body,
-          fontSize: SizeConfig(context, 13)(),
-        ),
+        CommentBody(comment: comment),
         if (showDivider) ...[
           const Divider(),
         ] else ...[

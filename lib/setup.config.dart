@@ -23,9 +23,9 @@ import 'features/comment_section/domain/repositories/comment_section_repository.
 import 'features/comment_section/domain/usecases/comment_section_usecase.dart'
     as _i42;
 import 'features/comment_section/presentation/cubits/comment_section_cubit.dart'
-    as _i44;
-import 'features/comment_section/presentation/cubits/send_comment/send_comment_cubit.dart'
     as _i43;
+import 'features/comment_section/presentation/cubits/send_comment/send_comment_cubit.dart'
+    as _i44;
 import 'features/event_details/data/repositories/event_details_impl.dart'
     as _i33;
 import 'features/event_details/data/sources/event_details_network.dart' as _i11;
@@ -130,15 +130,16 @@ _i1.GetIt $initGetIt(
       _i41.CommentSectionRepositoryImpl(get<_i30.CommentSectionSource>()));
   gh.lazySingleton<_i42.CommentSectionUsecase>(
       () => _i42.CommentSectionUsecase(get<_i40.CommentSectionRepository>()));
-  gh.lazySingleton<_i43.SendCommentCubit>(() => _i43.SendCommentCubit(
+  gh.lazySingleton<_i43.CommentSectionCubit>(() => _i43.CommentSectionCubit(
+        get<_i42.CommentSectionUsecase>(),
+        get<_i21.TokenProvider>(instanceName: 'CommentsTokenImpl'),
+      ));
+  gh.lazySingleton<_i44.SendCommentCubit>(() => _i44.SendCommentCubit(
         get<_i21.TokenProvider>(instanceName: 'CommentsTokenImpl'),
         get<_i24.UserCubit>(),
         get<_i42.CommentSectionUsecase>(),
         get<_i7.DeviceInfoProvider>(),
-      ));
-  gh.lazySingleton<_i44.CommentSectionCubit>(() => _i44.CommentSectionCubit(
-        get<_i42.CommentSectionUsecase>(),
-        get<_i21.TokenProvider>(instanceName: 'CommentsTokenImpl'),
+        get<_i43.CommentSectionCubit>(),
       ));
   return get;
 }
