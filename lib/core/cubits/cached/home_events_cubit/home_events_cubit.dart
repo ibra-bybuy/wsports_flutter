@@ -12,6 +12,11 @@ class HomeEventsCubit extends HydratedCubit<HomeEventsState> {
     emit(HomeEventsState(events: events));
   }
 
+  void addEvents(List<Event> events) {
+    emit(HomeEventsState(
+        events: List<Event>.from(state.events)..addAll(events)));
+  }
+
   @override
   HomeEventsState? fromJson(Map<String, dynamic> json) =>
       HomeEventsState.fromMap(json);

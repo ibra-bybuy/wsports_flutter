@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/components/image/cache_image.dart';
 import '../../../../core/components/shimmer/shimmer.dart';
 import '../../../../core/functions/size_config.dart';
 
@@ -13,8 +13,8 @@ class EventAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = fixedSize ?? SizeConfig(context, 90.0)();
     const borderRadius = BorderRadius.all(Radius.circular(60.0));
-    return CachedNetworkImage(
-      imageUrl: imageUrl,
+    return CacheImage(
+      imageUrl,
       height: size,
       fadeInDuration: const Duration(milliseconds: 20),
       fit: BoxFit.fitWidth,

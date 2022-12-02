@@ -40,7 +40,6 @@ dependencies:
   flutter_bloc: ^8.1.1
   injectable: ^1.5.3
   intl: ^0.17.0
-  retrofit: ^3.3.1
   google_fonts: ^3.0.1
   equatable: ^2.0.5
   hydrated_bloc: ^8.0.0
@@ -49,13 +48,17 @@ dependencies:
   dartz: ^0.10.1
   cached_network_image: ^3.2.2
   shimmer_animation: ^2.1.0+1
-  video_player: ^2.4.7
   modal_bottom_sheet: ^2.1.2
   socket_io_client: ^1.0.2
   logger: ^1.1.0
   protobuf: ^2.1.0
   device_info_plus: ^8.0.0
   uuid: ^3.0.7
+  dio: ^4.0.6
+  retrofit: ^3.3.1
+  json_annotation: ^4.7.0
+  flutter_cache_manager: ^3.3.0
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +68,8 @@ dev_dependencies:
   injectable_generator: ^1.5.4
   auto_route_generator: ^5.0.2
   build_runner:
-  json_serializable: ^6.3.2
+  retrofit_generator: ^4.2.0
+  json_serializable: ^6.5.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -14,6 +14,8 @@ class UrlsCubit extends HydratedCubit<UrlsState> {
         baseApiUrl: Urls.apiUrl, commentsUrl: Urls.commentsSocket));
   }
 
+  String get baseUrl => state.baseApiUrl;
+
   @override
   UrlsState? fromJson(Map<String, dynamic> json) => UrlsState.fromMap(json);
 

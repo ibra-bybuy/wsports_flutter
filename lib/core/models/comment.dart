@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-import 'package:watch_sports/features/comment_section/data/models/comment.dart';
-
 enum CommentStatus { sending, sent, error }
 
 class Comment extends Equatable {
@@ -91,10 +89,6 @@ class Comment extends Equatable {
 
   DateTime? get createdAtDateTime {
     return DateTime.tryParse(createdAt);
-  }
-
-  CommentApi get toCommentApi {
-    return CommentApi(name: name, body: body, createdAt: createdAt);
   }
 
   bool get isSending => status == CommentStatus.sending;

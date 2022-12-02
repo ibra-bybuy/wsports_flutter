@@ -21,6 +21,7 @@ class EventInfo extends StatelessWidget {
         GoogleText(
           eventName,
           fontSize: 13.0,
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 20.0),
         if (eventTime != null) ...[
@@ -28,6 +29,7 @@ class EventInfo extends StatelessWidget {
             DateFunctions(passedDate: eventTime!).dayMonthYearHuman(),
             fontSize: 12.0,
             color: const Color.fromARGB(255, 134, 134, 134),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10.0),
           GoogleText(
@@ -35,11 +37,13 @@ class EventInfo extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontSize: 15.0,
             color: Colors.black,
+            textAlign: TextAlign.center,
           ),
         ] else ...[
           GoogleText(
             localizationInstance.notApplicable,
             fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center,
           ),
         ],
       ],

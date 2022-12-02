@@ -7,29 +7,25 @@ class Event extends Equatable {
   final String id;
   final String name;
   final String startTime;
-  final Team team1;
-  final Team team2;
+  final List<Team> teams;
   const Event({
     this.id = "",
     this.name = '',
     this.startTime = "",
-    this.team1 = const Team(),
-    this.team2 = const Team(),
+    this.teams = const [],
   });
 
   Event copyWith({
     String? id,
     String? name,
     String? startTime,
-    Team? team1,
-    Team? team2,
+    List<Team>? teams,
   }) {
     return Event(
       id: id ?? this.id,
       name: name ?? this.name,
       startTime: startTime ?? this.startTime,
-      team1: team1 ?? this.team1,
-      team2: team2 ?? this.team2,
+      teams: teams ?? this.teams,
     );
   }
 
@@ -38,8 +34,9 @@ class Event extends Equatable {
       'id': id,
       'name': name,
       'startTime': startTime,
-      'team1': team1.toMap(),
-      'team2': team2.toMap(),
+      'teams': teams.map((x) {
+        return x.toMap();
+      }).toList(growable: false),
     };
   }
 
@@ -48,10 +45,12 @@ class Event extends Equatable {
       id: (map["id"] ?? '') as String,
       name: (map["name"] ?? '') as String,
       startTime: (map["startTime"] ?? '') as String,
-      team1: Team.fromMap((map["team1"] ?? Map<String, dynamic>.from({}))
-          as Map<String, dynamic>),
-      team2: Team.fromMap((map["team2"] ?? Map<String, dynamic>.from({}))
-          as Map<String, dynamic>),
+      teams: List<Team>.from(
+        ((map['teams'] ?? const <Team>[]) as List).map<Team>((x) {
+          return Team.fromMap(
+              (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
+        }),
+      ),
     );
   }
 
@@ -59,15 +58,7 @@ class Event extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props {
-    return [
-      id,
-      name,
-      startTime,
-      team1,
-      team2,
-    ];
-  }
+  List<Object> get props => [id, name, startTime, teams];
 
   DateTime? get startTimeDateTime => DateTime.tryParse(startTime);
 }

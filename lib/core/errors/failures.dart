@@ -18,14 +18,14 @@ class ServerFailure extends Failure {
 }
 
 class UnknownFailure extends Failure {
-  const UnknownFailure({String msg = "unrecognized error"}) : super(msg);
+  const UnknownFailure({String msg = ""}) : super(msg);
 
   @override
   List<Object> get props => [message];
 }
 
 class IncorrectFormatFailure extends Failure {
-  const IncorrectFormatFailure({String msg = "incorrect format"}) : super(msg);
+  const IncorrectFormatFailure({String msg = ""}) : super(msg);
 
   @override
   List<Object> get props => [message];

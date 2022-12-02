@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:watch_sports/core/components/video/video_player.dart';
 import 'package:watch_sports/core/models/event.dart';
 import 'package:watch_sports/features/comment_section/presentation/screens/comment_section_screen.dart';
-import 'package:watch_sports/features/event_details/presentation/widgets/team_card.dart';
-import 'package:watch_sports/providers/video/basic_video_provider.dart';
 
 import '../../../../core/components/app_bar/simple_app_bar.dart';
 import '../../../../core/components/bottom_sheet/dragger.dart';
-import '../../../../providers/video/video_provider.dart';
 import '../../../../setup.dart';
 import '../../../comment_section/presentation/cubits/comment_section_cubit.dart';
 import '../../../comment_section/presentation/widgets/comment_field.dart';
 import '../widgets/date_card.dart';
+import '../widgets/team_card.dart';
 
 class EventDetailsScreen extends StatefulWidget {
   final Event event;
@@ -27,17 +24,11 @@ class EventDetailsScreen extends StatefulWidget {
 
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
   final horizontalPadding = 25.0;
-  late final VideoProvider videoProvider;
   final commentSectionCubit = getIt<CommentSectionCubit>();
 
   @override
   void initState() {
     super.initState();
-
-    videoProvider = BasicVideoProvider();
-    videoProvider.init(onInit: () {
-      setState(() {});
-    });
 
     commentSectionCubit.init(widget.event.id);
   }
@@ -45,7 +36,6 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   @override
   void dispose() {
     super.dispose();
-    videoProvider.dispose();
     commentSectionCubit.dispose();
   }
 
@@ -69,15 +59,27 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       ),
                     ],
                     const SizedBox(height: 20.0),
-                    EventDetailsTeamCard(
-                        team: widget.event.team1, color: Colors.white),
-                    const SizedBox(height: 15.0),
-                    EventDetailsTeamCard(
-                        team: widget.event.team2, color: Colors.red),
+                    ListView.builder(
+                      itemCount: widget.event.teams.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            EventDetailsTeamCard(
+                              team: widget.event.teams[index],
+                              color: index == 1 ? Colors.red : Colors.white,
+                            ),
+                            const SizedBox(height: 15.0),
+                          ],
+                        );
+                      },
+                    ),
                     const SizedBox(height: 40.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: CustomVideoPlayer(videoProvider: videoProvider),
+                      child: const SizedBox(),
                     ),
                     const SizedBox(height: 20.0),
                   ],

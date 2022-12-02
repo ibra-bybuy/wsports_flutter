@@ -44,6 +44,10 @@ class DateFunctions {
 
   bool isToday() => isThisYear() && isThisMonth() && isThisDay();
 
+  String yearMonthDay() {
+    return passedDate.toString().split(" ")[0];
+  }
+
   String dayMonthYear() {
     DateFormat formatter = DateFormat.yMMMMd(locale);
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/app_bar/main_app_bar.dart';
+import 'package:watch_sports/core/extensions/scroll_controller.dart';
 import 'package:watch_sports/features/home/presentation/cubits/banners_cubit.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
 import 'package:watch_sports/features/home/presentation/widgets/categories.dart';
@@ -26,11 +27,22 @@ class _HomeScreenState extends State<HomeScreen> {
   final horizontalPadding = 15.0;
   final selectedCategoryCubit = StringCubit();
   final appRouter = getIt<AppRouter>();
+  final scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _load();
+
+    Future.delayed(Duration.zero, () {
+      if (scrollController.hasClients) {
+        scrollController.addListener(() {
+          if (scrollController.isScrolledToBottom) {
+            eventsCubit.paginationProvider.onBottomScrolled();
+          }
+        });
+      }
+    });
   }
 
   Future<void> _load() async {
@@ -43,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: const MainAppBar(),
       body: SingleChildScrollView(
+        controller: scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
