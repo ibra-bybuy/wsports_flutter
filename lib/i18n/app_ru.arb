@@ -15,5 +15,7 @@
 	"settings": "Настройки",
 	"nameHint": "Ваше имя",
 	"save": "Сохранить",
-	"incorrectValue": "Некорректное значение"
+	"incorrectValue": "Некорректное значение",
+	"nothingFound": "Ничего не найдено",
+	"searchHint": "Введите текст"
 }

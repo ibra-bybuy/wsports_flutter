@@ -15,9 +15,9 @@ MetaApi _$MetaApiFromJson(Map<String, dynamic> json) => MetaApi(
     );
 
 Map<String, dynamic> _$MetaApiToJson(MetaApi instance) => <String, dynamic>{
+      'totalPages': instance.totalPages,
+      'currentPage': instance.currentPage,
       'totalItems': instance.totalItems,
       'itemCount': instance.itemCount,
       'itemsPerPage': instance.itemsPerPage,
-      'totalPages': instance.totalPages,
-      'currentPage': instance.currentPage,
     };

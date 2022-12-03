@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:watch_sports/i18n/i18n.dart';
+import 'package:watch_sports/router/app_router.dart';
+import '../../../setup.dart';
+import '../textfield/sarchfield.dart';
 
-import '../textfield/textfield.dart';
-
-class SearchAppBar extends StatelessWidget {
-  const SearchAppBar({super.key});
+class SearchAppBar extends StatefulWidget {
+  const SearchAppBar({
+    super.key,
+  });
 
   @override
+  State<SearchAppBar> createState() => _SearchAppBarState();
+}
+
+class _SearchAppBarState extends State<SearchAppBar> {
+  final appRouter = getIt<AppRouter>();
+  @override
   Widget build(BuildContext context) {
-    return CustomTextField(
-      prefixIcon: const Icon(
-        Icons.search,
-        color: Colors.black,
+    return InkWell(
+      onTap: () => appRouter.push(SearchRoute()),
+      child: const IgnorePointer(
+        ignoring: true,
+        child: SearchField(),
       ),
-      hint: localizationInstance.searchHint,
     );
   }
 }

@@ -8,14 +8,12 @@ class MetaApi extends Pagination {
   final int totalItems;
   final int itemCount;
   final int itemsPerPage;
-  final int totalPages;
-  final int currentPage;
   const MetaApi({
     this.totalItems = 0,
     this.itemCount = 0,
     this.itemsPerPage = 0,
-    this.totalPages = 0,
-    this.currentPage = 0,
+    int totalPages = 0,
+    int currentPage = 0,
   }) : super(
           total: totalItems,
           totalPages: totalPages,

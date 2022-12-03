@@ -49,6 +49,17 @@ class _$AppRouter extends RootStackRouter {
         child: const SettingsScreen(),
       );
     },
+    SearchRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchRouteArgs>(
+          orElse: () => const SearchRouteArgs());
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: SearchScreen(
+          key: args.key,
+          initialQuery: args.initialQuery,
+        ),
+      );
+    },
   };
 
   @override
@@ -68,6 +79,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SettingsRoute.name,
           path: '/settings-screen',
+        ),
+        RouteConfig(
+          SearchRoute.name,
+          path: '/search-screen',
         ),
       ];
 }
@@ -162,4 +177,38 @@ class SettingsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsRoute';
+}
+
+/// generated route for
+/// [SearchScreen]
+class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
+  SearchRoute({
+    Key? key,
+    String? initialQuery,
+  }) : super(
+          SearchRoute.name,
+          path: '/search-screen',
+          args: SearchRouteArgs(
+            key: key,
+            initialQuery: initialQuery,
+          ),
+        );
+
+  static const String name = 'SearchRoute';
+}
+
+class SearchRouteArgs {
+  const SearchRouteArgs({
+    this.key,
+    this.initialQuery,
+  });
+
+  final Key? key;
+
+  final String? initialQuery;
+
+  @override
+  String toString() {
+    return 'SearchRouteArgs{key: $key, initialQuery: $initialQuery}';
+  }
 }

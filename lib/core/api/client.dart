@@ -16,4 +16,11 @@ abstract class RestClient {
     @Query("page") int page,
     @Query("type") String? type,
   );
+
+  @GET("/events/search")
+  Future<EventsResponse> search(
+    @Query("q") String query,
+    @Query("limit") int limit,
+    @Query("page") int page,
+  );
 }

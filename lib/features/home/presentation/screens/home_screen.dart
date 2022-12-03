@@ -8,6 +8,7 @@ import 'package:watch_sports/features/home/presentation/widgets/categories.dart'
 import 'package:watch_sports/i18n/i18n.dart';
 import 'package:watch_sports/router/app_router.dart';
 import 'package:watch_sports/setup.dart';
+import '../../../../core/components/app_bar/search_app_bar.dart';
 import '../../../../core/cubits/custom/string_cubit.dart/string_cubit.dart';
 import '../cubits/events/events_cubit.dart';
 import '../widgets/banners_builder.dart';
@@ -59,6 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 20.0),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: const SearchAppBar(),
+            ),
             const SizedBox(height: 20.0),
             HomeBannersBuilder(
               bannersCubit: bannersCubit,

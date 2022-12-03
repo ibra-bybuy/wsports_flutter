@@ -6,15 +6,14 @@ part 'team.g.dart';
 
 @JsonSerializable()
 class TeamApi extends Team {
-  final String name;
-  final String avatarUrl;
   const TeamApi({
-    this.name = '',
-    this.avatarUrl = '',
+    String name = '',
+    String avatarUrl = '',
   }) : super(name: name, avatarUrl: avatarUrl);
 
   factory TeamApi.fromJson(Map<String, dynamic> json) =>
       _$TeamApiFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TeamApiToJson(this);
 }

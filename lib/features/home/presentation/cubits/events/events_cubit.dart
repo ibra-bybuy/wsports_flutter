@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:watch_sports/core/cubits/cached/home_events_cubit/home_events_cubit.dart';
+import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import 'package:watch_sports/core/functions/date_functions.dart';
 import 'package:watch_sports/core/models/pagination.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
@@ -20,27 +20,27 @@ class EventsCubit extends Cubit<EventsState> {
   late final PaginationProvider paginationProvider;
   EventsCubit(this.useCase) : super(EventsInitial()) {
     paginationProvider =
-        PaginationProvider(limit: 3, page: 1, request: _onPagination);
+        PaginationProvider(limit: 10, page: 1, request: _onPagination);
   }
 
   String _currentCategoryValue = "";
 
-  final Map<String, HomeEventsCubit> _cubits = {
-    "": getIt<HomeEventsCubit>(param1: ""),
+  final Map<String, EventListCubit> _cubits = {
+    "": getIt<EventListCubit>(param1: ""),
     CategoryEnum.football.value:
-        getIt<HomeEventsCubit>(param1: CategoryEnum.football.value),
+        getIt<EventListCubit>(param1: CategoryEnum.football.value),
     CategoryEnum.basketball.value:
-        getIt<HomeEventsCubit>(param1: CategoryEnum.basketball.value),
+        getIt<EventListCubit>(param1: CategoryEnum.basketball.value),
     CategoryEnum.mma.value:
-        getIt<HomeEventsCubit>(param1: CategoryEnum.mma.value),
+        getIt<EventListCubit>(param1: CategoryEnum.mma.value),
     CategoryEnum.tennis.value:
-        getIt<HomeEventsCubit>(param1: CategoryEnum.tennis.value),
+        getIt<EventListCubit>(param1: CategoryEnum.tennis.value),
   };
 
-  HomeEventsCubit get getCurrentCategoryCubit =>
+  EventListCubit get getCurrentCategoryCubit =>
       _cubits[_currentCategoryValue] ?? _cubits[""]!;
 
-  EventsRequestEntities _entities = EventsRequestEntities();
+  EventsRequestEntities _entities = const EventsRequestEntities();
 
   Future<Either<Failure, EventsResponseEntities>> call({
     String category = "",
@@ -53,7 +53,7 @@ class EventsCubit extends Cubit<EventsState> {
     _entities = _entities.copyWith(
       type: category,
       date: date ?? DateFunctions(passedDate: DateTime.now()).yearMonthDay(),
-      limit: limit ?? 3,
+      limit: limit ?? 10,
       page: page ?? 1,
     );
     final response = await useCase.call(_entities);

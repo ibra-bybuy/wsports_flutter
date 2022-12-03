@@ -41,7 +41,7 @@ class CommentSectionWebsocketSource implements CommentSectionSource {
 
   @override
   void onNewComment(String eventId, void Function(CommentProto p1) fn) {
-    webSocketProvider.onEvent("/${eventId}", (data) {
+    webSocketProvider.onEvent("/$eventId", (data) {
       CommentProto token = CommentProto.fromBuffer(data);
       fn.call(token);
     });

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:watch_sports/core/constants/svg_pictures.dart';
 
 import '../../../../core/components/image/cache_image.dart';
 import '../../../../core/components/shimmer/shimmer.dart';
@@ -18,7 +20,12 @@ class EventAvatar extends StatelessWidget {
       height: size,
       fadeInDuration: const Duration(milliseconds: 20),
       fit: BoxFit.fitWidth,
-      errorWidget: (context, err, _) => const SizedBox(),
+      errorWidget: (context, err, _) {
+        return SizedBox(
+          width: size,
+          child: SvgPicture.asset(SvgPictures.teamError),
+        );
+      },
       placeholder: (context, str) {
         return Container(
           decoration: const BoxDecoration(

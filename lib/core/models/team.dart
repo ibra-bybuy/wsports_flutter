@@ -38,4 +38,6 @@ class Team extends Equatable {
 
   @override
   List<Object> get props => [name, avatarUrl];
+
+  Map<String, dynamic> toJson() => toMap();
 }

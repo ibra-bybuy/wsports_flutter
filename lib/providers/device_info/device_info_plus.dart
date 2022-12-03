@@ -7,7 +7,7 @@ import 'device_info_provider.dart';
 
 @LazySingleton(as: DeviceInfoProvider)
 class DeviceInfoPlus implements DeviceInfoProvider {
-  DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
+  final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
   AndroidDeviceInfo? _androidInfo;
   IosDeviceInfo? _iosInfo;
   WebBrowserInfo? _webBrowserInfo;

@@ -6,6 +6,7 @@ import 'package:watch_sports/features/home/presentation/screens/home_screen.dart
 import 'package:flutter/material.dart';
 import 'package:watch_sports/features/settings/presentation/screens/settings_screen.dart';
 import '../core/models/event.dart';
+import '../features/search/presentation/screens/search_screen.dart';
 part 'app_router.gr.dart';
 
 @MaterialAutoRouter(
@@ -15,6 +16,7 @@ part 'app_router.gr.dart';
     AutoRoute(page: EventDetailsScreen),
     AutoRoute(page: CommentSectionScreen),
     AutoRoute(page: SettingsScreen),
+    AutoRoute(page: SearchScreen),
   ],
 )
 @singleton

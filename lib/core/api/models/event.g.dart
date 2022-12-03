@@ -7,7 +7,7 @@ part of 'event.dart';
 // **************************************************************************
 
 EventApi _$EventApiFromJson(Map<String, dynamic> json) => EventApi(
-      id: json['id'] as String? ?? '',
+      id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
       startTime: json['startTime'] as String? ?? '',
       endTime: json['endTime'] as String? ?? '',
@@ -26,8 +26,8 @@ Map<String, dynamic> _$EventApiToJson(EventApi instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'startTime': instance.startTime,
-      'endTime': instance.endTime,
       'teams': instance.teams,
+      'endTime': instance.endTime,
       'type': instance.type,
       'streams': instance.streams,
     };

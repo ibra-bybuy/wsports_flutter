@@ -15,5 +15,7 @@
 	"settings": "Settings",
 	"nameHint": "Your name",
 	"save": "Save",
-	"incorrectValue": "Incorrect value"
+	"incorrectValue": "Incorrect value",
+	"nothingFound": "Nothing found",
+	"searchHint": "Search events"
 }

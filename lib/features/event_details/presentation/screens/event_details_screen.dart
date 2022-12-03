@@ -77,9 +77,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       },
                     ),
                     const SizedBox(height: 40.0),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      child: const SizedBox(),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4.0),
+                      child: SizedBox(),
                     ),
                     const SizedBox(height: 20.0),
                   ],

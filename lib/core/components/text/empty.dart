@@ -5,15 +5,22 @@ import 'google_text.dart';
 
 class EmptyText extends StatelessWidget {
   final String title;
-  const EmptyText(this.title, {super.key});
+  final FontWeight? fontWeight;
+  final double? fontSize;
+  const EmptyText(
+    this.title, {
+    super.key,
+    this.fontWeight = FontWeight.bold,
+    this.fontSize,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GoogleText(
         title,
-        fontWeight: FontWeight.bold,
-        fontSize: SizeConfig(context, 16.0)(),
+        fontWeight: fontWeight,
+        fontSize: fontSize ?? SizeConfig(context, 16.0)(),
       ),
     );
   }

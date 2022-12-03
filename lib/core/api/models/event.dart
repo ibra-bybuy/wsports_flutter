@@ -7,23 +7,19 @@ part 'event.g.dart';
 
 @JsonSerializable()
 class EventApi extends Event {
-  final String id;
-  final String name;
-  final String startTime;
   final String endTime;
-  final List<TeamApi> teams;
   final String type;
   final List<StreamApi> streams;
-  const EventApi({
-    this.id = '',
-    this.name = '',
-    this.startTime = '',
+  EventApi({
+    int id = 0,
+    String name = '',
+    String startTime = '',
     this.endTime = '',
-    this.teams = const [],
+    List<TeamApi> teams = const [],
     this.type = '',
     this.streams = const [],
   }) : super(
-          id: id,
+          id: id.toString(),
           name: name,
           startTime: startTime,
           teams: teams,

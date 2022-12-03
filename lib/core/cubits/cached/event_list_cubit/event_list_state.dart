@@ -1,25 +1,25 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
-import '../../../models/event.dart';
+import 'package:watch_sports/core/models/event.dart';
 
 class EventListState extends Equatable {
-  final List<Event> items;
+  final List<Event> events;
   const EventListState({
-    this.items = const [],
+    this.events = const [],
   });
 
   EventListState copyWith({
-    List<Event>? items,
+    List<Event>? events,
   }) {
     return EventListState(
-      items: items ?? this.items,
+      events: events ?? this.events,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'items': items.map((x) {
+      'events': events.map((x) {
         return x.toMap();
       }).toList(growable: false),
     };
@@ -27,8 +27,8 @@ class EventListState extends Equatable {
 
   factory EventListState.fromMap(Map<String, dynamic> map) {
     return EventListState(
-      items: List<Event>.from(
-        ((map['items'] ?? const <Event>[]) as List).map<Event>((x) {
+      events: List<Event>.from(
+        ((map['events'] ?? const <Event>[]) as List).map<Event>((x) {
           return Event.fromMap(
               (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
         }),
@@ -40,5 +40,5 @@ class EventListState extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [items];
+  List<Object> get props => [events];
 }
