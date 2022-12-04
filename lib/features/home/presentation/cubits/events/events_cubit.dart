@@ -43,15 +43,15 @@ class EventsCubit extends Cubit<EventsState> {
   EventsRequestEntities _entities = const EventsRequestEntities();
 
   Future<Either<Failure, EventsResponseEntities>> call({
-    String category = "",
+    String? category,
     String? date,
     int? limit,
     int? page,
     void Function(EventsResponseEntities)? onSuccessEmit,
   }) async {
-    _currentCategoryValue = category;
+    _currentCategoryValue = category ?? _currentCategoryValue;
     _entities = _entities.copyWith(
-      type: category,
+      type: _currentCategoryValue,
       date: date ?? DateFunctions(passedDate: DateTime.now()).yearMonthDay(),
       limit: limit ?? 10,
       page: page ?? 1,

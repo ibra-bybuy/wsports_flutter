@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../features/home/data/models/banners_response.dart';
 import '../../features/home/data/models/events_response.dart';
 
 part 'client.g.dart';
@@ -23,4 +24,7 @@ abstract class RestClient {
     @Query("limit") int limit,
     @Query("page") int page,
   );
+
+  @GET("/banners")
+  Future<BannersResponse> getBanners();
 }

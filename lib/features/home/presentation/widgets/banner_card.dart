@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/components/image/cache_image.dart';
 import '../../../../core/components/shimmer/shimmer.dart';
 import '../../../../core/constants/png_pictures.dart';
 import '../../../../core/models/banner.dart' as my;
@@ -24,8 +24,9 @@ class _HomeScreenBannerCardState extends State<HomeScreenBannerCard> {
         borderRadius: _borderRadius,
       ),
       constraints: const BoxConstraints(maxHeight: double.infinity),
-      child: CacheImage(
-        widget.item.imageUrl,
+      child: CachedNetworkImage(
+        imageUrl: widget.item.imageUrl,
+        fadeInDuration: const Duration(milliseconds: 100),
         placeholder: (context, str) {
           return CustomShimmer(
             child: BannerImage(

@@ -9,6 +9,17 @@ class CommentsCubit extends Cubit<List<Comment>> {
     emit(comments);
   }
 
+  void insertOrUpdate(List<Comment> comments) {
+    for (final c in comments) {
+      final commentIndex = getCommentIndex(c.id);
+      if (commentIndex >= 0) {
+        setCommentRead(c.id);
+      } else {
+        add([c]);
+      }
+    }
+  }
+
   void setCommentRead(String id) {
     _updateComment(id, replace: (comment) {
       return comment.copyWith(status: CommentStatus.sent);
@@ -23,5 +34,10 @@ class CommentsCubit extends Cubit<List<Comment>> {
 
       emit(comments);
     }
+  }
+
+  int getCommentIndex(String commentId) {
+    final comments = List<Comment>.from(state);
+    return comments.indexWhere((element) => element.id == commentId);
   }
 }

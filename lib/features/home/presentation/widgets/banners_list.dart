@@ -6,10 +6,12 @@ import '../../../../core/models/banner.dart' as my;
 class HomeBannersList extends StatefulWidget {
   final List<my.Banner> items;
   final double paddingHorizontal;
+  final void Function(my.Banner)? onTap;
   const HomeBannersList({
     super.key,
     required this.items,
     required this.paddingHorizontal,
+    this.onTap,
   });
 
   @override
@@ -35,7 +37,12 @@ class _HomeBannersListState extends State<HomeBannersList> {
                   : 5.0,
               left: index == 0 ? widget.paddingHorizontal : 5,
             ),
-            child: HomeScreenBannerCard(item: widget.items[index]),
+            child: InkWell(
+              onTap: widget.onTap != null
+                  ? () => widget.onTap!(widget.items[index])
+                  : null,
+              child: HomeScreenBannerCard(item: widget.items[index]),
+            ),
           );
         },
       ),

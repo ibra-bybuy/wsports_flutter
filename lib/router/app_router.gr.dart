@@ -57,6 +57,8 @@ class _$AppRouter extends RootStackRouter {
         child: SearchScreen(
           key: args.key,
           initialQuery: args.initialQuery,
+          showSearch: args.showSearch,
+          titleText: args.titleText,
         ),
       );
     },
@@ -185,12 +187,16 @@ class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
   SearchRoute({
     Key? key,
     String? initialQuery,
+    bool showSearch = true,
+    String? titleText,
   }) : super(
           SearchRoute.name,
           path: '/search-screen',
           args: SearchRouteArgs(
             key: key,
             initialQuery: initialQuery,
+            showSearch: showSearch,
+            titleText: titleText,
           ),
         );
 
@@ -201,14 +207,20 @@ class SearchRouteArgs {
   const SearchRouteArgs({
     this.key,
     this.initialQuery,
+    this.showSearch = true,
+    this.titleText,
   });
 
   final Key? key;
 
   final String? initialQuery;
 
+  final bool showSearch;
+
+  final String? titleText;
+
   @override
   String toString() {
-    return 'SearchRouteArgs{key: $key, initialQuery: $initialQuery}';
+    return 'SearchRouteArgs{key: $key, initialQuery: $initialQuery, showSearch: $showSearch, titleText: $titleText}';
   }
 }

@@ -48,7 +48,10 @@ class _CacheImageState extends State<CacheImage> {
             );
           }
 
-          return const SizedBox();
+          return SizedBox(
+            width: widget.height,
+            height: widget.height,
+          );
         },
       );
     }

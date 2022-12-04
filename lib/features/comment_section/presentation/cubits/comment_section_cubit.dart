@@ -22,8 +22,8 @@ class CommentSectionCubit extends Cubit<CommentSectionState> {
       tokenProvider.saveToken(token);
     });
 
-    usecase.onNewComment(eventId, (comment) {
-      commentSectionCubit.setCommentRead(comment.id);
+    usecase.onNewComment(eventId, (comments) {
+      commentSectionCubit.insertOrUpdate([comments]);
     });
   }
 

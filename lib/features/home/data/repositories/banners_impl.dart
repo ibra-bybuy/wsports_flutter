@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:watch_sports/core/models/banner.dart';
 import 'package:watch_sports/features/home/domain/entities/banners_response_entities.dart';
 import 'package:watch_sports/core/errors/failures.dart';
 import 'package:watch_sports/features/home/domain/repositories/banners_repository.dart';
@@ -15,17 +14,9 @@ class BannersRepositoryImpl implements BannersRepository {
   @override
   Future<Either<Failure, BannersResponseEntities>> call() async {
     try {
-      const response = BannersResponseEntities(items: [
-        Banner(
-          imageUrl:
-              "https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_xl_2x/s3/image/2022-08/102222-ufc-280-oliveira-vs-makhachev-SG-hero.jpg?h=d1cb525d&itok=mq2sGVn9",
-        ),
-        Banner(
-            imageUrl:
-                "https://dmxg5wxfqgb4u.cloudfront.net/styles/background_image_xl/s3/2022-09/102922-ufc-fight-night-kattar-vs-allen-BA-hero.jpg?h=d1cb525d&itok=U65ES4VK")
-      ]);
+      final response = await source.call();
 
-      return const Right(response);
+      return Right(BannersResponseEntities(items: response.data));
     } on Failure catch (e) {
       return Left(e);
     }

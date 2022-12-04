@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:watch_sports/core/components/app_bar/main_app_bar.dart';
+import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/components/textfield/sarchfield.dart';
 import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_state.dart';
@@ -9,6 +11,7 @@ import 'package:watch_sports/core/functions/size_config.dart';
 import 'package:watch_sports/router/app_router.dart';
 
 import '../../../../core/components/listview/listview_builder.dart';
+import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/components/text/empty.dart';
 import '../../../../core/models/event.dart';
 import '../../../../i18n/i18n.dart';
@@ -19,9 +22,13 @@ import '../cubits/search_state.dart';
 
 class SearchScreen extends StatefulWidget {
   final String? initialQuery;
+  final bool showSearch;
+  final String? titleText;
   const SearchScreen({
     Key? key,
     this.initialQuery,
+    this.showSearch = true,
+    this.titleText,
   }) : super(key: key);
 
   @override
@@ -31,7 +38,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final uiCubit = getIt<SearchCubit>();
   final appRouter = getIt<AppRouter>();
-
+  final _refreshController = RefreshController(initialRefresh: false);
   final scrollController = ScrollController();
 
   @override
@@ -57,10 +64,19 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: MainAppBar(
         children: [
-          SearchField(
-            onChanged: uiCubit.onChanged,
-            autofocus: true,
-          ),
+          if (widget.showSearch) ...[
+            SearchField(
+              onChanged: uiCubit.onChanged,
+              autofocus: true,
+            ),
+          ],
+          if (widget.titleText != null) ...[
+            GoogleText(
+              widget.titleText!,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ],
         ],
       ),
       body: BlocBuilder<SearchCubit, SearchState>(
@@ -70,18 +86,25 @@ class _SearchScreenState extends State<SearchScreen> {
             bloc: uiCubit.eventsCubit,
             builder: (context, eventListState) {
               if (eventListState.events.isNotEmpty) {
-                return SingleChildScrollView(
-                  controller: scrollController,
-                  child: CustomListViewBuilder<Event>(
-                    items: eventListState.events,
-                    itemBuilder: (context, _, item) {
-                      return EventCard(
-                        event: item,
-                        onTap: () {
-                          appRouter.push(EventDetailsRoute(event: item));
-                        },
-                      );
-                    },
+                return Refresher(
+                  scrollController: scrollController,
+                  controller: _refreshController,
+                  onRefresh: () async {
+                    await uiCubit.call();
+                    _refreshController.refreshCompleted();
+                  },
+                  child: SingleChildScrollView(
+                    child: CustomListViewBuilder<Event>(
+                      items: eventListState.events,
+                      itemBuilder: (context, _, item) {
+                        return EventCard(
+                          event: item,
+                          onTap: () {
+                            appRouter.push(EventDetailsRoute(event: item));
+                          },
+                        );
+                      },
+                    ),
                   ),
                 );
               }
