@@ -61,6 +61,10 @@ dependencies:
   flutter_svg: ^1.1.6
   pull_to_refresh_flutter3: ^2.0.1
   webview_flutter: ^3.0.4
+  package_info_plus: ^3.0.2
+  cool_alert: ^1.1.0
+  ota_update: ^4.0.2
+  flutter_local_notifications: ^13.0.0
 
 dev_dependencies:
   flutter_test:

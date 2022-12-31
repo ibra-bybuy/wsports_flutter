@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../features/home/data/models/app_versions_response.dart';
 import '../../features/home/data/models/banners_response.dart';
 import '../../features/home/data/models/events_response.dart';
 
@@ -27,4 +28,9 @@ abstract class RestClient {
 
   @GET("/banners")
   Future<BannersResponse> getBanners();
+
+  @GET("/app")
+  Future<AppVersionsResponse> getAppVersions(
+    @Query("platform") String platform,
+  );
 }

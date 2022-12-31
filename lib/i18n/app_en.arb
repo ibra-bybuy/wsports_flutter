@@ -17,5 +17,13 @@
 	"save": "Save",
 	"incorrectValue": "Incorrect value",
 	"nothingFound": "Nothing found",
-	"searchHint": "Search events"
+	"searchHint": "Search events",
+	"newVersion": "New version",
+	"newVersionBody": "There's a newer and much stable version",
+	"update": "Update",
+	"error": "Error",
+	"appUpdateError": "An error occured while updating the app",
+	"permissionNotGranted": "Permission was not granted",
+	"updating": "Updating",
+	"openNotification": "Open notification"
 }
