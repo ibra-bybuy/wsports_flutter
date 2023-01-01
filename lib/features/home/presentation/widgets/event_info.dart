@@ -2,19 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:watch_sports/core/functions/date_functions.dart';
 import 'package:watch_sports/i18n/i18n.dart';
 
+import '../../../../core/components/text/animated_text/animated_text.dart';
+import '../../../../core/components/text/animated_text/animated_text_model.dart';
 import '../../../../core/components/text/google_text.dart';
 
 class EventInfo extends StatelessWidget {
   final String eventName;
   final DateTime? eventTime;
+  final void Function()? onTap;
   const EventInfo({
     super.key,
     required this.eventName,
     this.eventTime,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    bool isTimePassed =
+        eventTime != null && DateTime.now().isAfter(eventTime!) ? true : false;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -32,13 +39,22 @@ class EventInfo extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10.0),
-          GoogleText(
-            DateFunctions(passedDate: eventTime!).hourMinute(),
-            fontWeight: FontWeight.bold,
-            fontSize: 15.0,
-            color: Colors.black,
-            textAlign: TextAlign.center,
-          ),
+          isTimePassed
+              ? AnimatedText(
+                  [
+                    const AnimatedTextModel("LIVE"),
+                    AnimatedTextModel(
+                        DateFunctions(passedDate: eventTime!).hourMinute())
+                  ],
+                  onTap: onTap,
+                )
+              : GoogleText(
+                  DateFunctions(passedDate: eventTime!).hourMinute(),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0,
+                  color: isTimePassed ? Colors.red : Colors.black,
+                  textAlign: TextAlign.center,
+                ),
         ] else ...[
           GoogleText(
             localizationInstance.notApplicable,
