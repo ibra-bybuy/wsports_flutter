@@ -3,16 +3,20 @@ import 'package:equatable/equatable.dart';
 
 import 'package:watch_sports/core/models/team.dart';
 
+import 'stream.dart' as my;
+
 class Event extends Equatable {
   final String id;
   final String name;
   final String startTime;
   final List<Team> teams;
+  final List<my.Stream> streams;
   const Event({
     this.id = "",
     this.name = '',
     this.startTime = "",
     this.teams = const [],
+    this.streams = const [],
   });
 
   Event copyWith({
@@ -20,12 +24,14 @@ class Event extends Equatable {
     String? name,
     String? startTime,
     List<Team>? teams,
+    List<my.Stream>? streams,
   }) {
     return Event(
       id: id ?? this.id,
       name: name ?? this.name,
       startTime: startTime ?? this.startTime,
       teams: teams ?? this.teams,
+      streams: streams ?? this.streams,
     );
   }
 
@@ -35,6 +41,9 @@ class Event extends Equatable {
       'name': name,
       'startTime': startTime,
       'teams': teams.map((x) {
+        return x.toMap();
+      }).toList(growable: false),
+      'streams': streams.map((x) {
         return x.toMap();
       }).toList(growable: false),
     };
@@ -51,6 +60,12 @@ class Event extends Equatable {
               (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
         }),
       ),
+      streams: List<my.Stream>.from(
+        ((map['streams'] ?? const <my.Stream>[]) as List).map<my.Stream>((x) {
+          return my.Stream.fromMap(
+              (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
+        }),
+      ),
     );
   }
 
@@ -58,7 +73,15 @@ class Event extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [id, name, startTime, teams];
+  List<Object> get props {
+    return [
+      id,
+      name,
+      startTime,
+      teams,
+      streams,
+    ];
+  }
 
   DateTime? get startTimeDateTime => DateTime.tryParse(startTime);
 }

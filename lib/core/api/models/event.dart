@@ -9,7 +9,6 @@ part 'event.g.dart';
 class EventApi extends Event {
   final String endTime;
   final String type;
-  final List<StreamApi> streams;
   EventApi({
     int id = 0,
     String name = '',
@@ -17,12 +16,13 @@ class EventApi extends Event {
     this.endTime = '',
     List<TeamApi> teams = const [],
     this.type = '',
-    this.streams = const [],
+    List<StreamApi> streams = const [],
   }) : super(
           id: id.toString(),
           name: name,
           startTime: startTime,
           teams: teams,
+          streams: streams,
         );
 
   factory EventApi.fromJson(Map<String, dynamic> json) =>

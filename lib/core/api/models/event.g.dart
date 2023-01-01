@@ -27,7 +27,7 @@ Map<String, dynamic> _$EventApiToJson(EventApi instance) => <String, dynamic>{
       'name': instance.name,
       'startTime': instance.startTime,
       'teams': instance.teams,
+      'streams': instance.streams,
       'endTime': instance.endTime,
       'type': instance.type,
-      'streams': instance.streams,
     };
