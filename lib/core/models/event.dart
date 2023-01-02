@@ -11,12 +11,14 @@ class Event extends Equatable {
   final String startTime;
   final List<Team> teams;
   final List<my.Stream> streams;
+  final String endTime;
   const Event({
     this.id = "",
     this.name = '',
     this.startTime = "",
     this.teams = const [],
     this.streams = const [],
+    this.endTime = '',
   });
 
   Event copyWith({
@@ -25,6 +27,7 @@ class Event extends Equatable {
     String? startTime,
     List<Team>? teams,
     List<my.Stream>? streams,
+    String? endTime,
   }) {
     return Event(
       id: id ?? this.id,
@@ -32,6 +35,7 @@ class Event extends Equatable {
       startTime: startTime ?? this.startTime,
       teams: teams ?? this.teams,
       streams: streams ?? this.streams,
+      endTime: endTime ?? this.endTime,
     );
   }
 
@@ -46,6 +50,7 @@ class Event extends Equatable {
       'streams': streams.map((x) {
         return x.toMap();
       }).toList(growable: false),
+      'endTime': endTime,
     };
   }
 
@@ -66,6 +71,7 @@ class Event extends Equatable {
               (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
         }),
       ),
+      endTime: (map["endTime"] ?? '') as String,
     );
   }
 
@@ -80,8 +86,29 @@ class Event extends Equatable {
       startTime,
       teams,
       streams,
+      endTime,
     ];
   }
 
   DateTime? get startTimeDateTime => DateTime.tryParse(startTime);
+  DateTime? get endTimeDateTime => DateTime.tryParse(endTime);
+
+  bool get isStarted {
+    return startTimeDateTime != null &&
+        DateTime.now().isAfter(startTimeDateTime!);
+  }
+
+  bool get isFinished {
+    final end = endTimeDateTime;
+
+    if (end != null) {
+      return DateTime.now().isAfter(end);
+    }
+
+    return false;
+  }
+
+  bool get isLive {
+    return isStarted && !isFinished;
+  }
 }

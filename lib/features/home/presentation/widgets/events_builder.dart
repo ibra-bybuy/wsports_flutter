@@ -31,6 +31,9 @@ class EventsBuilder extends StatelessWidget {
           return CustomListViewBuilder<Event>(
             items: state.events,
             itemBuilder: (context, _, item) {
+              if (item.isFinished) {
+                //return const SizedBox();
+              }
               return EventCard(
                 event: item,
                 onTap: () {

@@ -7,13 +7,12 @@ part 'event.g.dart';
 
 @JsonSerializable()
 class EventApi extends Event {
-  final String endTime;
   final String type;
   EventApi({
     int id = 0,
     String name = '',
     String startTime = '',
-    this.endTime = '',
+    String endTime = '',
     List<TeamApi> teams = const [],
     this.type = '',
     List<StreamApi> streams = const [],
@@ -23,6 +22,7 @@ class EventApi extends Event {
           startTime: startTime,
           teams: teams,
           streams: streams,
+          endTime: endTime,
         );
 
   factory EventApi.fromJson(Map<String, dynamic> json) =>

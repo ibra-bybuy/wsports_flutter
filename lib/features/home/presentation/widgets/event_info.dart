@@ -10,18 +10,19 @@ class EventInfo extends StatelessWidget {
   final String eventName;
   final DateTime? eventTime;
   final void Function()? onTap;
+  final bool isLive;
+  final bool isFinished;
   const EventInfo({
     super.key,
     required this.eventName,
     this.eventTime,
     this.onTap,
+    this.isLive = false,
+    this.isFinished = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    bool isTimePassed =
-        eventTime != null && DateTime.now().isAfter(eventTime!) ? true : false;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -39,22 +40,32 @@ class EventInfo extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10.0),
-          isTimePassed
-              ? AnimatedText(
-                  [
-                    const AnimatedTextModel("LIVE"),
-                    AnimatedTextModel(
-                        DateFunctions(passedDate: eventTime!).hourMinute())
-                  ],
-                  onTap: onTap,
-                )
-              : GoogleText(
-                  DateFunctions(passedDate: eventTime!).hourMinute(),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15.0,
-                  color: isTimePassed ? Colors.red : Colors.black,
-                  textAlign: TextAlign.center,
-                ),
+          if (isLive) ...[
+            AnimatedText(
+              [
+                const AnimatedTextModel("LIVE"),
+                AnimatedTextModel(
+                    DateFunctions(passedDate: eventTime!).hourMinute())
+              ],
+              onTap: onTap,
+            )
+          ] else if (isFinished) ...[
+            GoogleText(
+              localizationInstance.finished,
+              fontWeight: FontWeight.bold,
+              fontSize: 14.0,
+              color: Colors.grey,
+              textAlign: TextAlign.center,
+            )
+          ] else ...[
+            GoogleText(
+              DateFunctions(passedDate: eventTime!).hourMinute(),
+              fontWeight: FontWeight.bold,
+              fontSize: 15.0,
+              color: Colors.black,
+              textAlign: TextAlign.center,
+            )
+          ]
         ] else ...[
           GoogleText(
             localizationInstance.notApplicable,

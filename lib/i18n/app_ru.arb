@@ -25,5 +25,6 @@
 	"appUpdateError": "Появилась ошибка во время загрузки новой версии",
 	"permissionNotGranted": "Разрешение было отклонено",
 	"updating": "Обновление",
-	"openNotification": "Открыть уведомление"
+	"openNotification": "Открыть уведомление",
+	"finished": "Завершен"
 }

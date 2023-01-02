@@ -42,6 +42,8 @@ class EventCard extends StatelessWidget {
                 child: EventInfo(
                   eventName: event.name,
                   eventTime: event.startTimeDateTime,
+                  isLive: event.isLive,
+                  isFinished: event.isFinished,
                 ),
               ),
               const SizedBox(width: 15.0),

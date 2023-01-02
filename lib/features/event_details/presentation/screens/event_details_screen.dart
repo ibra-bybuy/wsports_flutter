@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
+import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/cubits/custom/event_cubit/event_cubit.dart';
 import 'package:watch_sports/core/models/event.dart';
 import 'package:watch_sports/features/comment_section/presentation/screens/comment_section_screen.dart';
 import 'package:watch_sports/features/event_details/presentation/cubits/event_details_cubit.dart';
-import 'package:webviewx/webviewx.dart';
+import 'package:watch_sports/i18n/i18n.dart';
 
 import '../../../../core/components/app_bar/simple_app_bar.dart';
 import '../../../../core/components/bottom_sheet/dragger.dart';
 import '../../../../core/components/refresh/refresher.dart';
+import '../../../../core/components/webview/webview.dart';
 import '../../../../setup.dart';
 import '../../../comment_section/presentation/cubits/comment_section_cubit.dart';
 import '../../../comment_section/presentation/widgets/comment_field.dart';
@@ -31,7 +33,7 @@ class EventDetailsScreen extends StatefulWidget {
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
   final horizontalPadding = 25.0;
   final commentSectionCubit = getIt<CommentSectionCubit>();
-  WebViewXController? webviewController;
+
   final uiCubit = getIt<EventDetailsCubit>();
   final _refreshController = RefreshController(initialRefresh: false);
 
@@ -65,20 +67,12 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (state.streams.isNotEmpty) ...[
+                if (true) ...[
                   Expanded(
-                    child: WebViewX(
-                      width: double.infinity,
-                      height: double.infinity,
-                      initialContent: state.streams.first.url,
-                      initialSourceType: SourceType.url,
-                      onWebViewCreated: (controller) async {
-                        webviewController = controller;
-                      },
-                    ),
+                    child: MyWebView(state.streams.first.url),
                   ),
                 ],
-                if (state.streams.isEmpty) ...[
+                if (!state.isLive) ...[
                   Expanded(
                     child: Container(
                       color: Colors.black,
@@ -88,6 +82,13 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             if (state.startTimeDateTime != null) ...[
                               EventDetailsDateCard(
                                 dateTime: state.startTimeDateTime!,
+                              ),
+                            ],
+                            if (state.isFinished) ...[
+                              GoogleText(
+                                localizationInstance.finished,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
                             ],
                             const SizedBox(height: 20.0),
