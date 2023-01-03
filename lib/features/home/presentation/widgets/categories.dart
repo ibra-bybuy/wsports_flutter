@@ -35,13 +35,11 @@ class HomeCategories extends StatelessWidget {
       child: BlocBuilder<StringCubit, String>(
         bloc: selectedCategoryCubit,
         builder: (context, state) {
-          return ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            controller: ScrollController(keepScrollOffset: false),
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(width: paddingHorizontal),
-              IntrinsicWidth(
+              Expanded(
                 child: HomeCategoryCard(
                   title: localizationInstance.football,
                   enabled: state == CategoryEnum.football.value,
@@ -51,32 +49,12 @@ class HomeCategories extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 15.0),
-              IntrinsicWidth(
-                child: HomeCategoryCard(
-                  title: localizationInstance.basketball,
-                  enabled: state == CategoryEnum.basketball.value,
-                  onTap: () =>
-                      onCategoryClicked?.call(CategoryEnum.basketball.value),
-                  icon: CategoriesIcons.basketball,
-                ),
-              ),
-              const SizedBox(width: 15.0),
-              IntrinsicWidth(
+              Expanded(
                 child: HomeCategoryCard(
                   title: localizationInstance.mma,
                   enabled: state == CategoryEnum.mma.value,
                   onTap: () => onCategoryClicked?.call(CategoryEnum.mma.value),
                   icon: CategoriesIcons.mma,
-                ),
-              ),
-              const SizedBox(width: 15.0),
-              IntrinsicWidth(
-                child: HomeCategoryCard(
-                  title: localizationInstance.tennis,
-                  enabled: state == CategoryEnum.tennis.value,
-                  onTap: () =>
-                      onCategoryClicked?.call(CategoryEnum.tennis.value),
-                  icon: CategoriesIcons.tennis,
                 ),
               ),
               const SizedBox(width: 15.0),

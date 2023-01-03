@@ -20,6 +20,7 @@ class HomeCategoryCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
           color: enabled ? const Color(0XFF000000) : const Color(0XFFF3F4F5),
           borderRadius: const BorderRadius.all(
@@ -29,6 +30,7 @@ class HomeCategoryCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 12.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               icon,
@@ -36,15 +38,13 @@ class HomeCategoryCard extends StatelessWidget {
               color: enabled ? Colors.white : Colors.black,
             ),
             const SizedBox(width: 10.0),
-            Expanded(
-              child: GoogleText(
-                title,
-                fontSize: SizeConfig(context, 12)(),
-                maxLines: 1,
-                fontWeight: FontWeight.bold,
-                color: enabled ? Colors.white : Colors.black,
-              ),
-            )
+            GoogleText(
+              title,
+              fontSize: SizeConfig(context, 12)(),
+              maxLines: 1,
+              fontWeight: FontWeight.bold,
+              color: enabled ? Colors.white : Colors.black,
+            ),
           ],
         ),
       ),

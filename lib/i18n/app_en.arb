@@ -27,5 +27,6 @@
 	"updating": "Updating",
 	"openNotification": "Open notification",
 	"finished": "Finished",
-	"stream": "Stream"
+	"stream": "Stream",
+	"liveEvents": "Live events"
 }

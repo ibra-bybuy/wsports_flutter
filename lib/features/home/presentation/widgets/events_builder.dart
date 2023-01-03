@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/text/empty.dart';
+import 'package:watch_sports/core/extensions/event_list.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
 import 'package:watch_sports/i18n/i18n.dart';
 import 'package:watch_sports/router/app_router.dart';
@@ -27,13 +28,11 @@ class EventsBuilder extends StatelessWidget {
     return BlocBuilder<EventListCubit, EventListState>(
       bloc: homeEventsCubit,
       builder: (context, state) {
-        if (state.events.isNotEmpty) {
+        final notFinished = state.events.getNotFinished;
+        if (notFinished.isNotEmpty) {
           return CustomListViewBuilder<Event>(
-            items: state.events,
+            items: notFinished,
             itemBuilder: (context, _, item) {
-              if (item.isFinished) {
-                return const SizedBox();
-              }
               return EventCard(
                 event: item,
                 onTap: () {
@@ -44,7 +43,7 @@ class EventsBuilder extends StatelessWidget {
           );
         }
 
-        if (eventsState is EventsLoaded && state.events.isEmpty) {
+        if (eventsState is EventsLoaded && notFinished.isEmpty) {
           return EmptyText(localizationInstance.noEvents);
         }
 

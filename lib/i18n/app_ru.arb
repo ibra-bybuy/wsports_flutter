@@ -27,5 +27,6 @@
 	"updating": "Обновление",
 	"openNotification": "Открыть уведомление",
 	"finished": "Завершен",
-	"stream": "Стрим"
+	"stream": "Стрим",
+	"liveEvents": "Live эвенты"
 }
