@@ -12,6 +12,18 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
+  InAppWebViewController? inAppWebViewController;
+
+  @override
+  void didUpdateWidget(covariant MyWebView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.url != oldWidget.url) {
+      inAppWebViewController?.loadUrl(
+          urlRequest: URLRequest(url: Uri.tryParse(widget.url)));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return InAppWebView(
@@ -19,6 +31,9 @@ class _MyWebViewState extends State<MyWebView> {
           Factory<VerticalDragGestureRecognizer>(
               () => VerticalDragGestureRecognizer()),
         ),
+      onWebViewCreated: (controller) {
+        inAppWebViewController = controller;
+      },
       initialOptions: InAppWebViewGroupOptions(
         android: AndroidInAppWebViewOptions(
           useHybridComposition: true,

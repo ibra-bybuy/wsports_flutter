@@ -26,5 +26,6 @@
 	"permissionNotGranted": "Разрешение было отклонено",
 	"updating": "Обновление",
 	"openNotification": "Открыть уведомление",
-	"finished": "Завершен"
+	"finished": "Завершен",
+	"stream": "Стрим"
 }

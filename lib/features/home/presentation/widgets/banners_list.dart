@@ -19,12 +19,19 @@ class HomeBannersList extends StatefulWidget {
 }
 
 class _HomeBannersListState extends State<HomeBannersList> {
-  final _pageController = PageController(viewportFraction: 0.8);
+  late final PageController _pageController;
+  @override
+  void initState() {
+    super.initState();
+
+    _pageController =
+        PageController(viewportFraction: widget.items.length == 1 ? 1 : 0.8);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig(context, 160)(),
+      height: SizeConfig(context, 180)(),
       child: PageView.builder(
         padEnds: false,
         controller: _pageController,

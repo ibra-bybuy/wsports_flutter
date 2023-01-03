@@ -4,6 +4,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/cubits/custom/event_cubit/event_cubit.dart';
+import 'package:watch_sports/core/cubits/custom/string_cubit.dart/string_cubit.dart';
 import 'package:watch_sports/core/models/event.dart';
 import 'package:watch_sports/features/comment_section/presentation/screens/comment_section_screen.dart';
 import 'package:watch_sports/features/event_details/presentation/cubits/event_details_cubit.dart';
@@ -11,6 +12,7 @@ import 'package:watch_sports/i18n/i18n.dart';
 
 import '../../../../core/components/app_bar/simple_app_bar.dart';
 import '../../../../core/components/bottom_sheet/dragger.dart';
+import '../../../../core/components/btn/popup_btns.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/components/webview/webview.dart';
 import '../../../../setup.dart';
@@ -33,9 +35,9 @@ class EventDetailsScreen extends StatefulWidget {
 class _EventDetailsScreenState extends State<EventDetailsScreen> {
   final horizontalPadding = 25.0;
   final commentSectionCubit = getIt<CommentSectionCubit>();
-
   final uiCubit = getIt<EventDetailsCubit>();
   final _refreshController = RefreshController(initialRefresh: false);
+  final selectedStream = StringCubit();
 
   @override
   void initState() {
@@ -63,13 +65,40 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: Colors.black,
-            appBar: SimpleAppBar(title: state.name),
+            appBar: SimpleAppBar(
+              title: state.name,
+              actions: state.streams.length >= 2
+                  ? [
+                      PopupBtns(
+                        titles: state.streams.map((e) {
+                          return PopupBtnModel(
+                            e.url,
+                            localizationInstance.stream,
+                          );
+                        }).toList(),
+                        addKey: true,
+                        onSelected: (url) {
+                          selectedStream.set(url);
+                        },
+                      ),
+                    ]
+                  : null,
+            ),
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (true) ...[
+                if (state.streams.isNotEmpty && state.isLive) ...[
                   Expanded(
-                    child: MyWebView(state.streams.first.url),
+                    child: BlocBuilder<StringCubit, String>(
+                      bloc: selectedStream,
+                      builder: (context, streamState) {
+                        return MyWebView(
+                          streamState.isEmpty
+                              ? state.streams.first.url
+                              : streamState,
+                        );
+                      },
+                    ),
                   ),
                 ],
                 if (!state.isLive) ...[

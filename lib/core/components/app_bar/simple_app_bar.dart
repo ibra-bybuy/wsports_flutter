@@ -10,6 +10,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final SystemUiOverlayStyle? systemUiOverlayStyle;
   final Color? titleColor;
   final Color? leadingColor;
+  final List<Widget>? actions;
   const SimpleAppBar({
     super.key,
     required this.title,
@@ -22,6 +23,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
     ),
     this.titleColor = Colors.white,
     this.leadingColor = const Color(0XFFC4C4C4),
+    this.actions,
   });
 
   @override
@@ -39,6 +41,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
         color: titleColor,
         fontWeight: FontWeight.w500,
       ),
+      actions: actions,
     );
   }
 

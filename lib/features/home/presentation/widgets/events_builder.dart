@@ -32,7 +32,7 @@ class EventsBuilder extends StatelessWidget {
             items: state.events,
             itemBuilder: (context, _, item) {
               if (item.isFinished) {
-                //return const SizedBox();
+                return const SizedBox();
               }
               return EventCard(
                 event: item,
