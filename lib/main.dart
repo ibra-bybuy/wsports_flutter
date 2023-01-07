@@ -58,6 +58,7 @@ class _MyAppState extends State<MyApp> {
       routeInformationParser: _appRouter.defaultRouteParser(),
       scaffoldMessengerKey: App.scaffoldKey,
       title: 'Watch sports',
+      debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         I18n.delegate,
         GlobalMaterialLocalizations.delegate,

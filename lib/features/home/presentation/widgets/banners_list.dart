@@ -31,7 +31,7 @@ class _HomeBannersListState extends State<HomeBannersList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeConfig(context, 180)(),
+      height: SizeConfig(context, 200)(),
       child: PageView.builder(
         padEnds: false,
         controller: _pageController,
