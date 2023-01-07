@@ -20,7 +20,7 @@ class EventsCubit extends Cubit<EventsState> {
   late final PaginationProvider paginationProvider;
   EventsCubit(this.useCase) : super(EventsInitial()) {
     paginationProvider =
-        PaginationProvider(limit: 10, page: 1, request: _onPagination);
+        PaginationProvider(limit: 40, page: 1, request: _onPagination);
   }
 
   String _currentCategoryValue = "";
@@ -53,7 +53,7 @@ class EventsCubit extends Cubit<EventsState> {
     _entities = _entities.copyWith(
       type: _currentCategoryValue,
       date: date ?? DateFunctions(passedDate: DateTime.now()).yearMonthDay(),
-      limit: limit ?? 10,
+      limit: limit ?? 40,
       page: page ?? 1,
     );
     final response = await useCase.call(_entities);
