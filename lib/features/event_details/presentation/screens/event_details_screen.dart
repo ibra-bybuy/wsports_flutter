@@ -19,6 +19,7 @@ import '../../../../setup.dart';
 import '../../../comment_section/presentation/cubits/comment_section_cubit.dart';
 import '../../../comment_section/presentation/widgets/comment_field.dart';
 import '../widgets/date_card.dart';
+import '../widgets/event_notification_builder.dart';
 import '../widgets/team_card.dart';
 
 class EventDetailsScreen extends StatefulWidget {
@@ -67,22 +68,26 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
             backgroundColor: Colors.black,
             appBar: SimpleAppBar(
               title: state.name,
-              actions: state.streams.length >= 2
+              actions: !state.isStarted
                   ? [
-                      PopupBtns(
-                        titles: state.streams.map((e) {
-                          return PopupBtnModel(
-                            e.url,
-                            localizationInstance.stream,
-                          );
-                        }).toList(),
-                        addKey: true,
-                        onSelected: (url) {
-                          selectedStream.set(url);
-                        },
-                      ),
+                      EventNotificationBuilder(state),
                     ]
-                  : null,
+                  : state.streams.length >= 2
+                      ? [
+                          PopupBtns(
+                            titles: state.streams.map((e) {
+                              return PopupBtnModel(
+                                e.url,
+                                localizationInstance.stream,
+                              );
+                            }).toList(),
+                            addKey: true,
+                            onSelected: (url) {
+                              selectedStream.set(url);
+                            },
+                          ),
+                        ]
+                      : null,
             ),
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +163,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       context: context,
                       builder: (context) =>
                           CommentSectionScreen(eventId: state.id),
-                      barrierColor: Colors.transparent,
+                      barrierColor: Colors.black.withOpacity(0.5),
                     );
                   },
                   child: IgnorePointer(

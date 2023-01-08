@@ -39,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     _load();
-
     Future.delayed(Duration.zero, () {
       if (scrollController.hasClients) {
         scrollController.addListener(() {

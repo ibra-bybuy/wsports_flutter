@@ -28,5 +28,6 @@
 	"openNotification": "Открыть уведомление",
 	"finished": "Завершен",
 	"stream": "Стрим",
-	"liveEvents": "Live эвенты"
+	"liveEvents": "Live эвенты",
+	"eventStarted": "Эвент начался"
 }

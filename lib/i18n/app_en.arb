@@ -28,5 +28,6 @@
 	"openNotification": "Open notification",
 	"finished": "Finished",
 	"stream": "Stream",
-	"liveEvents": "Live events"
+	"liveEvents": "Live events",
+	"eventStarted": "Event started"
 }

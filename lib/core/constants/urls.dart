@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
+import '../../setup.dart';
 
 class Urls {
-  static const apiUrl = kDebugMode
+  static String get apiUrl => isProduction
       ? "http://94.131.106.27:3006/api/v1"
-      : "http://94.131.106.27:3006/api/v1";
-  static const commentsSocket = kDebugMode
+      : "http://localhost:3006/api/v1";
+  static String get commentsSocket => isProduction
       ? "http://84.246.85.197:3009/comments"
-      : "http://84.246.85.197:3009/comments";
+      : "http://localhost:3009/comments";
 }

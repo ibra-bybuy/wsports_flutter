@@ -10,8 +10,7 @@ class UrlsCubit extends HydratedCubit<UrlsState> {
   }
 
   void _init() {
-    emit(const UrlsState(
-        baseApiUrl: Urls.apiUrl, commentsUrl: Urls.commentsSocket));
+    emit(UrlsState(baseApiUrl: Urls.apiUrl, commentsUrl: Urls.commentsSocket));
   }
 
   String get baseUrl => state.baseApiUrl;
