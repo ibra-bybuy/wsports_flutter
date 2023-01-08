@@ -1,6 +1,9 @@
 import '../../setup.dart';
 
 class Urls {
+  static String get baseDomain =>
+      isProduction ? "http://94.131.106.27:3006" : "http://localhost:3006";
+
   static String get apiUrl => isProduction
       ? "http://94.131.106.27:3006/api/v1"
       : "http://localhost:3006/api/v1";

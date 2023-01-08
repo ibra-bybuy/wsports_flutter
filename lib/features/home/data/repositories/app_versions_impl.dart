@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:watch_sports/features/home/domain/entities/app_versions_response_entities.dart';
 import 'package:watch_sports/core/errors/failures.dart';
 
+import '../../../../core/constants/urls.dart';
 import '../../domain/repositories/app_versions_repository.dart';
 import '../sources/app_versions_source.dart';
 
@@ -20,7 +21,7 @@ class AppVersionsRepositoryImpl implements AppVersionsRepository {
       return Right(
         AppVersionsResponseEntities(
           items: response.data
-              .map((e) => e.copyWith(url: "http://192.168.0.103:3006${e.url}"))
+              .map((e) => e.copyWith(url: "${Urls.baseDomain}${e.url}"))
               .toList(),
         ),
       );
