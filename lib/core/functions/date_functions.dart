@@ -48,6 +48,11 @@ class DateFunctions {
     return passedDate.toString().split(" ")[0];
   }
 
+  String yearMonthDayHoursSecsMilliSecs() {
+    final str = passedDate.toString();
+    return str.split(".")[0];
+  }
+
   String dayMonthYear() {
     DateFormat formatter = DateFormat.yMMMMd(locale);
 

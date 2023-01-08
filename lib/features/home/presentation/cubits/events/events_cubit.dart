@@ -52,7 +52,9 @@ class EventsCubit extends Cubit<EventsState> {
     _currentCategoryValue = category ?? _currentCategoryValue;
     _entities = _entities.copyWith(
       type: _currentCategoryValue,
-      date: date ?? DateFunctions(passedDate: DateTime.now()).yearMonthDay(),
+      date: date ??
+          DateFunctions(passedDate: DateTime.now().toUtc())
+              .yearMonthDayHoursSecsMilliSecs(),
       limit: limit ?? 40,
       page: page ?? 1,
     );
