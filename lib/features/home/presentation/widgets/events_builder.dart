@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/text/empty.dart';
-import 'package:watch_sports/core/extensions/event_list.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
 import 'package:watch_sports/features/home/presentation/widgets/grouped_events_builder.dart';
 import 'package:watch_sports/i18n/i18n.dart';
@@ -31,7 +30,7 @@ class EventsBuilder extends StatelessWidget {
     return BlocBuilder<EventListCubit, EventListState>(
       bloc: homeEventsCubit,
       builder: (context, state) {
-        final notFinished = state.events.getNotFinished;
+        final notFinished = state.events;
         if (notFinished.isNotEmpty) {
           if (groupedBuilder) {
             return GroupedEventsBuilder(notFinished);
