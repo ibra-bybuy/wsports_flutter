@@ -107,6 +107,35 @@ class _RestClient implements RestClient {
   }
 
   @override
+  Future<EventsDetailsResponse> getTournamentEvents(
+    name,
+    startTime,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'name': name,
+      r'startTime': startTime,
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<EventsDetailsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/events/tournament',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = EventsDetailsResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<BannersResponse> getBanners() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

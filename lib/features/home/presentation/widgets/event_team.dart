@@ -6,10 +6,12 @@ import 'event_avatar.dart';
 class EventTeamCard extends StatelessWidget {
   final String imageUrl;
   final String title;
+  final Color? titleColor;
   const EventTeamCard({
     super.key,
     this.imageUrl = "",
     this.title = "",
+    this.titleColor,
   });
 
   @override
@@ -26,6 +28,7 @@ class EventTeamCard extends StatelessWidget {
           fontWeight: FontWeight.bold,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
+          color: titleColor,
         )
       ],
     );

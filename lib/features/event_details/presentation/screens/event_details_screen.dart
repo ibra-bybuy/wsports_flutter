@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/cubits/custom/event_cubit/event_cubit.dart';
 import 'package:watch_sports/core/cubits/custom/string_cubit.dart/string_cubit.dart';
 import 'package:watch_sports/core/models/event.dart';
-import 'package:watch_sports/features/comment_section/presentation/screens/comment_section_screen.dart';
 import 'package:watch_sports/features/event_details/presentation/cubits/event_details_cubit.dart';
 import 'package:watch_sports/i18n/i18n.dart';
-
 import '../../../../core/components/app_bar/simple_app_bar.dart';
-import '../../../../core/components/bottom_sheet/dragger.dart';
 import '../../../../core/components/btn/popup_btns.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/components/webview/webview.dart';
 import '../../../../setup.dart';
 import '../../../comment_section/presentation/cubits/comment_section_cubit.dart';
-import '../../../comment_section/presentation/widgets/comment_field.dart';
 import '../widgets/date_card.dart';
 import '../widgets/event_notification_builder.dart';
 import '../widgets/team_card.dart';
+import '../widgets/write_comment.dart';
 
 class EventDetailsScreen extends StatefulWidget {
   final Event event;
-  const EventDetailsScreen({
-    Key? key,
-    required this.event,
-  }) : super(key: key);
+  const EventDetailsScreen({Key? key, required this.event}) : super(key: key);
 
   @override
   State<EventDetailsScreen> createState() => _EventDetailsScreenState();
@@ -70,7 +63,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               title: state.name,
               actions: !state.isStarted
                   ? [
-                      EventNotificationBuilder(state),
+                      EventNotificationBuilder([state]),
                     ]
                   : state.streams.length >= 2
                       ? [
@@ -157,32 +150,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                     ),
                   ),
                 ],
-                InkWell(
-                  onTap: () {
-                    showBarModalBottomSheet(
-                      context: context,
-                      builder: (context) =>
-                          CommentSectionScreen(eventId: state.id),
-                      barrierColor: Colors.black.withOpacity(0.5),
-                    );
-                  },
-                  child: IgnorePointer(
-                    child: SafeArea(
-                      child: Column(
-                        children: const [
-                          SizedBox(height: 15.0),
-                          BottomSheetDragger(),
-                          SizedBox(height: 15.0),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            child: CommentField(),
-                          ),
-                          SizedBox(height: 15.0)
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                EventDetailsWriteCommentField(state.id),
               ],
             ),
           );

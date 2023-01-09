@@ -15,60 +15,72 @@ import 'core/cubits/cached/event_list_cubit/event_list_cubit.dart' as _i10;
 import 'core/cubits/cached/urls_cubit/urls_cubit.dart' as _i22;
 import 'core/cubits/cached/user_cubit/user_cubit.dart' as _i23;
 import 'features/comment_section/data/repositories/comment_section_impl.dart'
-    as _i41;
+    as _i43;
 import 'features/comment_section/data/sources/comment_section_source.dart'
     as _i26;
 import 'features/comment_section/data/sources/comment_section_websocket.dart'
     as _i27;
 import 'features/comment_section/domain/repositories/comment_section_repository.dart'
-    as _i40;
-import 'features/comment_section/domain/usecases/comment_section_usecase.dart'
     as _i42;
+import 'features/comment_section/domain/usecases/comment_section_usecase.dart'
+    as _i44;
 import 'features/comment_section/presentation/cubits/comment_section_cubit.dart'
-    as _i56;
+    as _i61;
 import 'features/comment_section/presentation/cubits/send_comment/send_comment_cubit.dart'
-    as _i64;
+    as _i69;
 import 'features/event_details/data/repositories/event_details_impl.dart'
-    as _i58;
-import 'features/event_details/data/sources/event_details_network.dart' as _i44;
-import 'features/event_details/data/sources/event_details_source.dart' as _i43;
+    as _i63;
+import 'features/event_details/data/sources/event_details_network.dart' as _i46;
+import 'features/event_details/data/sources/event_details_source.dart' as _i45;
 import 'features/event_details/domain/repositories/event_details_repository.dart'
-    as _i57;
+    as _i62;
 import 'features/event_details/domain/usecases/event_details_usecase.dart'
-    as _i59;
+    as _i64;
 import 'features/event_details/presentation/cubits/event_details_cubit.dart'
-    as _i67;
-import 'features/home/data/repositories/app_versions_impl.dart' as _i51;
-import 'features/home/data/repositories/banners_impl.dart' as _i54;
-import 'features/home/data/repositories/events_impl.dart' as _i61;
-import 'features/home/data/sources/app_versions_network.dart' as _i37;
-import 'features/home/data/sources/app_versions_source.dart' as _i36;
-import 'features/home/data/sources/banners_network.dart' as _i39;
-import 'features/home/data/sources/banners_source.dart' as _i38;
-import 'features/home/data/sources/events_network.dart' as _i46;
-import 'features/home/data/sources/events_source.dart' as _i45;
-import 'features/home/domain/repositories/app_versions_repository.dart' as _i50;
-import 'features/home/domain/repositories/banners_repository.dart' as _i53;
-import 'features/home/domain/repositories/events_repository.dart' as _i60;
-import 'features/home/domain/usecases/app_versions_usecase.dart' as _i52;
-import 'features/home/domain/usecases/banners_usecase.dart' as _i55;
-import 'features/home/domain/usecases/events_usecase.dart' as _i62;
+    as _i73;
+import 'features/home/data/repositories/app_versions_impl.dart' as _i56;
+import 'features/home/data/repositories/banners_impl.dart' as _i59;
+import 'features/home/data/repositories/events_impl.dart' as _i66;
+import 'features/home/data/sources/app_versions_network.dart' as _i39;
+import 'features/home/data/sources/app_versions_source.dart' as _i38;
+import 'features/home/data/sources/banners_network.dart' as _i41;
+import 'features/home/data/sources/banners_source.dart' as _i40;
+import 'features/home/data/sources/events_network.dart' as _i48;
+import 'features/home/data/sources/events_source.dart' as _i47;
+import 'features/home/domain/repositories/app_versions_repository.dart' as _i55;
+import 'features/home/domain/repositories/banners_repository.dart' as _i58;
+import 'features/home/domain/repositories/events_repository.dart' as _i65;
+import 'features/home/domain/usecases/app_versions_usecase.dart' as _i57;
+import 'features/home/domain/usecases/banners_usecase.dart' as _i60;
+import 'features/home/domain/usecases/events_usecase.dart' as _i67;
 import 'features/home/presentation/cubits/app_versions/app_versions_cubit.dart'
-    as _i65;
-import 'features/home/presentation/cubits/banners_cubit.dart' as _i66;
-import 'features/home/presentation/cubits/events/events_cubit.dart' as _i68;
-import 'features/search/data/repositories/search_impl.dart' as _i48;
+    as _i71;
+import 'features/home/presentation/cubits/banners_cubit.dart' as _i72;
+import 'features/home/presentation/cubits/events/events_cubit.dart' as _i74;
+import 'features/search/data/repositories/search_impl.dart' as _i50;
 import 'features/search/data/sources/search_network.dart' as _i32;
 import 'features/search/data/sources/search_source.dart' as _i31;
-import 'features/search/domain/repositories/search_repository.dart' as _i47;
-import 'features/search/domain/usecases/search_usecase.dart' as _i49;
-import 'features/search/presentation/cubits/search_cubit.dart' as _i63;
+import 'features/search/domain/repositories/search_repository.dart' as _i49;
+import 'features/search/domain/usecases/search_usecase.dart' as _i51;
+import 'features/search/presentation/cubits/search_cubit.dart' as _i68;
 import 'features/settings/data/repositories/settings_impl.dart' as _i34;
 import 'features/settings/data/sources/settings_network.dart' as _i19;
 import 'features/settings/data/sources/settings_source.dart' as _i18;
 import 'features/settings/domain/repositories/settings_repository.dart' as _i33;
 import 'features/settings/domain/usecases/settings_usecase.dart' as _i35;
 import 'features/settings/presentation/cubits/settings_cubit.dart' as _i17;
+import 'features/tournament_details/data/repositories/tournament_details_impl.dart'
+    as _i53;
+import 'features/tournament_details/data/sources/tournament_details_network.dart'
+    as _i37;
+import 'features/tournament_details/data/sources/tournament_details_source.dart'
+    as _i36;
+import 'features/tournament_details/domain/repositories/tournament_details_repository.dart'
+    as _i52;
+import 'features/tournament_details/domain/usecases/tournament_details_usecase.dart'
+    as _i54;
+import 'features/tournament_details/presentation/cubits/tournament_details_cubit.dart'
+    as _i70;
 import 'providers/app_update/app_update.dart' as _i4;
 import 'providers/app_update/ota_update.dart' as _i5;
 import 'providers/cache_manager/cache_manager.dart' as _i6;
@@ -148,62 +160,71 @@ _i1.GetIt $initGetIt(
       () => _i34.SettingsRepositoryImpl(get<_i18.SettingsSource>()));
   gh.lazySingleton<_i35.SettingsUsecase>(
       () => _i35.SettingsUsecase(get<_i33.SettingsRepository>()));
-  gh.lazySingleton<_i36.AppVersionsSource>(
-      () => _i37.AppVersionsNetwork(get<_i30.MainApi>()));
-  gh.lazySingleton<_i38.BannersSource>(
-      () => _i39.BannersNetworkSource(get<_i30.MainApi>()));
-  gh.lazySingleton<_i40.CommentSectionRepository>(() =>
-      _i41.CommentSectionRepositoryImpl(get<_i26.CommentSectionSource>()));
-  gh.lazySingleton<_i42.CommentSectionUsecase>(
-      () => _i42.CommentSectionUsecase(get<_i40.CommentSectionRepository>()));
-  gh.lazySingleton<_i43.EventDetailsSource>(
-      () => _i44.EventDetailsNetworkSource(get<_i30.MainApi>()));
-  gh.lazySingleton<_i45.EventsSource>(
-      () => _i46.EventsNetwork(get<_i30.MainApi>()));
-  gh.lazySingleton<_i47.SearchRepository>(
-      () => _i48.SearchRepositoryImpl(get<_i31.SearchSource>()));
-  gh.lazySingleton<_i49.SearchUsecase>(
-      () => _i49.SearchUsecase(get<_i47.SearchRepository>()));
-  gh.lazySingleton<_i50.AppVersionsRepository>(
-      () => _i51.AppVersionsRepositoryImpl(get<_i36.AppVersionsSource>()));
-  gh.lazySingleton<_i52.AppVersionsUseCase>(
-      () => _i52.AppVersionsUseCase(get<_i50.AppVersionsRepository>()));
-  gh.lazySingleton<_i53.BannersRepository>(
-      () => _i54.BannersRepositoryImpl(get<_i38.BannersSource>()));
-  gh.lazySingleton<_i55.BannersUseCase>(
-      () => _i55.BannersUseCase(get<_i53.BannersRepository>()));
-  gh.lazySingleton<_i56.CommentSectionCubit>(() => _i56.CommentSectionCubit(
-        get<_i42.CommentSectionUsecase>(),
+  gh.lazySingleton<_i36.TournamentDetailsSource>(
+      () => _i37.TournamentDetailsNetworkSource(get<_i30.MainApi>()));
+  gh.lazySingleton<_i38.AppVersionsSource>(
+      () => _i39.AppVersionsNetwork(get<_i30.MainApi>()));
+  gh.lazySingleton<_i40.BannersSource>(
+      () => _i41.BannersNetworkSource(get<_i30.MainApi>()));
+  gh.lazySingleton<_i42.CommentSectionRepository>(() =>
+      _i43.CommentSectionRepositoryImpl(get<_i26.CommentSectionSource>()));
+  gh.lazySingleton<_i44.CommentSectionUsecase>(
+      () => _i44.CommentSectionUsecase(get<_i42.CommentSectionRepository>()));
+  gh.lazySingleton<_i45.EventDetailsSource>(
+      () => _i46.EventDetailsNetworkSource(get<_i30.MainApi>()));
+  gh.lazySingleton<_i47.EventsSource>(
+      () => _i48.EventsNetwork(get<_i30.MainApi>()));
+  gh.lazySingleton<_i49.SearchRepository>(
+      () => _i50.SearchRepositoryImpl(get<_i31.SearchSource>()));
+  gh.lazySingleton<_i51.SearchUsecase>(
+      () => _i51.SearchUsecase(get<_i49.SearchRepository>()));
+  gh.lazySingleton<_i52.TournamentDetailsRepository>(() =>
+      _i53.TournamentDetailsRepositoryImpl(
+          get<_i36.TournamentDetailsSource>()));
+  gh.lazySingleton<_i54.TournamentDetailsUsecase>(() =>
+      _i54.TournamentDetailsUsecase(get<_i52.TournamentDetailsRepository>()));
+  gh.lazySingleton<_i55.AppVersionsRepository>(
+      () => _i56.AppVersionsRepositoryImpl(get<_i38.AppVersionsSource>()));
+  gh.lazySingleton<_i57.AppVersionsUseCase>(
+      () => _i57.AppVersionsUseCase(get<_i55.AppVersionsRepository>()));
+  gh.lazySingleton<_i58.BannersRepository>(
+      () => _i59.BannersRepositoryImpl(get<_i40.BannersSource>()));
+  gh.lazySingleton<_i60.BannersUseCase>(
+      () => _i60.BannersUseCase(get<_i58.BannersRepository>()));
+  gh.lazySingleton<_i61.CommentSectionCubit>(() => _i61.CommentSectionCubit(
+        get<_i44.CommentSectionUsecase>(),
         get<_i20.TokenProvider>(instanceName: 'CommentsTokenImpl'),
       ));
-  gh.lazySingleton<_i57.EventDetailsRepository>(
-      () => _i58.EventDetailsRepositoryImpl(get<_i43.EventDetailsSource>()));
-  gh.lazySingleton<_i59.EventDetailsUsecase>(
-      () => _i59.EventDetailsUsecase(get<_i57.EventDetailsRepository>()));
-  gh.lazySingleton<_i60.EventsRepository>(
-      () => _i61.EventsRepositoryImpl(get<_i45.EventsSource>()));
-  gh.lazySingleton<_i62.EventsUseCase>(
-      () => _i62.EventsUseCase(get<_i60.EventsRepository>()));
-  gh.factory<_i63.SearchCubit>(
-      () => _i63.SearchCubit(get<_i49.SearchUsecase>()));
-  gh.lazySingleton<_i64.SendCommentCubit>(() => _i64.SendCommentCubit(
+  gh.lazySingleton<_i62.EventDetailsRepository>(
+      () => _i63.EventDetailsRepositoryImpl(get<_i45.EventDetailsSource>()));
+  gh.lazySingleton<_i64.EventDetailsUsecase>(
+      () => _i64.EventDetailsUsecase(get<_i62.EventDetailsRepository>()));
+  gh.lazySingleton<_i65.EventsRepository>(
+      () => _i66.EventsRepositoryImpl(get<_i47.EventsSource>()));
+  gh.lazySingleton<_i67.EventsUseCase>(
+      () => _i67.EventsUseCase(get<_i65.EventsRepository>()));
+  gh.factory<_i68.SearchCubit>(
+      () => _i68.SearchCubit(get<_i51.SearchUsecase>()));
+  gh.lazySingleton<_i69.SendCommentCubit>(() => _i69.SendCommentCubit(
         get<_i20.TokenProvider>(instanceName: 'CommentsTokenImpl'),
         get<_i23.UserCubit>(),
-        get<_i42.CommentSectionUsecase>(),
+        get<_i44.CommentSectionUsecase>(),
         get<_i8.DeviceInfoProvider>(),
-        get<_i56.CommentSectionCubit>(),
+        get<_i61.CommentSectionCubit>(),
       ));
-  gh.lazySingleton<_i65.AppVersionsCubit>(() => _i65.AppVersionsCubit(
-        get<_i52.AppVersionsUseCase>(),
+  gh.factory<_i70.TournamentDetailsCubit>(
+      () => _i70.TournamentDetailsCubit(get<_i54.TournamentDetailsUsecase>()));
+  gh.lazySingleton<_i71.AppVersionsCubit>(() => _i71.AppVersionsCubit(
+        get<_i57.AppVersionsUseCase>(),
         get<_i15.PackageInfo>(),
       ));
-  gh.lazySingleton<_i66.BannersCubit>(() => _i66.BannersCubit(
-        get<_i55.BannersUseCase>(),
+  gh.lazySingleton<_i72.BannersCubit>(() => _i72.BannersCubit(
+        get<_i60.BannersUseCase>(),
         get<_i7.CachedBannersCubit>(),
       ));
-  gh.factory<_i67.EventDetailsCubit>(
-      () => _i67.EventDetailsCubit(get<_i59.EventDetailsUsecase>()));
-  gh.lazySingleton<_i68.EventsCubit>(
-      () => _i68.EventsCubit(get<_i62.EventsUseCase>()));
+  gh.factory<_i73.EventDetailsCubit>(
+      () => _i73.EventDetailsCubit(get<_i64.EventDetailsUsecase>()));
+  gh.lazySingleton<_i74.EventsCubit>(
+      () => _i74.EventsCubit(get<_i67.EventsUseCase>()));
   return get;
 }

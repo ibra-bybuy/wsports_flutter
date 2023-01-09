@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
+import 'package:watch_sports/features/tournament_details/data/models/events_details_response.dart';
 
 import '../../features/event_details/data/models/event_details_response.dart';
 import '../../features/home/data/models/app_versions_response.dart';
@@ -30,6 +31,12 @@ abstract class RestClient {
   @GET("/events/{id}")
   Future<EventDetailsResponse> getEventById(
     @Path("id") String eventId,
+  );
+
+  @GET("/events/tournament")
+  Future<EventsDetailsResponse> getTournamentEvents(
+    @Query("name") String name,
+    @Query("startTime") String startTime,
   );
 
   @GET("/banners")

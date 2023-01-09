@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 import 'package:watch_sports/core/models/team.dart';
@@ -81,35 +80,10 @@ class Event extends Equatable {
     );
   }
 
-  static Event? tryFromMap(Map<String, dynamic> map) {
-    try {
-      return Event(
-        id: (map["id"] ?? '') as String,
-        name: (map["name"] ?? '') as String,
-        startTime: (map["startTime"] ?? '') as String,
-        teams: List<Team>.from(
-          ((map['teams'] ?? const <Team>[]) as List).map<Team>((x) {
-            return Team.fromMap(
-                (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
-          }),
-        ),
-        streams: List<my.Stream>.from(
-          ((map['streams'] ?? const <my.Stream>[]) as List).map<my.Stream>((x) {
-            return my.Stream.fromMap(
-                (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
-          }),
-        ),
-        endTime: (map["endTime"] ?? '') as String,
-      );
-    } catch (_) {
-      return null;
-    }
-  }
-
   static Event? tryFromString(String str) {
     try {
       final map = json.decode(str);
-      return tryFromMap(map);
+      return Event.fromMap(map);
     } catch (_) {
       return null;
     }

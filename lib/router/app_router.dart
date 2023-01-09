@@ -5,6 +5,7 @@ import 'package:watch_sports/features/event_details/presentation/screens/event_d
 import 'package:watch_sports/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:watch_sports/features/settings/presentation/screens/settings_screen.dart';
+import 'package:watch_sports/features/tournament_details/presentation/screens/tournament_details_screen.dart';
 import '../core/models/event.dart';
 import '../features/search/presentation/screens/search_screen.dart';
 part 'app_router.gr.dart';
@@ -17,6 +18,7 @@ part 'app_router.gr.dart';
     AutoRoute(page: CommentSectionScreen),
     AutoRoute(page: SettingsScreen),
     AutoRoute(page: SearchScreen),
+    AutoRoute(page: TournamentDetailsScreen),
   ],
 )
 @singleton

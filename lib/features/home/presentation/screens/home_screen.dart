@@ -110,6 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         homeEventsCubit: eventsCubit.getCurrentCategoryCubit,
                         eventsState: state,
                         appRouter: appRouter,
+                        groupedBuilder: selectedCategoryCubit.state ==
+                            CategoryEnum.mma.value,
                       );
                     },
                   ),

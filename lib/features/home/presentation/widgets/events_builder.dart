@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/text/empty.dart';
 import 'package:watch_sports/core/extensions/event_list.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
+import 'package:watch_sports/features/home/presentation/widgets/grouped_events_builder.dart';
 import 'package:watch_sports/i18n/i18n.dart';
 import 'package:watch_sports/router/app_router.dart';
 
@@ -16,11 +17,13 @@ class EventsBuilder extends StatelessWidget {
   final EventListCubit homeEventsCubit;
   final EventsState eventsState;
   final AppRouter appRouter;
+  final bool groupedBuilder;
   const EventsBuilder({
     super.key,
     required this.homeEventsCubit,
     required this.eventsState,
     required this.appRouter,
+    this.groupedBuilder = false,
   });
 
   @override
@@ -30,6 +33,10 @@ class EventsBuilder extends StatelessWidget {
       builder: (context, state) {
         final notFinished = state.events.getNotFinished;
         if (notFinished.isNotEmpty) {
+          if (groupedBuilder) {
+            return GroupedEventsBuilder(notFinished);
+          }
+
           return CustomListViewBuilder<Event>(
             items: notFinished,
             itemBuilder: (context, _, item) {

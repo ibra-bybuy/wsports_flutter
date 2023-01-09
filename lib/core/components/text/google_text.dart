@@ -9,6 +9,7 @@ class GoogleText extends StatelessWidget {
   final int? maxLines;
   final TextOverflow? overflow;
   final TextAlign? textAlign;
+  final FontStyle? fontStyle;
   const GoogleText(
     this.text, {
     super.key,
@@ -18,6 +19,7 @@ class GoogleText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.textAlign,
+    this.fontStyle,
   });
 
   @override
@@ -28,6 +30,7 @@ class GoogleText extends StatelessWidget {
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,
+        fontStyle: fontStyle,
       ),
       maxLines: maxLines,
       overflow: overflow,

@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/core/cubits/cached/list_string/list_string_cubit.dart';
+import 'package:watch_sports/core/extensions/event_list.dart';
 import 'package:watch_sports/i18n/i18n.dart';
+import 'package:watch_sports/providers/event_notifications/event_notification_payload.dart';
 import 'package:watch_sports/providers/local_notifications/local_notifications.dart';
 import 'package:watch_sports/router/app_router.dart';
 
@@ -19,18 +21,31 @@ class EventNotificationsProvider {
   void init() {
     localNotifications.listenNotification(
       (payload) {
-        final event = Event.tryFromString(payload);
-        if (event != null) {
-          appRouter.pushAndPopUntil(
-            EventDetailsRoute(event: event),
-            predicate: (i) => i.isFirst,
-          );
+        final eventPayload = EventNotificationPayload.tryFromString(payload);
+        if (eventPayload != null) {
+          if (eventPayload.events.isTournament) {
+            appRouter.pushAndPopUntil(
+              TournamentDetailsRoute(events: eventPayload.events),
+              predicate: (i) => i.isFirst,
+            );
+          } else if (eventPayload.events.isNotEmpty) {
+            appRouter.pushAndPopUntil(
+              EventDetailsRoute(event: eventPayload.events.first),
+              predicate: (i) => i.isFirst,
+            );
+          }
         }
       },
     );
   }
 
-  Future<void> addEvent(Event event) async {
+  Future<void> _addEvent(List<Event> events) async {
+    if (events.isEmpty) {
+      return;
+    }
+
+    final event = events.first;
+
     final startTime = event.startTimeDateTime;
     if (startTime != null) {
       final leftMiliseconds = startTime
@@ -38,30 +53,33 @@ class EventNotificationsProvider {
               Duration(milliseconds: DateTime.now().millisecondsSinceEpoch))
           .millisecondsSinceEpoch;
       localNotifications.scheduledNotification(
-        id: event.id.hashCode,
+        id: events.eventId.hashCode,
         title: localizationInstance.eventStarted,
-        body:
-            "${event.teamsToStr.isNotEmpty ? "${event.teamsToStr}." : ""} ${event.name}"
+        body: events.isTournament
+            ? event.name
+            : "${event.teamsToStr.isNotEmpty ? "${event.teamsToStr}." : ""} ${event.name}"
                 .trim(),
         duration: Duration(milliseconds: leftMiliseconds),
-        payload: event.toMapString(),
+        payload: EventNotificationPayload(events: events).toMapString(),
       );
-      cubit.add(event.id);
+      cubit.add(events.eventId);
     }
   }
 
-  Future<void> removeEvent(Event event) async {
-    localNotifications.cancel(event.id.hashCode);
-    cubit.remove(event.id);
+  Future<void> _removeEvent(String eventId) async {
+    localNotifications.cancel(eventId.hashCode);
+    cubit.remove(eventId);
   }
 
-  Future<void> toggle(Event event) async {
-    final c = contains(event.id);
+  Future<void> toggle(List<Event> events) async {
+    final eventId = events.eventId;
+
+    final c = contains(eventId);
 
     if (c) {
-      removeEvent(event);
+      _removeEvent(eventId);
     } else {
-      addEvent(event);
+      _addEvent(events);
     }
   }
 

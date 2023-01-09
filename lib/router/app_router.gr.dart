@@ -62,6 +62,16 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    TournamentDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<TournamentDetailsRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: TournamentDetailsScreen(
+          key: args.key,
+          events: args.events,
+        ),
+      );
+    },
   };
 
   @override
@@ -85,6 +95,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SearchRoute.name,
           path: '/search-screen',
+        ),
+        RouteConfig(
+          TournamentDetailsRoute.name,
+          path: '/tournament-details-screen',
         ),
       ];
 }
@@ -222,5 +236,39 @@ class SearchRouteArgs {
   @override
   String toString() {
     return 'SearchRouteArgs{key: $key, initialQuery: $initialQuery, showSearch: $showSearch, titleText: $titleText}';
+  }
+}
+
+/// generated route for
+/// [TournamentDetailsScreen]
+class TournamentDetailsRoute extends PageRouteInfo<TournamentDetailsRouteArgs> {
+  TournamentDetailsRoute({
+    Key? key,
+    required List<Event> events,
+  }) : super(
+          TournamentDetailsRoute.name,
+          path: '/tournament-details-screen',
+          args: TournamentDetailsRouteArgs(
+            key: key,
+            events: events,
+          ),
+        );
+
+  static const String name = 'TournamentDetailsRoute';
+}
+
+class TournamentDetailsRouteArgs {
+  const TournamentDetailsRouteArgs({
+    this.key,
+    required this.events,
+  });
+
+  final Key? key;
+
+  final List<Event> events;
+
+  @override
+  String toString() {
+    return 'TournamentDetailsRouteArgs{key: $key, events: $events}';
   }
 }

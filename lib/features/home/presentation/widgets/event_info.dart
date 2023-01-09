@@ -12,13 +12,17 @@ class EventInfo extends StatelessWidget {
   final void Function()? onTap;
   final bool isLive;
   final bool isFinished;
+  final Color? dateColor;
+  final Color? hoursColor;
   const EventInfo({
     super.key,
-    required this.eventName,
+    this.eventName = "",
     this.eventTime,
     this.onTap,
     this.isLive = false,
     this.isFinished = false,
+    this.dateColor,
+    this.hoursColor,
   });
 
   @override
@@ -26,17 +30,19 @@ class EventInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GoogleText(
-          eventName,
-          fontSize: 13.0,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 20.0),
+        if (eventName.isNotEmpty) ...[
+          GoogleText(
+            eventName,
+            fontSize: 13.0,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 20.0),
+        ],
         if (eventTime != null) ...[
           GoogleText(
             DateFunctions(passedDate: eventTime!).dayMonthYearHuman(),
             fontSize: 12.0,
-            color: const Color.fromARGB(255, 134, 134, 134),
+            color: dateColor ?? const Color.fromARGB(255, 134, 134, 134),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10.0),
@@ -54,7 +60,7 @@ class EventInfo extends StatelessWidget {
               localizationInstance.finished,
               fontWeight: FontWeight.bold,
               fontSize: 14.0,
-              color: Colors.grey,
+              color: dateColor ?? Colors.grey,
               textAlign: TextAlign.center,
             )
           ] else ...[
@@ -62,7 +68,7 @@ class EventInfo extends StatelessWidget {
               DateFunctions(passedDate: eventTime!).hourMinute(),
               fontWeight: FontWeight.bold,
               fontSize: 15.0,
-              color: Colors.black,
+              color: hoursColor ?? Colors.black,
               textAlign: TextAlign.center,
             )
           ]
