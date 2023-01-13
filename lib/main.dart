@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -68,6 +69,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: I18n.supportedLocales,
       theme: LightTheme().getTheme(),
       themeMode: ThemeMode.light,
+      builder: EasyLoading.init(),
     );
   }
 }

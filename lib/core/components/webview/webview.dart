@@ -5,7 +5,12 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class MyWebView extends StatefulWidget {
   final String url;
-  const MyWebView(this.url, {super.key});
+  final PullToRefreshController? pullToRefreshController;
+  const MyWebView(
+    this.url, {
+    super.key,
+    this.pullToRefreshController,
+  });
 
   @override
   State<MyWebView> createState() => _MyWebViewState();
@@ -27,6 +32,7 @@ class _MyWebViewState extends State<MyWebView> {
   @override
   Widget build(BuildContext context) {
     return InAppWebView(
+      pullToRefreshController: widget.pullToRefreshController,
       gestureRecognizers: <Factory<VerticalDragGestureRecognizer>>{}..add(
           Factory<VerticalDragGestureRecognizer>(
               () => VerticalDragGestureRecognizer()),

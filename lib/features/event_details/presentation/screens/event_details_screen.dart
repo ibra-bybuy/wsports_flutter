@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/cubits/custom/event_cubit/event_cubit.dart';
@@ -32,12 +33,21 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   final uiCubit = getIt<EventDetailsCubit>();
   final _refreshController = RefreshController(initialRefresh: false);
   final selectedStream = StringCubit();
+  late final PullToRefreshController _pullToRefreshController;
 
   @override
   void initState() {
     super.initState();
     uiCubit.setEvent(widget.event);
     commentSectionCubit.init(widget.event.id);
+
+    _pullToRefreshController = PullToRefreshController(
+      onRefresh: () async {
+        await _onRefresh();
+        _pullToRefreshController.endRefreshing();
+      },
+      options: PullToRefreshOptions(),
+    );
   }
 
   @override
@@ -46,12 +56,17 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
     commentSectionCubit.dispose();
   }
 
+  Future<void> _onRefresh() async {
+    await uiCubit.call(widget.event.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Refresher(
       controller: _refreshController,
+      physics: const NeverScrollableScrollPhysics(),
       onRefresh: () async {
-        await uiCubit.call(widget.event.id);
+        await _onRefresh();
         _refreshController.refreshCompleted();
       },
       child: BlocBuilder<EventCubit, Event>(
@@ -94,6 +109,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                           streamState.isEmpty
                               ? state.streams.first.url
                               : streamState,
+                          pullToRefreshController: _pullToRefreshController,
                         );
                       },
                     ),

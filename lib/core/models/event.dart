@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 import 'package:watch_sports/core/models/team.dart';
@@ -13,6 +14,7 @@ class Event extends Equatable {
   final List<Team> teams;
   final List<my.Stream> streams;
   final String endTime;
+  final String type;
   const Event({
     this.id = "",
     this.name = '',
@@ -20,6 +22,7 @@ class Event extends Equatable {
     this.teams = const [],
     this.streams = const [],
     this.endTime = '',
+    this.type = "",
   });
 
   Event copyWith({
@@ -29,6 +32,7 @@ class Event extends Equatable {
     List<Team>? teams,
     List<my.Stream>? streams,
     String? endTime,
+    String? type,
   }) {
     return Event(
       id: id ?? this.id,
@@ -37,6 +41,7 @@ class Event extends Equatable {
       teams: teams ?? this.teams,
       streams: streams ?? this.streams,
       endTime: endTime ?? this.endTime,
+      type: type ?? this.type,
     );
   }
 
@@ -52,6 +57,7 @@ class Event extends Equatable {
         return x.toMap();
       }).toList(growable: false),
       'endTime': endTime,
+      'type': type,
     };
   }
 
@@ -77,6 +83,7 @@ class Event extends Equatable {
         }),
       ),
       endTime: (map["endTime"] ?? '') as String,
+      type: (map["type"] ?? '') as String,
     );
   }
 
@@ -101,6 +108,7 @@ class Event extends Equatable {
       teams,
       streams,
       endTime,
+      type,
     ];
   }
 
@@ -128,5 +136,9 @@ class Event extends Equatable {
 
   String get teamsToStr {
     return teams.map((e) => e.name).toList().join(" vs ");
+  }
+
+  bool get isMma {
+    return type.toLowerCase().contains("mma");
   }
 }

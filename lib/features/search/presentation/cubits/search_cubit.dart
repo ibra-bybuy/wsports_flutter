@@ -42,6 +42,7 @@ class SearchCubit extends Cubit<SearchState> {
     int? page,
     void Function(EventsResponseEntities)? onSuccessEmit,
   }) async {
+    emit(SearchLoading());
     _entities = _entities.copyWith(
       limit: limit ?? 5,
       page: page ?? 1,

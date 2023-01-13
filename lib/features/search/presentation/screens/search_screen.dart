@@ -11,6 +11,7 @@ import 'package:watch_sports/core/functions/size_config.dart';
 import 'package:watch_sports/router/app_router.dart';
 
 import '../../../../core/components/listview/listview_builder.dart';
+import '../../../../core/components/loader/alert_loader/alert_loading_listener.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/components/text/empty.dart';
 import '../../../../core/models/event.dart';
@@ -61,66 +62,76 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final strings = localizationInstance;
-    return Scaffold(
-      appBar: MainAppBar(
-        children: [
-          if (widget.showSearch) ...[
-            SearchField(
-              onChanged: uiCubit.onChanged,
-              autofocus: true,
-            ),
+    return AlertLoadListener<SearchState>(
+      cubit: uiCubit,
+      isLoading: (state) => state is SearchLoading,
+      darkenBackground: false,
+      child: Scaffold(
+        appBar: MainAppBar(
+          children: [
+            if (widget.showSearch) ...[
+              SearchField(
+                onChanged: uiCubit.onChanged,
+                autofocus: true,
+              ),
+            ],
+            if (widget.titleText != null) ...[
+              GoogleText(
+                widget.titleText!,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ],
           ],
-          if (widget.titleText != null) ...[
-            GoogleText(
-              widget.titleText!,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ],
-        ],
-      ),
-      body: BlocBuilder<SearchCubit, SearchState>(
-        bloc: uiCubit,
-        builder: (context, state) {
-          return BlocBuilder<EventListCubit, EventListState>(
-            bloc: uiCubit.eventsCubit,
-            builder: (context, eventListState) {
-              if (eventListState.events.isNotEmpty) {
-                return Refresher(
-                  scrollController: scrollController,
-                  controller: _refreshController,
-                  onRefresh: () async {
-                    await uiCubit.call();
-                    _refreshController.refreshCompleted();
-                  },
-                  child: SingleChildScrollView(
-                    child: CustomListViewBuilder<Event>(
-                      items: eventListState.events,
-                      itemBuilder: (context, _, item) {
-                        return EventCard(
-                          event: item,
-                          onTap: () {
-                            appRouter.push(EventDetailsRoute(event: item));
-                          },
-                        );
-                      },
+        ),
+        body: BlocBuilder<SearchCubit, SearchState>(
+          bloc: uiCubit,
+          builder: (context, state) {
+            return BlocBuilder<EventListCubit, EventListState>(
+              bloc: uiCubit.eventsCubit,
+              builder: (context, eventListState) {
+                if (eventListState.events.isNotEmpty) {
+                  return Refresher(
+                    scrollController: scrollController,
+                    controller: _refreshController,
+                    onRefresh: () async {
+                      await uiCubit.call();
+                      _refreshController.refreshCompleted();
+                    },
+                    child: SingleChildScrollView(
+                      child: CustomListViewBuilder<Event>(
+                        items: eventListState.events,
+                        itemBuilder: (context, _, item) {
+                          return EventCard(
+                            event: item,
+                            onTap: () {
+                              if (item.isMma) {
+                                appRouter.push(
+                                    TournamentDetailsRoute(events: [item]));
+                              } else {
+                                appRouter.push(EventDetailsRoute(event: item));
+                              }
+                            },
+                          );
+                        },
+                      ),
                     ),
+                  );
+                }
+
+                return Center(
+                  child: EmptyText(
+                    uiCubit.currentQuery.isNotEmpty
+                        ? strings.nothingFound
+                        : strings.searchHint,
+                    fontWeight: null,
+                    fontSize: SizeConfig(context, 13.0)(),
                   ),
                 );
-              }
-
-              return Center(
-                child: EmptyText(
-                  uiCubit.currentQuery.isNotEmpty
-                      ? strings.nothingFound
-                      : strings.searchHint,
-                  fontWeight: null,
-                  fontSize: SizeConfig(context, 13.0)(),
-                ),
-              );
-            },
-          );
-        },
+              },
+            );
+          },
+        ),
       ),
     );
   }

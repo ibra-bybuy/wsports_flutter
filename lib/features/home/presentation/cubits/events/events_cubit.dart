@@ -49,6 +49,7 @@ class EventsCubit extends Cubit<EventsState> {
     int? page,
     void Function(EventsResponseEntities)? onSuccessEmit,
   }) async {
+    emit(EventsLoading());
     _currentCategoryValue = category ?? _currentCategoryValue;
     _entities = _entities.copyWith(
       type: _currentCategoryValue,
