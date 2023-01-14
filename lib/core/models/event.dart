@@ -112,8 +112,8 @@ class Event extends Equatable {
     ];
   }
 
-  DateTime? get startTimeDateTime => DateTime.tryParse(startTime);
-  DateTime? get endTimeDateTime => DateTime.tryParse(endTime);
+  DateTime? get startTimeDateTime => DateTime.tryParse(startTime)?.toLocal();
+  DateTime? get endTimeDateTime => DateTime.tryParse(endTime)?.toLocal();
 
   bool get isStarted {
     return startTimeDateTime != null &&

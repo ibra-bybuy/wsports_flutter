@@ -60,6 +60,10 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
     commentSectionCubit.dispose();
   }
 
+  Future<void> _onRefresh() async {
+    await uiCubit.load();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EventListCubit, List<Event>>(
@@ -99,7 +103,7 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
                     child: Refresher(
                       controller: _refreshController,
                       onRefresh: () async {
-                        await uiCubit.load();
+                        await _onRefresh();
                         _refreshController.refreshCompleted();
                       },
                       child: SingleChildScrollView(
@@ -126,6 +130,7 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
                                     if (state.startTimeDateTime != null) ...[
                                       EventDetailsDateCard(
                                         dateTime: state.startTimeDateTime!,
+                                        onTimerEnd: _onRefresh,
                                       ),
                                     ],
                                     if (state.isFinished) ...[

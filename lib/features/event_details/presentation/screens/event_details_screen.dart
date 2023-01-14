@@ -125,6 +125,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             if (state.startTimeDateTime != null) ...[
                               EventDetailsDateCard(
                                 dateTime: state.startTimeDateTime!,
+                                onTimerEnd: () => _onRefresh(),
                               ),
                             ],
                             if (state.isFinished) ...[
