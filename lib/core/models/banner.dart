@@ -38,4 +38,9 @@ class Banner extends Equatable {
 
   @override
   List<Object> get props => [imageUrl, routeUrl];
+
+  String get label {
+    final stripped = routeUrl.split(":");
+    return stripped.join("\n");
+  }
 }

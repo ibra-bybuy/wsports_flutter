@@ -45,6 +45,7 @@ class _HomeScreenBannerCardState extends State<HomeScreenBannerCard> {
           return BannerImage(
             borderRadius: _borderRadius,
             image: imageProvider,
+            centerText: widget.item.label,
           );
         },
       ),
