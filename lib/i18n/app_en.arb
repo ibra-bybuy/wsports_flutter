@@ -1,6 +1,7 @@
 {
   "appUpdateError": "An error occured while updating the app",
   "basketball": "Basketball",
+  "daysCompact": "D.",
   "defaultName": "Guest",
   "error": "Error",
   "eventStarted": "Event started",

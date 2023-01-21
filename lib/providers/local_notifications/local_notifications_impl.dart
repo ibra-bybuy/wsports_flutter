@@ -26,6 +26,7 @@ class LocalNotificationsImpl implements LocalNotifications {
       android: initializationSettingsAndroid,
       iOS: initializationSettingsDarwin,
       linux: initializationSettingsLinux,
+      macOS: initializationSettingsDarwin,
     );
 
     await _flutterLocalNotificationsPlugin.initialize(

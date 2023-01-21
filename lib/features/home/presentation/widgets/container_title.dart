@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
+import 'package:watch_sports/core/functions/platform_functions.dart';
 import 'package:watch_sports/core/functions/size_config.dart';
 
 class HomeContainerTitle extends StatelessWidget {
@@ -13,11 +14,15 @@ class HomeContainerTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Opacity(
       opacity: 0.4,
-      child: GoogleText(
-        title,
-        color: Colors.black,
-        fontSize: SizeConfig(context, 22.0)(),
-        fontWeight: FontWeight.bold,
+      child: SizedBox(
+        width: double.infinity,
+        child: GoogleText(
+          title,
+          color: Colors.black,
+          fontSize: SizeConfig(context, 22.0)(),
+          fontWeight: FontWeight.bold,
+          textAlign: isDesktop ? TextAlign.center : TextAlign.start,
+        ),
       ),
     );
   }

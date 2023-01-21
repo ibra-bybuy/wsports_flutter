@@ -1,6 +1,7 @@
 {
   "appUpdateError": "Появилась ошибка во время загрузки новой версии",
   "basketball": "Баскетбол",
+  "daysCompact": "Д.",
   "defaultName": "Гость",
   "error": "Ошибка",
   "eventStarted": "Эвент начался",

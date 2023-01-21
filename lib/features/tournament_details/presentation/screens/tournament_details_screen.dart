@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
+import 'package:watch_sports/core/components/adaptive/max_with_setter.dart';
 import 'package:watch_sports/core/components/listview/listview_builder.dart';
 import 'package:watch_sports/core/cubits/custom/event_cubit/event_cubit.dart';
 import 'package:watch_sports/features/tournament_details/presentation/cubits/tournament_details_state.dart';
@@ -99,31 +100,33 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
               ),
               body: Column(
                 children: [
-                  Expanded(
-                    child: Refresher(
-                      controller: _refreshController,
-                      onRefresh: () async {
-                        await _onRefresh();
-                        _refreshController.refreshCompleted();
-                      },
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (state.streams.isNotEmpty && state.isLive) ...[
-                              BlocBuilder<StringCubit, String>(
-                                bloc: selectedStream,
-                                builder: (context, streamState) {
-                                  return MyWebView(
-                                    streamState.isEmpty
-                                        ? state.streams.first.url
-                                        : streamState,
-                                  );
-                                },
-                              ),
-                            ],
-                            if (!state.isLive) ...[
-                              Container(
+                  if (state.streams.isNotEmpty && state.isLive) ...[
+                    Expanded(
+                      child: BlocBuilder<StringCubit, String>(
+                        bloc: selectedStream,
+                        builder: (context, streamState) {
+                          return MyWebView(
+                            streamState.isEmpty
+                                ? state.streams.first.url
+                                : streamState,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                  if (!state.isLive) ...[
+                    Expanded(
+                      child: MaxWidthSetter(
+                        width: 500.0,
+                        child: Center(
+                          child: Refresher(
+                            controller: _refreshController,
+                            onRefresh: () async {
+                              await _onRefresh();
+                              _refreshController.refreshCompleted();
+                            },
+                            child: SingleChildScrollView(
+                              child: Container(
                                 color: Colors.black,
                                 child: Column(
                                   children: [
@@ -163,12 +166,12 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
                                   ],
                                 ),
                               ),
-                            ],
-                          ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                   EventDetailsWriteCommentField(state.name),
                 ],
               ),

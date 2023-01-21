@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watch_sports/core/components/adaptive/max_with_setter.dart';
 import 'package:watch_sports/core/components/text/empty.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
 import 'package:watch_sports/features/home/presentation/widgets/grouped_events_builder.dart';
@@ -27,34 +28,43 @@ class EventsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EventListCubit, EventListState>(
-      bloc: homeEventsCubit,
-      builder: (context, state) {
-        final notFinished = state.events;
-        if (notFinished.isNotEmpty) {
-          if (groupedBuilder) {
-            return GroupedEventsBuilder(notFinished);
-          }
+    return Center(
+      child: MaxWidthSetter(
+        width: 500.0,
+        child: BlocBuilder<EventListCubit, EventListState>(
+          bloc: homeEventsCubit,
+          builder: (context, state) {
+            final notFinished = state.events;
+            if (notFinished.isNotEmpty) {
+              if (groupedBuilder) {
+                return GroupedEventsBuilder(notFinished);
+              }
 
-          return CustomListViewBuilder<Event>(
-            items: notFinished,
-            itemBuilder: (context, _, item) {
-              return EventCard(
-                event: item,
-                onTap: () {
-                  appRouter.push(EventDetailsRoute(event: item));
+              return CustomListViewBuilder<Event>(
+                items: notFinished,
+                itemBuilder: (context, _, item) {
+                  return EventCard(
+                    event: item,
+                    onTap: () {
+                      if (item.isMma) {
+                        appRouter.push(TournamentDetailsRoute(events: [item]));
+                      } else {
+                        appRouter.push(EventDetailsRoute(event: item));
+                      }
+                    },
+                  );
                 },
               );
-            },
-          );
-        }
+            }
 
-        if (eventsState is EventsLoaded && notFinished.isEmpty) {
-          return EmptyText(localizationInstance.noEvents);
-        }
+            if (eventsState is EventsLoaded && notFinished.isEmpty) {
+              return EmptyText(localizationInstance.noEvents);
+            }
 
-        return const SizedBox();
-      },
+            return const SizedBox();
+          },
+        ),
+      ),
     );
   }
 }

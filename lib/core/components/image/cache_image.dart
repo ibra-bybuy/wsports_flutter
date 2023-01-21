@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/file.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -40,7 +41,7 @@ class _CacheImageState extends State<CacheImage> {
       return FutureBuilder<File>(
         future: cacheManager.getSingleFile(widget.url),
         builder: (context, file) {
-          if (file.data != null) {
+          if (file.data != null && !kIsWeb) {
             return SvgPicture.file(
               file.data!,
               fit: widget.fit ?? BoxFit.contain,

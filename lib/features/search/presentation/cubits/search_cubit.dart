@@ -17,7 +17,7 @@ class SearchCubit extends Cubit<SearchState> {
   late final PaginationProvider paginationProvider;
   SearchCubit(this.useCase) : super(SearchInitial()) {
     paginationProvider =
-        PaginationProvider(limit: 5, page: 1, request: _onPagination);
+        PaginationProvider(limit: 15, page: 1, request: _onPagination);
   }
 
   final eventsCubit = EventListCubit("search_events");
@@ -44,7 +44,7 @@ class SearchCubit extends Cubit<SearchState> {
   }) async {
     emit(SearchLoading());
     _entities = _entities.copyWith(
-      limit: limit ?? 5,
+      limit: limit ?? 15,
       page: page ?? 1,
     );
     final response = await useCase.call(_entities);

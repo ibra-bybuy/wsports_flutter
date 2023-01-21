@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
+import 'package:watch_sports/core/components/adaptive/max_with_setter.dart';
 import 'package:watch_sports/core/components/app_bar/main_app_bar.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/components/textfield/sarchfield.dart';
@@ -84,53 +85,59 @@ class _SearchScreenState extends State<SearchScreen> {
             ],
           ],
         ),
-        body: BlocBuilder<SearchCubit, SearchState>(
-          bloc: uiCubit,
-          builder: (context, state) {
-            return BlocBuilder<EventListCubit, EventListState>(
-              bloc: uiCubit.eventsCubit,
-              builder: (context, eventListState) {
-                if (eventListState.events.isNotEmpty) {
-                  return Refresher(
-                    scrollController: scrollController,
-                    controller: _refreshController,
-                    onRefresh: () async {
-                      await uiCubit.call();
-                      _refreshController.refreshCompleted();
-                    },
-                    child: SingleChildScrollView(
-                      child: CustomListViewBuilder<Event>(
-                        items: eventListState.events,
-                        itemBuilder: (context, _, item) {
-                          return EventCard(
-                            event: item,
-                            onTap: () {
-                              if (item.isMma) {
-                                appRouter.push(
-                                    TournamentDetailsRoute(events: [item]));
-                              } else {
-                                appRouter.push(EventDetailsRoute(event: item));
-                              }
-                            },
-                          );
+        body: Center(
+          child: MaxWidthSetter(
+            width: 500.0,
+            child: BlocBuilder<SearchCubit, SearchState>(
+              bloc: uiCubit,
+              builder: (context, state) {
+                return BlocBuilder<EventListCubit, EventListState>(
+                  bloc: uiCubit.eventsCubit,
+                  builder: (context, eventListState) {
+                    if (eventListState.events.isNotEmpty) {
+                      return Refresher(
+                        scrollController: scrollController,
+                        controller: _refreshController,
+                        onRefresh: () async {
+                          await uiCubit.call();
+                          _refreshController.refreshCompleted();
                         },
-                      ),
-                    ),
-                  );
-                }
+                        child: SingleChildScrollView(
+                          child: CustomListViewBuilder<Event>(
+                            items: eventListState.events,
+                            itemBuilder: (context, _, item) {
+                              return EventCard(
+                                event: item,
+                                onTap: () {
+                                  if (item.isMma) {
+                                    appRouter.push(
+                                        TournamentDetailsRoute(events: [item]));
+                                  } else {
+                                    appRouter
+                                        .push(EventDetailsRoute(event: item));
+                                  }
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    }
 
-                return Center(
-                  child: EmptyText(
-                    uiCubit.currentQuery.isNotEmpty
-                        ? strings.nothingFound
-                        : strings.searchHint,
-                    fontWeight: null,
-                    fontSize: SizeConfig(context, 13.0)(),
-                  ),
+                    return Center(
+                      child: EmptyText(
+                        uiCubit.currentQuery.isNotEmpty
+                            ? strings.nothingFound
+                            : strings.searchHint,
+                        fontWeight: null,
+                        fontSize: SizeConfig(context, 13.0)(),
+                      ),
+                    );
+                  },
                 );
               },
-            );
-          },
+            ),
+          ),
         ),
       ),
     );

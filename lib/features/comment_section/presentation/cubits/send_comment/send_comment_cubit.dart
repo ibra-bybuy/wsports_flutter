@@ -29,6 +29,10 @@ class SendCommentCubit extends Cubit<SendCommentState> {
   final uuid = const Uuid();
 
   Future<void> send(String eventId, String message) async {
+    if (message.trim().isEmpty) {
+      return;
+    }
+
     final section = commentSectionCubit.getCommentsCubit(eventId);
     final comment = await _makeComment(message);
     section.add([comment]);

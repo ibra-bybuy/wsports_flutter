@@ -23,7 +23,9 @@ class _HomeScreenBannerCardState extends State<HomeScreenBannerCard> {
         color: Colors.white,
         borderRadius: _borderRadius,
       ),
-      constraints: const BoxConstraints(maxHeight: double.infinity),
+      constraints: const BoxConstraints(
+        maxHeight: double.infinity,
+      ),
       child: CachedNetworkImage(
         imageUrl: widget.item.imageUrl,
         fadeInDuration: const Duration(milliseconds: 100),

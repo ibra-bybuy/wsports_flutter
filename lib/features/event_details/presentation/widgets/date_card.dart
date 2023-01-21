@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/index.dart';
+import 'package:watch_sports/core/components/text/countdown_text.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/functions/date_functions.dart';
 import 'package:watch_sports/core/functions/size_config.dart';
-
-import '../../../../core/components/text/google_style.dart';
 
 class EventDetailsDateCard extends StatelessWidget {
   final DateTime dateTime;
@@ -42,11 +41,14 @@ class EventDetailsDateCard extends StatelessWidget {
           CountdownTimer(
             endTime: dateTime.millisecondsSinceEpoch,
             onEnd: onTimerEnd,
-            textStyle: const GoogleStyle(
-              color: Colors.white,
-              fontSize: 17.0,
-              fontWeight: FontWeight.bold,
-            ).roboto(),
+            widgetBuilder: (context, time) {
+              return CountDownText(
+                sec: time?.sec,
+                min: time?.min,
+                hours: time?.hours,
+                days: time?.days,
+              );
+            },
           ),
         ],
       ),
