@@ -1,0 +1,51 @@
+{
+    "status": "success",
+    "data": {
+      "items": [
+        {
+          "id": 0,
+          "externalId": 9999,
+          "shortExternalId": "00090",
+          "groupId": 9999,
+          "statusExternalId": 9999,
+          "processingStatusExternalId": 9999,
+          "storeExternalId": 9999,
+          "retailPointExternalId": 9999,
+          "storeType": "retail",
+          "orderedAt": "2022-09-05T00:00:00+03:00",
+          "reserveTime": "2022-09-05T00:00:00+03:00",
+          "dateOfDelivery": "2022-09-05T00:00:00+03:00",
+          "isPaymentOnline": true,
+          "paymentCode": 9999,
+          "items": [
+            {
+              "id": 0,
+              "externalId": 0,
+              "originalPrice": 0,
+              "price": 0,
+              "count": 10,
+              "reserveCount": 10
+            }
+          ],
+          "status": {
+            "id": 0,
+            "name": "Оплачено",
+            "externalId": 0,
+            "description": "Заказ оплачен и готов к выдаче"
+          },
+          "actions": [
+            {
+              "code": "string",
+              "name": "string"
+            }
+          ]
+        }
+      ],
+      "pagination": {
+        "perPage": 0,
+        "currentPage": 0,
+        "lastPage": 0,
+        "total": 0
+      }
+    }
+  }

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:watch_sports/i18n/i18n.dart';
 
 import '../cubits/cached/urls_cubit/urls_cubit.dart';
 import 'client.dart';
@@ -19,6 +20,7 @@ class MainApi {
           "Content-Type": "application/json",
           "Accept": "*/*",
           "Accept-Encoding": "gzip, deflate, br",
+          "Lang": localizationInstance.lang.code,
         },
       ),
     );

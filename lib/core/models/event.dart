@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 import 'package:watch_sports/core/models/team.dart';
+import 'package:watch_sports/i18n/i18n.dart';
 
 import 'stream.dart' as my;
 
@@ -140,5 +141,17 @@ class Event extends Equatable {
 
   bool get isMma {
     return type.toLowerCase().contains("mma");
+  }
+
+  List<Team> get localizedTeams {
+    final myLangTeams = teams
+        .where((element) => element.lang == localizationInstance.lang)
+        .toList();
+
+    if (myLangTeams.length >= 2) {
+      return myLangTeams;
+    }
+
+    return teams;
   }
 }

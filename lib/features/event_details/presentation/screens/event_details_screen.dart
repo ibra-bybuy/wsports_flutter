@@ -137,7 +137,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             ],
                             const SizedBox(height: 20.0),
                             ListView.builder(
-                              itemCount: state.teams.length,
+                              itemCount: state.localizedTeams.length,
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
@@ -145,7 +145,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     EventDetailsTeamCard(
-                                      team: state.teams[index],
+                                      team: state.localizedTeams[index],
                                       color: index == 1
                                           ? Colors.red
                                           : Colors.white,

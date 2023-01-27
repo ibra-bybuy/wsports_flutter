@@ -12,7 +12,7 @@ class TournamentDetailsUsecase implements TournamentDetailsRepository {
 
   @override
   Future<Either<Failure, TournamentDetailsResponseEntities>> call(
-      String name, String startTime) {
-    return repository.call(name, startTime);
+      String name, String startTime) async {
+    return await repository.call(name, startTime);
   }
 }

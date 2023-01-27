@@ -15,7 +15,24 @@ class I18n {
 AppLocalizations get localizationInstance =>
     AppLocalizations.of(App.scaffoldKey!.currentContext!)!;
 
-enum LocalLang { ru, eng, undefined }
+enum LocalLang {
+  ru("ru"),
+  eng("eng"),
+  undefined("");
+
+  final String code;
+  const LocalLang(this.code);
+
+  static LocalLang getByString(String val) {
+    for (final l in LocalLang.values) {
+      if (l.code == val) {
+        return l;
+      }
+    }
+
+    return LocalLang.eng;
+  }
+}
 
 extension AppLocalizationsExt on AppLocalizations {
   bool get isEng => localeName.contains("en");

@@ -45,12 +45,12 @@ class EventCard extends StatelessWidget {
               crossAxisAlignment: rowCrossAxisAlignment,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (event.teams.isNotEmpty) ...[
+                if (event.localizedTeams.isNotEmpty) ...[
                   Flexible(
                     flex: 4,
                     child: EventTeamCard(
-                      title: event.teams.first.name,
-                      imageUrl: event.teams.first.avatarUrl,
+                      title: event.localizedTeams.first.name,
+                      imageUrl: event.localizedTeams.first.avatarUrl,
                       titleColor: teamsColor,
                     ),
                   ),
@@ -67,12 +67,12 @@ class EventCard extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(width: 15.0),
-                if (event.teams.isNotEmpty) ...[
+                if (event.localizedTeams.isNotEmpty) ...[
                   Flexible(
                     flex: 4,
                     child: EventTeamCard(
-                      title: event.teams.last.name,
-                      imageUrl: event.teams.last.avatarUrl,
+                      title: event.localizedTeams.last.name,
+                      imageUrl: event.localizedTeams.last.avatarUrl,
                       titleColor: teamsColor,
                     ),
                   )
