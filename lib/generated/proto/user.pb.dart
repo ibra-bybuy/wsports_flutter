@@ -12,16 +12,21 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class UserProto extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UserProto', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'user'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
+    ..p<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'avatar', $pb.PbFieldType.K3)
     ..hasRequiredFields = false
   ;
 
   UserProto._() : super();
   factory UserProto({
     $core.String? name,
+    $core.Iterable<$core.int>? avatar,
   }) {
     final _result = create();
     if (name != null) {
       _result.name = name;
+    }
+    if (avatar != null) {
+      _result.avatar.addAll(avatar);
     }
     return _result;
   }
@@ -54,5 +59,8 @@ class UserProto extends $pb.GeneratedMessage {
   $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get avatar => $_getList(1);
 }
 

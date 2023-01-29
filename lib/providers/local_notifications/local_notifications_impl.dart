@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/providers/local_notifications/local_notifications.dart';
@@ -7,6 +10,7 @@ import 'package:timezone/timezone.dart' as tz;
 class LocalNotificationsImpl implements LocalNotifications {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+  final List<Function(bool)> _notificationPermissionListeners = [];
 
   final List<Function(String)> _clickListeners = [];
 
@@ -58,12 +62,17 @@ class LocalNotificationsImpl implements LocalNotifications {
 
   @override
   Future<NotificationPermission> requestPermission() async {
-    final request = await _flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestPermission();
+    bool permissions = false;
 
-    switch (request) {
+    if (Platform.isAndroid) {
+      permissions = await _requestAndroidPermission();
+    } else if (Platform.isIOS) {
+      permissions = await _requestIosPermission();
+    }
+
+    _notificationPermissionHandler(permissions);
+
+    switch (permissions) {
       case true:
         return NotificationPermission.granted;
       case false:
@@ -71,6 +80,34 @@ class LocalNotificationsImpl implements LocalNotifications {
     }
 
     return NotificationPermission.notDetermined;
+  }
+
+  Future<bool> _requestAndroidPermission() async {
+    try {
+      return await _flutterLocalNotificationsPlugin
+              .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin>()
+              ?.requestPermission() ??
+          false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> _requestIosPermission() async {
+    try {
+      return await _flutterLocalNotificationsPlugin
+              .resolvePlatformSpecificImplementation<
+                  IOSFlutterLocalNotificationsPlugin>()
+              ?.requestPermissions(
+                alert: true,
+                badge: true,
+                sound: true,
+              ) ??
+          false;
+    } catch (_) {
+      return false;
+    }
   }
 
   @override
@@ -113,8 +150,8 @@ class LocalNotificationsImpl implements LocalNotifications {
     required int progress,
   }) {
     return AndroidNotificationDetails(
-      'progress channel',
-      'progress channel',
+      'progress_channel',
+      'App update',
       channelShowBadge: false,
       importance: Importance.max,
       priority: Priority.high,
@@ -148,8 +185,8 @@ class LocalNotificationsImpl implements LocalNotifications {
 
   AndroidNotificationDetails androidNotificationDetails() {
     return const AndroidNotificationDetails(
-      'notification channel',
-      'notification channel',
+      'notification_channel',
+      'Global notifications',
       channelShowBadge: false,
       importance: Importance.max,
       priority: Priority.high,
@@ -167,6 +204,17 @@ class LocalNotificationsImpl implements LocalNotifications {
   @override
   void listenNotification(void Function(String payload) callback) {
     _clickListeners.add(callback);
+  }
+
+  @override
+  void listenToPermission(void Function(bool payload) callback) {
+    _notificationPermissionListeners.add(callback);
+  }
+
+  void _notificationPermissionHandler(bool result) {
+    for (final fn in _notificationPermissionListeners) {
+      fn.call(result);
+    }
   }
 }
 

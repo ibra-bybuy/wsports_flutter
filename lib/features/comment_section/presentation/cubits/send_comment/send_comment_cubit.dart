@@ -46,6 +46,7 @@ class SendCommentCubit extends Cubit<SendCommentState> {
   Future<Comment> _makeComment(String text) async {
     return Comment(
       id: uuid.v4(),
+      avatarBytes: (await userCubit.user.getAvatarBytes) ?? [],
       name: userCubit.name,
       body: text,
       createdAt: DateTime.now().toString(),

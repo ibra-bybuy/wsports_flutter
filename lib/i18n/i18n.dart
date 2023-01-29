@@ -10,18 +10,29 @@ class I18n {
 
   static LocalizationsDelegate<AppLocalizations> get delegate =>
       AppLocalizations.delegate;
+
+  static Locale? getLocaleByCode(String code) {
+    for (final local in supportedLocales) {
+      if (code.toLowerCase().contains(local.languageCode.toLowerCase())) {
+        return local;
+      }
+    }
+
+    return null;
+  }
 }
 
 AppLocalizations get localizationInstance =>
     AppLocalizations.of(App.scaffoldKey!.currentContext!)!;
 
 enum LocalLang {
-  ru("ru"),
-  eng("eng"),
-  undefined("");
+  ru("ru", "Русский"),
+  eng("eng", "English"),
+  undefined("", "");
 
   final String code;
-  const LocalLang(this.code);
+  final String name;
+  const LocalLang(this.code, this.name);
 
   static LocalLang getByString(String val) {
     for (final l in LocalLang.values) {

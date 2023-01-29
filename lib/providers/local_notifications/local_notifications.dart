@@ -1,6 +1,8 @@
 enum NotificationPermission { granted, denied, notDetermined }
 
 abstract class LocalNotifications {
+  void listenToPermission(void Function(bool payload) callback);
+
   Future<void> init();
   Future<NotificationPermission> requestPermission();
 

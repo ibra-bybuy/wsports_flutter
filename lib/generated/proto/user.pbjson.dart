@@ -13,8 +13,9 @@ const UserProto$json = const {
   '1': 'UserProto',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    const {'1': 'avatar', '3': 2, '4': 3, '5': 5, '10': 'avatar'},
   ],
 };
 
 /// Descriptor for `UserProto`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List userProtoDescriptor = $convert.base64Decode('CglVc2VyUHJvdG8SEgoEbmFtZRgBIAEoCVIEbmFtZQ==');
+final $typed_data.Uint8List userProtoDescriptor = $convert.base64Decode('CglVc2VyUHJvdG8SEgoEbmFtZRgBIAEoCVIEbmFtZRIWCgZhdmF0YXIYAiADKAVSBmF2YXRhcg==');

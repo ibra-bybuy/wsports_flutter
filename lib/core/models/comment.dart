@@ -6,6 +6,7 @@ enum CommentStatus { sending, sent, error }
 class Comment extends Equatable {
   final String id;
   final String name;
+  final List<int> avatarBytes;
   final String body;
   final String createdAt;
   final String device;
@@ -14,6 +15,7 @@ class Comment extends Equatable {
   const Comment({
     this.id = '',
     this.name = '',
+    this.avatarBytes = const [],
     this.body = '',
     this.createdAt = '',
     this.device = '',
@@ -23,6 +25,7 @@ class Comment extends Equatable {
   Comment copyWith({
     String? id,
     String? name,
+    List<int>? avatarBytes,
     String? body,
     String? createdAt,
     String? device,
@@ -31,6 +34,7 @@ class Comment extends Equatable {
     return Comment(
       id: id ?? this.id,
       name: name ?? this.name,
+      avatarBytes: avatarBytes ?? this.avatarBytes,
       body: body ?? this.body,
       createdAt: createdAt ?? this.createdAt,
       device: device ?? this.device,
@@ -42,6 +46,7 @@ class Comment extends Equatable {
     return <String, dynamic>{
       'id': id,
       'name': name,
+      'avatarBytes': avatarBytes,
       'body': body,
       'createdAt': createdAt,
       'device': device,
@@ -53,6 +58,9 @@ class Comment extends Equatable {
     return Comment(
       id: (map["id"] ?? '') as String,
       name: (map["name"] ?? '') as String,
+      avatarBytes: List<int>.from(
+        ((map['avatarBytes'] ?? const <int>[]) as List<int>),
+      ),
       body: (map["body"] ?? '') as String,
       createdAt: (map["createdAt"] ?? '') as String,
       device: (map["device"] ?? '') as String,
@@ -80,6 +88,7 @@ class Comment extends Equatable {
     return [
       id,
       name,
+      avatarBytes,
       body,
       createdAt,
       device,

@@ -7,6 +7,7 @@ extension CommentProtoExt on CommentProto {
     return Comment(
       id: id,
       name: user.name,
+      avatarBytes: user.avatar,
       body: body,
       createdAt: dateTime,
       device: device,

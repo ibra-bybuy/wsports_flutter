@@ -17,10 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
+    MainRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const HomeScreen(),
+        child: const MainScreen(),
       );
     },
     EventDetailsRoute.name: (routeData) {
@@ -41,12 +41,6 @@ class _$AppRouter extends RootStackRouter {
           key: args.key,
           eventId: args.eventId,
         ),
-      );
-    },
-    SettingsRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const SettingsScreen(),
       );
     },
     SearchRoute.name: (routeData) {
@@ -72,13 +66,38 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    SettingsRoute.name: (routeData) {
+      final args = routeData.argsAs<SettingsRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: SettingsScreen(
+          key: args.key,
+          title: args.title,
+          items: args.items,
+          onTap: args.onTap,
+        ),
+      );
+    },
+    HomeRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const HomeScreen(),
+      );
+    },
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          HomeRoute.name,
+          MainRoute.name,
           path: '/',
+          children: [
+            RouteConfig(
+              HomeRoute.name,
+              path: '',
+              parent: MainRoute.name,
+            )
+          ],
         ),
         RouteConfig(
           EventDetailsRoute.name,
@@ -89,10 +108,6 @@ class _$AppRouter extends RootStackRouter {
           path: '/comment-section-screen',
         ),
         RouteConfig(
-          SettingsRoute.name,
-          path: '/settings-screen',
-        ),
-        RouteConfig(
           SearchRoute.name,
           path: '/search-screen',
         ),
@@ -100,19 +115,24 @@ class _$AppRouter extends RootStackRouter {
           TournamentDetailsRoute.name,
           path: '/tournament-details-screen',
         ),
+        RouteConfig(
+          SettingsRoute.name,
+          path: '/settings-screen',
+        ),
       ];
 }
 
 /// generated route for
-/// [HomeScreen]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute()
+/// [MainScreen]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          MainRoute.name,
           path: '/',
+          initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'MainRoute';
 }
 
 /// generated route for
@@ -181,18 +201,6 @@ class CommentSectionRouteArgs {
   String toString() {
     return 'CommentSectionRouteArgs{key: $key, eventId: $eventId}';
   }
-}
-
-/// generated route for
-/// [SettingsScreen]
-class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute()
-      : super(
-          SettingsRoute.name,
-          path: '/settings-screen',
-        );
-
-  static const String name = 'SettingsRoute';
 }
 
 /// generated route for
@@ -271,4 +279,67 @@ class TournamentDetailsRouteArgs {
   String toString() {
     return 'TournamentDetailsRouteArgs{key: $key, events: $events}';
   }
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsRoute extends PageRouteInfo<SettingsRouteArgs> {
+  SettingsRoute({
+    Key? key,
+    required String title,
+    required List<SettinsItem> items,
+    void Function(
+      BuildContext,
+      String,
+    )?
+        onTap,
+  }) : super(
+          SettingsRoute.name,
+          path: '/settings-screen',
+          args: SettingsRouteArgs(
+            key: key,
+            title: title,
+            items: items,
+            onTap: onTap,
+          ),
+        );
+
+  static const String name = 'SettingsRoute';
+}
+
+class SettingsRouteArgs {
+  const SettingsRouteArgs({
+    this.key,
+    required this.title,
+    required this.items,
+    this.onTap,
+  });
+
+  final Key? key;
+
+  final String title;
+
+  final List<SettinsItem> items;
+
+  final void Function(
+    BuildContext,
+    String,
+  )? onTap;
+
+  @override
+  String toString() {
+    return 'SettingsRouteArgs{key: $key, title: $title, items: $items, onTap: $onTap}';
+  }
+}
+
+/// generated route for
+/// [HomeScreen]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute()
+      : super(
+          HomeRoute.name,
+          path: '',
+        );
+
+  static const String name = 'HomeRoute';
 }

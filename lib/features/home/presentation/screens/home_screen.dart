@@ -26,7 +26,8 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with AutomaticKeepAliveClientMixin {
   final bannersCubit = getIt<BannersCubit>();
   final eventsCubit = getIt<EventsCubit>();
   final horizontalPadding = 15.0;
@@ -58,12 +59,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return AlertLoadListener<EventsState>(
       cubit: eventsCubit,
       isLoading: (state) => state is EventsLoading,
       child: AppVersionListener(
         child: Scaffold(
-          appBar: const MainAppBar(),
+          appBar: const MainAppBar(
+            children: [
+              SearchAppBar(),
+            ],
+          ),
           body: Refresher(
             scrollController: scrollController,
             controller: _refreshController,
@@ -75,12 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 20.0),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: horizontalPadding),
-                    child: const SearchAppBar(),
-                  ),
                   const SizedBox(height: 20.0),
                   HomeBannersBuilder(
                     bannersCubit: bannersCubit,
@@ -132,4 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

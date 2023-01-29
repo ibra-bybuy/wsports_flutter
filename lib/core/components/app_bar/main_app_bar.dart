@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:watch_sports/core/components/app_bar/welcome_card.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> children;
+  final bool? centerTitle;
   const MainAppBar({
     super.key,
     this.children = const [],
+    this.centerTitle,
   });
 
   @override
@@ -13,22 +14,18 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.white,
       iconTheme: const IconThemeData(
-        color: Colors.black, //change your color here
+        color: Colors.black,
       ),
       elevation: 0.0,
       toolbarHeight: preferredSize.height,
+      centerTitle: centerTitle,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: children.isNotEmpty
-            ? children
-            : const [
-                SizedBox(height: 15.0),
-                AppBarWelcomeCard(),
-              ],
+        children: children,
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 1.5);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight * 1.2);
 }

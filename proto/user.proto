@@ -3,4 +3,5 @@ package user;
 
 message UserProto {
     string name = 1;
+    repeated int32 avatar = 2;
 }

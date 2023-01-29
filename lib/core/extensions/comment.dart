@@ -10,6 +10,7 @@ extension CommentExt on Comment {
       body: body,
       user: UserProto(
         name: name,
+        avatar: avatarBytes,
       ),
       dateTime: createdAt,
       eventId: eventId,
