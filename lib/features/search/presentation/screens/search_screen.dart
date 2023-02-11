@@ -26,11 +26,13 @@ class SearchScreen extends StatefulWidget {
   final String? initialQuery;
   final bool showSearch;
   final String? titleText;
+  final bool showPreviousResults;
   const SearchScreen({
     Key? key,
     this.initialQuery,
     this.showSearch = true,
     this.titleText,
+    this.showPreviousResults = true,
   }) : super(key: key);
 
   @override
@@ -46,6 +48,10 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
+    if (!widget.showPreviousResults) {
+      uiCubit.eventsCubit.setEvents([]);
+    }
+
     Future.delayed(Duration.zero, () {
       scrollController.addListener(() {
         if (scrollController.isScrolledToBottom &&
@@ -56,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
     });
 
     if (widget.initialQuery != null) {
-      uiCubit.onChanged(widget.initialQuery!);
+      uiCubit.callWithoutDebouncer(widget.initialQuery!);
     }
   }
 
@@ -122,6 +128,10 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                         ),
                       );
+                    }
+
+                    if (state is SearchLoading) {
+                      return const SizedBox();
                     }
 
                     return Center(

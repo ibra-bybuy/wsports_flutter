@@ -9,7 +9,7 @@ import desktop_webview_window
 import device_info_plus
 import flutter_local_notifications
 import package_info_plus
-import path_provider_macos
+import path_provider_foundation
 import sqflite
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

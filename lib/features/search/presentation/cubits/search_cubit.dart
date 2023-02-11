@@ -26,6 +26,15 @@ class SearchCubit extends Cubit<SearchState> {
   String get currentQuery => _entities.query.trim();
   final debouncer = Debouncer(milliseconds: 400);
 
+  void callWithoutDebouncer(String str) {
+    _entities = _entities.copyWith(query: str);
+    if (str.trim().isNotEmpty) {
+      call();
+    } else {
+      eventsCubit.setEvents([]);
+    }
+  }
+
   void onChanged(String str) {
     _entities = _entities.copyWith(query: str);
     debouncer.run(() {

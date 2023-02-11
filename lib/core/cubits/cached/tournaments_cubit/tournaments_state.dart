@@ -4,21 +4,28 @@ import 'package:equatable/equatable.dart';
 import 'package:watch_sports/core/models/tournament.dart';
 
 class TournamentsState extends Equatable {
+  final List<Tournament> originals;
   final List<Tournament> items;
   const TournamentsState({
+    this.originals = const [],
     this.items = const [],
   });
 
   TournamentsState copyWith({
+    List<Tournament>? originals,
     List<Tournament>? items,
   }) {
     return TournamentsState(
+      originals: originals ?? this.originals,
       items: items ?? this.items,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'originals': originals.map((x) {
+        return x.toMap();
+      }).toList(growable: false),
       'items': items.map((x) {
         return x.toMap();
       }).toList(growable: false),
@@ -27,6 +34,13 @@ class TournamentsState extends Equatable {
 
   factory TournamentsState.fromMap(Map<String, dynamic> map) {
     return TournamentsState(
+      originals: List<Tournament>.from(
+        ((map['originals'] ?? const <Tournament>[]) as List)
+            .map<Tournament>((x) {
+          return Tournament.fromMap(
+              (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
+        }),
+      ),
       items: List<Tournament>.from(
         ((map['items'] ?? const <Tournament>[]) as List).map<Tournament>((x) {
           return Tournament.fromMap(
@@ -40,5 +54,5 @@ class TournamentsState extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [items];
+  List<Object> get props => [originals, items];
 }

@@ -1,0 +1,18 @@
+{
+    "statusCode": 200,
+    "data": {
+        "items": [
+            {
+                "id": 4119,
+                "name": "UFC 284"
+            }
+        ],
+        "meta": {
+            "totalItems": 8,
+            "itemCount": 8,
+            "itemsPerPage": 10,
+            "totalPages": 1,
+            "currentPage": 1
+        }
+    }
+}

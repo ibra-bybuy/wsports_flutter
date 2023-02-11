@@ -36,7 +36,6 @@ class TournamentDetailsScreen extends StatefulWidget {
 
 class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
   final horizontalPadding = 25.0;
-
   final uiCubit = getIt<TournamentDetailsCubit>();
   final commentSectionCubit = getIt<CommentSectionCubit>();
   final _refreshController = RefreshController(initialRefresh: false);
@@ -48,7 +47,6 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
 
     final event =
         widget.events.isNotEmpty ? widget.events.first : const Event();
-
     uiCubit.setEvents(event, widget.events);
     commentSectionCubit.init(event.name);
 

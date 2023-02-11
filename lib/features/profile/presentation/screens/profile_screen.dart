@@ -20,7 +20,6 @@ import '../../../../core/components/settings/settings_wrapper.dart';
 import '../../../../core/components/taps/ink_well_circle.dart';
 import '../../../../core/cubits/cached/lang/lang_cubit.dart';
 import '../../../../setup.dart';
-import '../../../main/presentation/cubits/bottom_nav_bar_cubit.dart';
 import '../widgets/change_name_dialog.dart';
 import '../widgets/user_builder.dart';
 
@@ -37,7 +36,6 @@ class _ProfileScreenState extends State<ProfileScreen>
   final userCubit = getIt<UserCubit>();
   final localNotifications = getIt<LocalNotifications>();
   final langCubit = getIt<CachedLangCubit>();
-  final bottomNavBarCubit = getIt<BottomNavBarCubit>();
   final notificationsCubit = BoolCubit(true);
 
   @override
@@ -167,7 +165,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       .popUntil((route) => route.isFirst);
                                   langCubit.setLangCode(itemCode);
                                   Phoenix.rebirth(context);
-                                  bottomNavBarCubit.setNewPage(0);
                                 },
                               ),
                             );

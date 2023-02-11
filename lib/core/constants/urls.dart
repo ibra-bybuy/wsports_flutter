@@ -2,7 +2,7 @@ import '../../setup.dart';
 
 class Urls {
   static String get baseDomain =>
-      isProduction ? "https://wsports.app" : "http://192.168.0.100:3006";
+      isProduction ? "https://wsports.app" : "http://localhost:3006";
 
   static String get apiUrl =>
       isProduction ? "$baseDomain/api/v1" : "$baseDomain/api/v1";

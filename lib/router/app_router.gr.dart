@@ -53,6 +53,7 @@ class _$AppRouter extends RootStackRouter {
           initialQuery: args.initialQuery,
           showSearch: args.showSearch,
           titleText: args.titleText,
+          showPreviousResults: args.showPreviousResults,
         ),
       );
     },
@@ -78,10 +79,40 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    HomeRoutes.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EmptyRouterPage(),
+      );
+    },
+    TournamentsRoutes.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EmptyRouterPage(),
+      );
+    },
+    ProfileRoutes.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const EmptyRouterPage(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
+      );
+    },
+    TournamentsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TournamentsScreen(),
+      );
+    },
+    ProfileRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ProfileScreen(),
       );
     },
   };
@@ -93,10 +124,41 @@ class _$AppRouter extends RootStackRouter {
           path: '/',
           children: [
             RouteConfig(
-              HomeRoute.name,
-              path: '',
+              HomeRoutes.name,
+              path: 'empty-router-page',
               parent: MainRoute.name,
-            )
+              children: [
+                RouteConfig(
+                  HomeRoute.name,
+                  path: '',
+                  parent: HomeRoutes.name,
+                )
+              ],
+            ),
+            RouteConfig(
+              TournamentsRoutes.name,
+              path: 'empty-router-page',
+              parent: MainRoute.name,
+              children: [
+                RouteConfig(
+                  TournamentsRoute.name,
+                  path: '',
+                  parent: TournamentsRoutes.name,
+                )
+              ],
+            ),
+            RouteConfig(
+              ProfileRoutes.name,
+              path: 'empty-router-page',
+              parent: MainRoute.name,
+              children: [
+                RouteConfig(
+                  ProfileRoute.name,
+                  path: '',
+                  parent: ProfileRoutes.name,
+                )
+              ],
+            ),
           ],
         ),
         RouteConfig(
@@ -211,6 +273,7 @@ class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
     String? initialQuery,
     bool showSearch = true,
     String? titleText,
+    bool showPreviousResults = true,
   }) : super(
           SearchRoute.name,
           path: '/search-screen',
@@ -219,6 +282,7 @@ class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
             initialQuery: initialQuery,
             showSearch: showSearch,
             titleText: titleText,
+            showPreviousResults: showPreviousResults,
           ),
         );
 
@@ -231,6 +295,7 @@ class SearchRouteArgs {
     this.initialQuery,
     this.showSearch = true,
     this.titleText,
+    this.showPreviousResults = true,
   });
 
   final Key? key;
@@ -241,9 +306,11 @@ class SearchRouteArgs {
 
   final String? titleText;
 
+  final bool showPreviousResults;
+
   @override
   String toString() {
-    return 'SearchRouteArgs{key: $key, initialQuery: $initialQuery, showSearch: $showSearch, titleText: $titleText}';
+    return 'SearchRouteArgs{key: $key, initialQuery: $initialQuery, showSearch: $showSearch, titleText: $titleText, showPreviousResults: $showPreviousResults}';
   }
 }
 
@@ -333,6 +400,45 @@ class SettingsRouteArgs {
 }
 
 /// generated route for
+/// [EmptyRouterPage]
+class HomeRoutes extends PageRouteInfo<void> {
+  const HomeRoutes({List<PageRouteInfo>? children})
+      : super(
+          HomeRoutes.name,
+          path: 'empty-router-page',
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoutes';
+}
+
+/// generated route for
+/// [EmptyRouterPage]
+class TournamentsRoutes extends PageRouteInfo<void> {
+  const TournamentsRoutes({List<PageRouteInfo>? children})
+      : super(
+          TournamentsRoutes.name,
+          path: 'empty-router-page',
+          initialChildren: children,
+        );
+
+  static const String name = 'TournamentsRoutes';
+}
+
+/// generated route for
+/// [EmptyRouterPage]
+class ProfileRoutes extends PageRouteInfo<void> {
+  const ProfileRoutes({List<PageRouteInfo>? children})
+      : super(
+          ProfileRoutes.name,
+          path: 'empty-router-page',
+          initialChildren: children,
+        );
+
+  static const String name = 'ProfileRoutes';
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute()
@@ -342,4 +448,28 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [TournamentsScreen]
+class TournamentsRoute extends PageRouteInfo<void> {
+  const TournamentsRoute()
+      : super(
+          TournamentsRoute.name,
+          path: '',
+        );
+
+  static const String name = 'TournamentsRoute';
+}
+
+/// generated route for
+/// [ProfileScreen]
+class ProfileRoute extends PageRouteInfo<void> {
+  const ProfileRoute()
+      : super(
+          ProfileRoute.name,
+          path: '',
+        );
+
+  static const String name = 'ProfileRoute';
 }

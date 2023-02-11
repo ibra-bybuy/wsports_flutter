@@ -33,6 +33,7 @@ class HomeBannersBuilder extends StatelessWidget {
                   initialQuery: banner.routeUrl,
                   showSearch: false,
                   titleText: banner.routeUrl,
+                  showPreviousResults: false,
                 ),
               );
             },

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:watch_sports/features/tournament_details/data/models/events_details_response.dart';
+import 'package:watch_sports/features/tournaments/data/models/tournaments_response_dto.dart';
 
 import '../../features/event_details/data/models/event_details_response.dart';
 import '../../features/home/data/models/app_versions_response.dart';
@@ -45,5 +46,13 @@ abstract class RestClient {
   @GET("/app")
   Future<AppVersionsResponse> getAppVersions(
     @Query("platform") String platform,
+  );
+
+  @GET("/tournaments")
+  Future<TournamentsResponseDto> getTournaments(
+    @Query("d") String date,
+    @Query("type") String? type,
+    @Query("page") int page,
+    @Query("limit") int limit,
   );
 }
