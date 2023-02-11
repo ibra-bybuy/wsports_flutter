@@ -5,7 +5,7 @@ cd "$parent_path"
 
 export $(grep -v '^#' .env | xargs)
 
-host=https://wsports.app/api/v1/app
+host=http://94.131.106.27:3006/api/v1/app
 file=../build/app/outputs/flutter-apk/app-release.apk
 
 cd ".."

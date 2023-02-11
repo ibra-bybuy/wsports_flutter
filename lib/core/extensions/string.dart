@@ -16,4 +16,8 @@ extension StringExt on String {
 
     return toUpperCase();
   }
+
+  String get firstWord {
+    return split(" ")[0];
+  }
 }

@@ -65,6 +65,7 @@ class EventsCubit extends Cubit<EventsState> {
         onSuccessEmit(r);
       } else {
         paginationProvider.clear();
+        paginationProvider.setTotalPages(r.pagination.totalPages);
         getCurrentCategoryCubit.setEvents(r.items);
         emit(EventsLoaded(r));
       }

@@ -52,7 +52,10 @@ class _SearchScreenState extends State<SearchScreen> {
       uiCubit.eventsCubit.setEvents([]);
     }
 
-    Future.delayed(Duration.zero, () {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.initialQuery != null) {
+        uiCubit.callWithoutDebouncer(widget.initialQuery!);
+      }
       scrollController.addListener(() {
         if (scrollController.isScrolledToBottom &&
             uiCubit.currentQuery.isNotEmpty) {
@@ -60,10 +63,6 @@ class _SearchScreenState extends State<SearchScreen> {
         }
       });
     });
-
-    if (widget.initialQuery != null) {
-      uiCubit.callWithoutDebouncer(widget.initialQuery!);
-    }
   }
 
   @override

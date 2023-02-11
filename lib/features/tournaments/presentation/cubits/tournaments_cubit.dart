@@ -42,6 +42,7 @@ class TournamentsCubit extends Cubit<TournamentsState> {
         onSuccessEmit(r);
       } else {
         paginationProvider.clear();
+        paginationProvider.setTotalPages(r.pagination.totalPages);
         emit(TournamentsLoaded(r));
         cachedTournamentsCubit.setItems(r.items);
       }

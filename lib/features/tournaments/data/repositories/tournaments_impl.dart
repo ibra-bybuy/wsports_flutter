@@ -24,7 +24,8 @@ class TournamentsRepositoryImpl implements TournamentsRepository {
         TournamentsRequestDto(date: date, type: type, page: page, limit: limit),
       );
 
-      return Right(TournamentEntities(items: response.data.items));
+      return Right(TournamentEntities(
+          items: response.data.items, pagination: response.data.meta));
     } on Failure catch (e) {
       return Left(e);
     }

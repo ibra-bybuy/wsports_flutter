@@ -15,9 +15,10 @@ import 'search_state.dart';
 class SearchCubit extends Cubit<SearchState> {
   final SearchUsecase useCase;
   late final PaginationProvider paginationProvider;
+  final _limit = 15;
   SearchCubit(this.useCase) : super(SearchInitial()) {
     paginationProvider =
-        PaginationProvider(limit: 15, page: 1, request: _onPagination);
+        PaginationProvider(limit: _limit, page: 1, request: _onPagination);
   }
 
   final eventsCubit = EventListCubit("search_events");
@@ -53,7 +54,7 @@ class SearchCubit extends Cubit<SearchState> {
   }) async {
     emit(SearchLoading());
     _entities = _entities.copyWith(
-      limit: limit ?? 15,
+      limit: limit ?? _limit,
       page: page ?? 1,
     );
     final response = await useCase.call(_entities);
@@ -62,6 +63,7 @@ class SearchCubit extends Cubit<SearchState> {
         onSuccessEmit(r);
       } else {
         paginationProvider.clear();
+        paginationProvider.setTotalPages(r.pagination.totalPages);
         eventsCubit.setEvents(r.items);
         emit(SearchLoaded(r));
       }

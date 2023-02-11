@@ -31,6 +31,10 @@ class PaginationProvider {
     }
   }
 
+  void setTotalPages(int pages) {
+    _pagination = _pagination.copyWith(totalPages: pages);
+  }
+
   bool get hasNext {
     if (_pagination.totalPages < 1) {
       return _hasElements;
