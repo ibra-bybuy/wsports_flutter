@@ -31,7 +31,7 @@ class _TournamentIconState extends State<TournamentIcon> {
     if (emojiCode.isNotEmpty) {
       return GoogleText(
         emojiCode,
-        fontSize: SizeConfig(context, 20)(),
+        fontSize: SizeConfig(context, 17.0)(),
       );
     }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
+import 'package:watch_sports/core/functions/size_config.dart';
 import 'package:watch_sports/core/models/tournament.dart';
 import 'package:watch_sports/features/tournaments/presentation/widgets/tournament_icon.dart';
 import 'package:watch_sports/router/app_router.dart';
@@ -27,7 +28,10 @@ class TournamentCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TournamentIcon(item.name),
+              SizedBox(
+                width: SizeConfig(context, 23)(),
+                child: TournamentIcon(item.name),
+              ),
               const SizedBox(width: 8.0),
               Expanded(
                 child: GoogleText(
