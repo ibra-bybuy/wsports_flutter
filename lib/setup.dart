@@ -17,7 +17,6 @@ Future<void> configureDependencies() async {
   $initGetIt(getIt);
   await dotenv.load(fileName: ".env");
   initializeTimeZones();
-
   await getIt<LocalNotifications>().init();
   getIt<EventNotificationsProvider>().init();
 }

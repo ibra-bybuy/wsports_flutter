@@ -41,7 +41,8 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
 
     _load();
-    Future.delayed(Duration.zero, () {
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (scrollController.hasClients) {
         scrollController.addListener(() {
           if (scrollController.isScrolledToBottom) {
@@ -53,8 +54,8 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Future<void> _load() async {
-    await bannersCubit.call();
-    await eventsCubit.call();
+    bannersCubit.call();
+    eventsCubit.call();
   }
 
   @override

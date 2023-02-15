@@ -33,7 +33,7 @@ class _HomeBannersListState extends State<HomeBannersList> {
   Widget build(BuildContext context) {
     return Center(
       child: MaxWidthSetter(
-        width: 500.0,
+        width: 600.0,
         child: SizedBox(
           height: SizeConfig(context, 200)(),
           child: PageView.builder(

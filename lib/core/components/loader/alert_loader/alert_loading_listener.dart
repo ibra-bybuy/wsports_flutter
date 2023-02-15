@@ -37,4 +37,10 @@ class _AlertLoadListenerState<T> extends State<AlertLoadListener<T>> {
       child: widget.child,
     );
   }
+
+  @override
+  void dispose() {
+    alertLoader.dismiss();
+    super.dispose();
+  }
 }

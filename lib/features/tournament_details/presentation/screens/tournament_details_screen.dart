@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:watch_sports/core/components/adaptive/max_with_setter.dart';
 import 'package:watch_sports/core/components/listview/listview_builder.dart';
+import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_state.dart';
 import 'package:watch_sports/core/cubits/custom/event_cubit/event_cubit.dart';
 import 'package:watch_sports/features/tournament_details/presentation/cubits/tournament_details_state.dart';
 import 'package:watch_sports/features/tournament_details/presentation/widgets/tournament_event_card.dart';
@@ -11,7 +12,7 @@ import '../../../../core/components/btn/popup_btns.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/components/text/google_text.dart';
 import '../../../../core/components/webview/webview.dart';
-import '../../../../core/cubits/custom/event_list_cubit/event_list_cubit.dart';
+import '../../../../core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import '../../../../core/cubits/custom/string_cubit.dart/string_cubit.dart';
 import '../../../../core/models/event.dart';
 import '../../../../i18n/i18n.dart';
@@ -65,7 +66,7 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EventListCubit, List<Event>>(
+    return BlocBuilder<EventListCubit, EventListState>(
       bloc: uiCubit.eventListCubit,
       builder: (context, eventListState) {
         return BlocBuilder<EventCubit, Event>(
@@ -77,7 +78,7 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
                 title: state.name,
                 actions: !state.isStarted
                     ? [
-                        EventNotificationBuilder(eventListState),
+                        EventNotificationBuilder(eventListState.events),
                       ]
                     : state.streams.length >= 2
                         ? [
@@ -146,14 +147,16 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
                                         TournamentDetailsState>(
                                       bloc: uiCubit,
                                       builder: (context, state) {
-                                        if (state is TournamentDetailsLoading) {
+                                        if (state is TournamentDetailsLoading &&
+                                            uiCubit.eventListCubit.events
+                                                .isEmpty) {
                                           return const CircularProgressIndicator(
                                             color: Colors.green,
                                           );
                                         }
 
                                         return CustomListViewBuilder<Event>(
-                                          items: eventListState,
+                                          items: eventListState.events,
                                           itemBuilder: (context, _, item) {
                                             return TournamentEventCard(item);
                                           },
