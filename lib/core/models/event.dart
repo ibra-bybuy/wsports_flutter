@@ -148,6 +148,8 @@ class Event extends Equatable {
         .where((element) => element.lang == localizationInstance.lang)
         .toList();
 
+    myLangTeams.sort((a, b) => a.position.compareTo(b.position));
+
     if (myLangTeams.length >= 2) {
       return myLangTeams;
     }

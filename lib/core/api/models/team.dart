@@ -12,10 +12,12 @@ class TeamApi extends Team {
   TeamApi({
     String name = '',
     String avatarUrl = '',
+    int position = 0,
     this.langApi = "",
   }) : super(
           name: name,
           avatarUrl: avatarUrl,
+          position: position,
           lang: LocalLang.getByString(langApi),
         );
 
