@@ -5,7 +5,7 @@ import 'package:watch_sports/core/components/adaptive/max_with_setter.dart';
 import 'package:watch_sports/core/components/listview/listview_builder.dart';
 import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_state.dart';
 import 'package:watch_sports/core/cubits/custom/event_cubit/event_cubit.dart';
-import 'package:watch_sports/features/tournament_details/presentation/cubits/tournament_details_state.dart';
+import 'package:watch_sports/core/cubits/fetch_state.dart';
 import 'package:watch_sports/features/tournament_details/presentation/widgets/tournament_event_card.dart';
 import '../../../../core/components/app_bar/simple_app_bar.dart';
 import '../../../../core/components/btn/popup_btns.dart';
@@ -144,10 +144,10 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
                                     ],
                                     const SizedBox(height: 20.0),
                                     BlocBuilder<TournamentDetailsCubit,
-                                        TournamentDetailsState>(
+                                        FetchState>(
                                       bloc: uiCubit,
                                       builder: (context, state) {
-                                        if (state is TournamentDetailsLoading &&
+                                        if (state is FetchLoading &&
                                             uiCubit.eventListCubit.events
                                                 .isEmpty) {
                                           return const CircularProgressIndicator(

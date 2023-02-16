@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:watch_sports/core/cubits/fetch_state.dart';
 import 'package:watch_sports/features/search/domain/usecases/search_usecase.dart';
 import '../../../../core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import '../../../../core/errors/failures.dart';
@@ -9,14 +10,13 @@ import '../../../../core/models/pagination.dart';
 import '../../../../providers/pagination/pagination_provider.dart';
 import '../../../home/domain/entities/events_response_entities.dart';
 import '../../domain/entities/search_entities.dart';
-import 'search_state.dart';
 
 @Injectable()
-class SearchCubit extends Cubit<SearchState> {
+class SearchCubit extends Cubit<FetchState<EventsResponseEntities>> {
   final SearchUsecase useCase;
   late final PaginationProvider paginationProvider;
   final _limit = 15;
-  SearchCubit(this.useCase) : super(SearchInitial()) {
+  SearchCubit(this.useCase) : super(FetchInitial()) {
     paginationProvider =
         PaginationProvider(limit: _limit, page: 1, request: _onPagination);
   }
@@ -52,20 +52,20 @@ class SearchCubit extends Cubit<SearchState> {
     int? page,
     void Function(EventsResponseEntities)? onSuccessEmit,
   }) async {
-    emit(SearchLoading());
+    emit(FetchLoading());
     _entities = _entities.copyWith(
       limit: limit ?? _limit,
       page: page ?? 1,
     );
     final response = await useCase.call(_entities);
-    response.fold((l) => emit(SearchError(l)), (r) {
+    response.fold((l) => emit(FetchError(l)), (r) {
       if (onSuccessEmit != null) {
         onSuccessEmit(r);
       } else {
         paginationProvider.clear();
         paginationProvider.setTotalPages(r.pagination.totalPages);
         eventsCubit.setEvents(r.items);
-        emit(SearchLoaded(r));
+        emit(FetchLoaded(r));
       }
     });
     return response;
@@ -77,7 +77,7 @@ class SearchCubit extends Cubit<SearchState> {
       page: pagination.currentPage,
       onSuccessEmit: (r) {
         eventsCubit.addEvents(r.items);
-        emit(SearchLoaded(r));
+        emit(FetchLoaded(r));
       },
     );
 

@@ -1,0 +1,26 @@
+{
+    "fullname": "",
+    "picture": [""],
+    "wins": 0,
+    "losses": 0,
+    "draws": 0,
+    "allStrikes": 0,
+    "landedStrikes": 0,
+    "allTakeDowns": 0,
+    "landedTakeDowns": 0,
+    "fightHistory": [
+        {
+            "date": "",
+            "lastRound": 0,
+            "time": "",
+            "byMethod": "",
+            "fighters": [
+                {
+                    "name": "",
+                    "picture": "",
+                    "won": false
+                }
+            ]
+        }
+    ]
+}

@@ -1,19 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/core/cubits/custom/comments_cubit/comments_cubit.dart';
+import 'package:watch_sports/core/cubits/fetch_state.dart';
 import 'package:watch_sports/features/comment_section/domain/usecases/comment_section_usecase.dart';
 import 'package:watch_sports/providers/jwt/comments_token.dart';
 import 'package:watch_sports/providers/jwt/token_provider.dart';
-import 'comment_section_state.dart';
 
 @LazySingleton()
-class CommentSectionCubit extends Cubit<CommentSectionState> {
+class CommentSectionCubit extends Cubit<FetchState> {
   final CommentSectionUsecase usecase;
   final TokenProvider tokenProvider;
   CommentSectionCubit(
     this.usecase,
     @Named(commentsTokenImpl) this.tokenProvider,
-  ) : super(CommentSectionInitial());
+  ) : super(FetchInitial());
 
   void init(String eventId) {
     final commentSectionCubit = getCommentsCubit(eventId);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/textfield/sarchfield.dart';
+import 'package:watch_sports/core/cubits/fetch_state.dart';
 import 'package:watch_sports/core/extensions/scroll_controller.dart';
 import 'package:watch_sports/features/tournaments/presentation/cubits/tournaments_cubit.dart';
 import 'package:watch_sports/features/tournaments/presentation/widgets/tournaments_list_card.dart';
@@ -11,7 +12,6 @@ import '../../../../core/cubits/cached/tournaments_cubit/tournaments_cubit.dart'
 import '../../../../core/cubits/cached/tournaments_cubit/tournaments_state.dart';
 import '../../../../i18n/i18n.dart';
 import '../../../../setup.dart';
-import '../cubits/tournaments_state.dart' as c;
 
 class TournamentsScreen extends StatefulWidget {
   const TournamentsScreen({Key? key}) : super(key: key);
@@ -44,10 +44,10 @@ class _TournamentsScreenState extends State<TournamentsScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return AlertLoadListener<c.TournamentsState>(
+    return AlertLoadListener<FetchState>(
       cubit: uiCubit,
       isLoading: (state) {
-        return state is c.TournamentsLoading;
+        return state is FetchLoading;
       },
       child: Scaffold(
         appBar: MainAppBar(
@@ -67,10 +67,10 @@ class _TournamentsScreenState extends State<TournamentsScreen>
               );
             }
 
-            return BlocBuilder<TournamentsCubit, c.TournamentsState>(
+            return BlocBuilder<TournamentsCubit, FetchState>(
               bloc: uiCubit,
               builder: (context, state) {
-                if (state is c.TournamentsLoaded) {
+                if (state is FetchLoaded) {
                   return EmptyText(localizationInstance.noTournaments);
                 }
 

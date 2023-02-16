@@ -7,6 +7,7 @@ import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/components/textfield/sarchfield.dart';
 import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_state.dart';
+import 'package:watch_sports/core/cubits/fetch_state.dart';
 import 'package:watch_sports/core/extensions/scroll_controller.dart';
 import 'package:watch_sports/core/functions/size_config.dart';
 import 'package:watch_sports/router/app_router.dart';
@@ -20,7 +21,6 @@ import '../../../../i18n/i18n.dart';
 import '../../../../setup.dart';
 import '../../../home/presentation/widgets/event_card.dart';
 import '../cubits/search_cubit.dart';
-import '../cubits/search_state.dart';
 
 class SearchScreen extends StatefulWidget {
   final String? initialQuery;
@@ -68,9 +68,9 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final strings = localizationInstance;
-    return AlertLoadListener<SearchState>(
+    return AlertLoadListener<FetchState>(
       cubit: uiCubit,
-      isLoading: (state) => state is SearchLoading,
+      isLoading: (state) => state is FetchLoading,
       darkenBackground: false,
       child: Scaffold(
         appBar: MainAppBar(
@@ -93,7 +93,7 @@ class _SearchScreenState extends State<SearchScreen> {
         body: Center(
           child: MaxWidthSetter(
             width: 500.0,
-            child: BlocBuilder<SearchCubit, SearchState>(
+            child: BlocBuilder<SearchCubit, FetchState>(
               bloc: uiCubit,
               builder: (context, state) {
                 return BlocBuilder<EventListCubit, EventListState>(
@@ -129,7 +129,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       );
                     }
 
-                    if (state is SearchLoading) {
+                    if (state is FetchLoading) {
                       return const SizedBox();
                     }
 
