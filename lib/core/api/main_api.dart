@@ -12,7 +12,15 @@ class MainApi {
   final UrlsCubit urlsCubit;
   const MainApi(this.urlsCubit, this.customLogInterceptor);
 
-  RestClient client() {
+  RestClient client({
+    String? baseUrl,
+  }) {
+    final dio = dioClient();
+
+    return RestClient(dio, baseUrl: baseUrl ?? urlsCubit.baseUrl);
+  }
+
+  Dio dioClient() {
     final dio = Dio(
       BaseOptions(
         headers: {
@@ -27,6 +35,6 @@ class MainApi {
 
     dio.interceptors.add(customLogInterceptor);
 
-    return RestClient(dio, baseUrl: urlsCubit.baseUrl);
+    return dio;
   }
 }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:watch_sports/core/models/event.dart';
 import 'package:watch_sports/features/home/presentation/widgets/event_info.dart';
+import 'package:watch_sports/router/app_router.dart';
 
+import '../../../../core/models/team.dart';
+import '../../../../setup.dart';
 import 'event_team.dart';
 
-class EventCard extends StatelessWidget {
+class EventCard extends StatefulWidget {
   final Event event;
   final void Function()? onTap;
   final Color? teamsColor;
@@ -12,6 +15,7 @@ class EventCard extends StatelessWidget {
   final CrossAxisAlignment rowCrossAxisAlignment;
   final Color? cardColor;
   final BoxBorder? border;
+  final bool openTeams;
   const EventCard({
     super.key,
     required this.event,
@@ -21,59 +25,83 @@ class EventCard extends StatelessWidget {
     this.rowCrossAxisAlignment = CrossAxisAlignment.start,
     this.cardColor,
     this.border,
+    this.openTeams = false,
   });
+
+  @override
+  State<EventCard> createState() => _EventCardState();
+}
+
+class _EventCardState extends State<EventCard> {
+  void openTeam(Team team, Team opponent) {
+    if (widget.event.isMma) {
+      getIt<AppRouter>().push(FighterRoute(item: team, opponent: opponent));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 15.0),
       child: InkWell(
-        onTap: onTap,
+        onTap: widget.onTap,
         child: Container(
           decoration: BoxDecoration(
-            border: border ??
+            border: widget.border ??
                 Border.all(
                   color: const Color(0XFFE4E5E5),
                 ),
             borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-            color: cardColor,
+            color: widget.cardColor,
           ),
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 8.0),
             child: Row(
-              crossAxisAlignment: rowCrossAxisAlignment,
+              crossAxisAlignment: widget.rowCrossAxisAlignment,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (event.localizedTeams.isNotEmpty) ...[
+                if (widget.event.localizedTeams.isNotEmpty) ...[
                   Flexible(
                     flex: 4,
-                    child: EventTeamCard(
-                      title: event.localizedTeams.first.name,
-                      imageUrl: event.localizedTeams.first.avatarUrl,
-                      titleColor: teamsColor,
+                    child: InkWell(
+                      onTap: widget.openTeams
+                          ? () => openTeam(widget.event.engTeams.first,
+                              widget.event.engTeams.last)
+                          : null,
+                      child: EventTeamCard(
+                        title: widget.event.localizedTeams.first.name,
+                        imageUrl: widget.event.localizedTeams.first.avatarUrl,
+                        titleColor: widget.teamsColor,
+                      ),
                     ),
                   ),
                 ],
                 const SizedBox(width: 15.0),
                 Flexible(
                   flex: 4,
-                  child: infoWidget ??
+                  child: widget.infoWidget ??
                       EventInfo(
-                        eventName: event.name,
-                        eventTime: event.startTimeDateTime,
-                        isLive: event.isLive,
-                        isFinished: event.isFinished,
+                        eventName: widget.event.name,
+                        eventTime: widget.event.startTimeDateTime,
+                        isLive: widget.event.isLive,
+                        isFinished: widget.event.isFinished,
                       ),
                 ),
                 const SizedBox(width: 15.0),
-                if (event.localizedTeams.isNotEmpty) ...[
+                if (widget.event.localizedTeams.isNotEmpty) ...[
                   Flexible(
                     flex: 4,
-                    child: EventTeamCard(
-                      title: event.localizedTeams.last.name,
-                      imageUrl: event.localizedTeams.last.avatarUrl,
-                      titleColor: teamsColor,
+                    child: InkWell(
+                      onTap: widget.openTeams
+                          ? () => openTeam(widget.event.engTeams.last,
+                              widget.event.engTeams.first)
+                          : null,
+                      child: EventTeamCard(
+                        title: widget.event.localizedTeams.last.name,
+                        imageUrl: widget.event.localizedTeams.last.avatarUrl,
+                        titleColor: widget.teamsColor,
+                      ),
                     ),
                   )
                 ],

@@ -79,6 +79,17 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    FighterRoute.name: (routeData) {
+      final args = routeData.argsAs<FighterRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: FighterScreen(
+          args.item,
+          key: args.key,
+          opponent: args.opponent,
+        ),
+      );
+    },
     HomeRoutes.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -180,6 +191,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SettingsRoute.name,
           path: '/settings-screen',
+        ),
+        RouteConfig(
+          FighterRoute.name,
+          path: '/fighter-screen',
         ),
       ];
 }
@@ -396,6 +411,45 @@ class SettingsRouteArgs {
   @override
   String toString() {
     return 'SettingsRouteArgs{key: $key, title: $title, items: $items, onTap: $onTap}';
+  }
+}
+
+/// generated route for
+/// [FighterScreen]
+class FighterRoute extends PageRouteInfo<FighterRouteArgs> {
+  FighterRoute({
+    required Team item,
+    Key? key,
+    required Team opponent,
+  }) : super(
+          FighterRoute.name,
+          path: '/fighter-screen',
+          args: FighterRouteArgs(
+            item: item,
+            key: key,
+            opponent: opponent,
+          ),
+        );
+
+  static const String name = 'FighterRoute';
+}
+
+class FighterRouteArgs {
+  const FighterRouteArgs({
+    required this.item,
+    this.key,
+    required this.opponent,
+  });
+
+  final Team item;
+
+  final Key? key;
+
+  final Team opponent;
+
+  @override
+  String toString() {
+    return 'FighterRouteArgs{item: $item, key: $key, opponent: $opponent}';
   }
 }
 

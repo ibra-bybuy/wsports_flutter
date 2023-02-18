@@ -143,6 +143,19 @@ class Event extends Equatable {
     return type.toLowerCase().contains("mma");
   }
 
+  List<Team> get engTeams {
+    final myLangTeams =
+        teams.where((element) => element.lang == LocalLang.eng).toList();
+
+    myLangTeams.sort((a, b) => a.position.compareTo(b.position));
+
+    if (myLangTeams.length >= 2) {
+      return myLangTeams;
+    }
+
+    return teams;
+  }
+
   List<Team> get localizedTeams {
     final myLangTeams = teams
         .where((element) => element.lang == localizationInstance.lang)

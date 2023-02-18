@@ -1,0 +1,654 @@
+{
+    "meta": {
+      "uuid": "018663ad-f8f7-f080-c62e-6f6fb8279e14"
+    },
+    "response": {
+      "businessId": 3668711,
+      "modules": [
+        {
+          "verticalConfigId": "athletes",
+          "resultsCount": 1,
+          "encodedState": "",
+          "results": [
+            {
+              "data": {
+                "id": "3647",
+                "type": "ce_athletes",
+                "name": "Erin Blanchfield",
+                "c_activeInAnswers": true,
+                "c_age": "23",
+                "c_dOB": "1999-05-04",
+                "c_fightingOutOfCity": "Elmwood Park",
+                "c_fightingOutOfCountry": "USA",
+                "c_fightingOutOfState": "New Jersey",
+                "c_fightingOutOfTriCode": "USA",
+                "c_height": "64.0",
+                "c_homeCity": "New York City",
+                "c_homeCountry": "USA",
+                "c_homeState": [
+                  "New York"
+                ],
+                "c_homeTriCode": "USA",
+                "c_linkedFights": [
+                  {
+                    "entityId": "9513-Fight",
+                    "name": "Maverick vs   Blanchfield"
+                  },
+                  {
+                    "entityId": "9402-Fight",
+                    "name": "Blanchfield vs   Alpar"
+                  },
+                  {
+                    "entityId": "9908-Fight",
+                    "name": "Blanchfield vs   Aldrich"
+                  },
+                  {
+                    "entityId": "10061-Fight",
+                    "name": "Blanchfield vs   McCann"
+                  },
+                  {
+                    "entityId": "10316-Fight",
+                    "name": "Santos vs   Blanchfield"
+                  },
+                  {
+                    "entityId": "10406-Fight",
+                    "name": "Andrade vs   Blanchfield"
+                  }
+                ],
+                "c_nickname": "Cold Blooded",
+                "c_photo": {
+                  "url": "https://a.mktgcdn.com/p/WJRiS45a9pPluOgzaN0KH2hzcvWO5G0yJXJCvVZlebY/520x325.png",
+                  "width": 520,
+                  "height": 325,
+                  "sourceUrl": "https://ufclivepubstorage.blob.core.windows.net/public-files/851a378d-aa23-4fee-b770-38c178c910eb/BLANCHFIELD_ERIN_02-18.png",
+                  "thumbnails": [
+                    {
+                      "url": "https://a.mktgcdn.com/p/WJRiS45a9pPluOgzaN0KH2hzcvWO5G0yJXJCvVZlebY/520x325.png",
+                      "width": 520,
+                      "height": 325
+                    },
+                    {
+                      "url": "https://a.mktgcdn.com/p/WJRiS45a9pPluOgzaN0KH2hzcvWO5G0yJXJCvVZlebY/196x123.png",
+                      "width": 196,
+                      "height": 123
+                    }
+                  ]
+                },
+                "c_reach": "66.0",
+                "c_recordDraws": "0",
+                "c_recordLosses": "1",
+                "c_recordNoContests": "0",
+                "c_recordWins": "10",
+                "c_stance": "Orthodox",
+                "c_uFCLink": "http://www.ufc.com/athlete/Erin-Blanchfield",
+                "c_weight": "125.0",
+                "c_weightClass": "Womens Bantamweight",
+                "c_weightClassAbbreviation": "WBW",
+                "c_weightClassId": "25",
+                "c_weightClassOrder": "1",
+                "firstName": "Erin",
+                "gender": "Female",
+                "lastName": "Blanchfield",
+                "uid": "38971823"
+              }
+            }
+          ],
+          "queryDurationMillis": 107,
+          "source": "KNOWLEDGE_MANAGER"
+        },
+        {
+          "verticalConfigId": "events",
+          "resultsCount": 5,
+          "encodedState": "",
+          "results": [
+            {
+              "data": {
+                "id": "1128-Event",
+                "type": "ce_event",
+                "organizerName": "Ultimate Fighting Championship",
+                "time": {
+                  "start": "2023-02-18T21:00",
+                  "end": "2023-02-19T00:00"
+                },
+                "venueName": "UFC Apex",
+                "name": "UFC Fight Night: Andrade vs. Blanchfield",
+                "c_activeInAnswers": true,
+                "c_eventCity": "Las Vegas",
+                "c_eventCountry": "USA",
+                "c_eventDate": "2023-02-18",
+                "c_eventID": "1128",
+                "c_eventStartTime": "21:00",
+                "c_eventState": "Nevada",
+                "c_eventStatus": "Upcoming",
+                "c_eventTimeZone": [
+                  "GMT-08:00"
+                ],
+                "c_eventTriCode": "USA",
+                "c_fightID": [
+                  {
+                    "entityId": "10294-Fight",
+                    "name": "Vera vs   Sandhagen"
+                  },
+                  {
+                    "entityId": "10316-Fight",
+                    "name": "Santos vs   Blanchfield"
+                  },
+                  {
+                    "entityId": "10365-Fight",
+                    "name": "Lansberg vs   Bueno Silva"
+                  },
+                  {
+                    "entityId": "10366-Fight",
+                    "name": "Brahimaj vs   Harris"
+                  },
+                  {
+                    "entityId": "10367-Fight",
+                    "name": "Saint Preux vs   Lins"
+                  },
+                  {
+                    "entityId": "10369-Fight",
+                    "name": "Solecki vs   Saint Denis"
+                  },
+                  {
+                    "entityId": "10398-Fight",
+                    "name": "Wright vs   Pauga"
+                  },
+                  {
+                    "entityId": "10399-Fight",
+                    "name": "Parisian vs   Pogues"
+                  },
+                  {
+                    "entityId": "10400-Fight",
+                    "name": "Knight vs   Prachnio"
+                  },
+                  {
+                    "entityId": "10401-Fight",
+                    "name": "Miller vs   Hernandez"
+                  },
+                  {
+                    "entityId": "10402-Fight",
+                    "name": "Emmers vs   Askhabov"
+                  },
+                  {
+                    "entityId": "10403-Fight",
+                    "name": "Sadykhov vs   Elder"
+                  },
+                  {
+                    "entityId": "10404-Fight",
+                    "name": "Fletcher vs   Gorimbo"
+                  },
+                  {
+                    "entityId": "10405-Fight",
+                    "name": "Carpenter vs   Ronderos"
+                  },
+                  {
+                    "entityId": "10406-Fight",
+                    "name": "Andrade vs   Blanchfield"
+                  }
+                ],
+                "c_fightPassURL": "https://welcome.ufcfightpass.com/",
+                "c_organizerID": "1",
+                "c_streamingServiceURL": "https://plus.espn.com/ufc",
+                "c_ticketsURL": "https://www.ticketmaster.com/",
+                "c_venueID": "316",
+                "uid": "70284393"
+              }
+            },
+            {
+              "data": {
+                "id": "1114-Event",
+                "type": "ce_event",
+                "organizerName": "Ultimate Fighting Championship",
+                "time": {
+                  "start": "2022-11-12T23:00",
+                  "end": "2022-11-13T02:00"
+                },
+                "venueName": "Madison Square Garden",
+                "name": "UFC 281: Adesanya vs. Pereira",
+                "c_activeInAnswers": true,
+                "c_eventCity": "New York City",
+                "c_eventCountry": "USA",
+                "c_eventDate": "2022-11-12",
+                "c_eventID": "1114",
+                "c_eventStartTime": "23:00",
+                "c_eventState": "New York",
+                "c_eventStatus": "Final",
+                "c_eventTimeZone": [
+                  "GMT-05:00"
+                ],
+                "c_eventTriCode": "USA",
+                "c_fightID": [
+                  {
+                    "entityId": "10061-Fight",
+                    "name": "Blanchfield vs   McCann"
+                  },
+                  {
+                    "entityId": "10047-Fight",
+                    "name": "Adesanya vs   Pereira"
+                  },
+                  {
+                    "entityId": "10086-Fight",
+                    "name": "Reyes vs   Spann"
+                  },
+                  {
+                    "entityId": "10085-Fight",
+                    "name": "Kowalkiewicz vs   Gomez Juarez"
+                  },
+                  {
+                    "entityId": "10077-Fight",
+                    "name": "Esparza vs   Weili"
+                  },
+                  {
+                    "entityId": "10084-Fight",
+                    "name": "Frevola vs   Azaitar"
+                  },
+                  {
+                    "entityId": "10102-Fight",
+                    "name": "Riddell vs   Moicano"
+                  },
+                  {
+                    "entityId": "10087-Fight",
+                    "name": "Trizano vs   Choi"
+                  },
+                  {
+                    "entityId": "10111-Fight",
+                    "name": "Ulberg vs   Negumereanu"
+                  },
+                  {
+                    "entityId": "10110-Fight",
+                    "name": "Hooker vs   Puelles"
+                  },
+                  {
+                    "entityId": "10128-Fight",
+                    "name": "Poirier vs   Chandler"
+                  },
+                  {
+                    "entityId": "10161-Fight",
+                    "name": "Petroski vs   Turman"
+                  },
+                  {
+                    "entityId": "10205-Fight",
+                    "name": "Edgar vs   Gutierrez"
+                  },
+                  {
+                    "entityId": "10226-Fight",
+                    "name": "Arce vs   Jackson"
+                  }
+                ],
+                "c_fightNumber": "281",
+                "c_fightPassURL": "https://welcome.ufcfightpass.com/",
+                "c_organizerID": "1",
+                "c_streamingServiceURL": "https://plus.espn.com/ufc",
+                "c_ticketsURL": "https://www.ticketmaster.com/",
+                "c_uFCFightNumber": "UFC 281",
+                "c_venueID": "276",
+                "uid": "51841947"
+              }
+            },
+            {
+              "data": {
+                "id": "1085-Event",
+                "type": "ce_event",
+                "landingPageUrl": "https://www.ufc.com/event/ufc-fight-night-june-04-2022",
+                "organizerName": "Ultimate Fighting Championship",
+                "time": {
+                  "start": "2022-06-04T17:00",
+                  "end": "2022-06-04T20:00"
+                },
+                "venueName": "UFC Apex",
+                "name": "UFC Fight Night: Volkov vs. Rozenstruik",
+                "c_activeInAnswers": true,
+                "c_eventCity": "Las Vegas",
+                "c_eventCountry": "USA",
+                "c_eventDate": "2022-06-04",
+                "c_eventID": "1085",
+                "c_eventStartTime": "17:00",
+                "c_eventState": "Nevada",
+                "c_eventStatus": "Final",
+                "c_eventTimeZone": [
+                  "GMT-07:00"
+                ],
+                "c_eventTriCode": "USA",
+                "c_fightID": [
+                  {
+                    "entityId": "9795-Fight",
+                    "name": "Volkov vs   Rozenstruik"
+                  },
+                  {
+                    "entityId": "9898-Fight",
+                    "name": "Trizano vs   Almeida"
+                  },
+                  {
+                    "entityId": "9903-Fight",
+                    "name": "Osbourne vs   Adashev"
+                  },
+                  {
+                    "entityId": "9897-Fight",
+                    "name": "Ige vs   Evloev"
+                  },
+                  {
+                    "entityId": "9906-Fight",
+                    "name": "Molina vs   Zhumagulov"
+                  },
+                  {
+                    "entityId": "9908-Fight",
+                    "name": "Blanchfield vs   Aldrich"
+                  },
+                  {
+                    "entityId": "9900-Fight",
+                    "name": "Menifield vs   Mozharov"
+                  },
+                  {
+                    "entityId": "9899-Fight",
+                    "name": "Silva vs   Botelho"
+                  },
+                  {
+                    "entityId": "9910-Fight",
+                    "name": "Jackson vs   Argueta"
+                  },
+                  {
+                    "entityId": "9901-Fight",
+                    "name": "Herrig vs   Kowalkiewicz"
+                  },
+                  {
+                    "entityId": "9902-Fight",
+                    "name": "Solecki vs   Da Silva"
+                  },
+                  {
+                    "entityId": "9904-Fight",
+                    "name": "Stolze vs   Saint Denis"
+                  },
+                  {
+                    "entityId": "9905-Fight",
+                    "name": "Munoz vs   Gravely"
+                  },
+                  {
+                    "entityId": "9907-Fight",
+                    "name": "Fakhretdinov vs   Michailidis"
+                  }
+                ],
+                "c_fightPassURL": "https://welcome.ufcfightpass.com/",
+                "c_organizerID": "1",
+                "c_streamingServiceURL": "https://plus.espn.com/ufc",
+                "c_ticketsURL": "https://www.ticketmaster.com/",
+                "c_venueID": "316",
+                "uid": "38104688"
+              }
+            },
+            {
+              "data": {
+                "id": "1059-Event",
+                "type": "ce_event",
+                "landingPageUrl": "https://www.ufc.com/event/ufc-269",
+                "organizerName": "Ultimate Fighting Championship",
+                "time": {
+                  "start": "2021-12-11T23:00",
+                  "end": "2021-12-12T02:00"
+                },
+                "venueName": "T-Mobile Arena",
+                "name": "UFC 269: Oliveira vs. Poirier",
+                "c_activeInAnswers": true,
+                "c_eventCity": "Las Vegas",
+                "c_eventCountry": "USA",
+                "c_eventDate": "2021-12-11",
+                "c_eventID": "1059",
+                "c_eventStartTime": "23:00",
+                "c_eventState": "Nevada",
+                "c_eventStatus": "Final",
+                "c_eventTimeZone": [
+                  "GMT-08:00"
+                ],
+                "c_eventTriCode": "USA",
+                "c_fightID": [
+                  {
+                    "entityId": "9441-Fight",
+                    "name": "Nunes vs   Pena"
+                  },
+                  {
+                    "entityId": "9506-Fight",
+                    "name": "Oliveira vs   Poirier"
+                  },
+                  {
+                    "entityId": "9555-Fight",
+                    "name": "Sakai vs   Tuivasa"
+                  },
+                  {
+                    "entityId": "9512-Fight",
+                    "name": "Muniz vs   Anders"
+                  },
+                  {
+                    "entityId": "9510-Fight",
+                    "name": "Neal vs   Ponzinibbio"
+                  },
+                  {
+                    "entityId": "9515-Fight",
+                    "name": "Hall vs   Minner"
+                  },
+                  {
+                    "entityId": "9509-Fight",
+                    "name": "Paiva vs   O'Malley"
+                  },
+                  {
+                    "entityId": "9513-Fight",
+                    "name": "Maverick vs   Blanchfield"
+                  },
+                  {
+                    "entityId": "9508-Fight",
+                    "name": "Kara-France vs   Garbrandt"
+                  },
+                  {
+                    "entityId": "9517-Fight",
+                    "name": "Costa vs   Kelley"
+                  },
+                  {
+                    "entityId": "9546-Fight",
+                    "name": "Wright vs   Silva"
+                  },
+                  {
+                    "entityId": "9516-Fight",
+                    "name": "Robertson vs   Cachoeira"
+                  },
+                  {
+                    "entityId": "9511-Fight",
+                    "name": "Munhoz vs   Cruz"
+                  },
+                  {
+                    "entityId": "9539-Fight",
+                    "name": "Emmett vs   Ige"
+                  }
+                ],
+                "c_fightNumber": "269",
+                "c_fightPassURL": "https://welcome.ufcfightpass.com/",
+                "c_organizerID": "1",
+                "c_streamingServiceURL": "https://plus.espn.com/ufc",
+                "c_ticketsURL": "https://www.ticketmaster.com/",
+                "c_uFCFightNumber": "UFC 269",
+                "c_venueID": "268",
+                "uid": "36638082"
+              }
+            },
+            {
+              "data": {
+                "id": "1048-Event",
+                "type": "ce_event",
+                "landingPageUrl": "https://www.ufc.com/event/ufc-fight-night-september-18-2021",
+                "organizerName": "Ultimate Fighting Championship",
+                "time": {
+                  "start": "2021-09-18T20:00",
+                  "end": "2021-09-18T23:00"
+                },
+                "venueName": "UFC Apex",
+                "name": "UFC Fight Night: Smith vs. Spann",
+                "c_activeInAnswers": true,
+                "c_eventCity": "Las Vegas",
+                "c_eventCountry": "USA",
+                "c_eventDate": "2021-09-18",
+                "c_eventID": "1048",
+                "c_eventStartTime": "20:00",
+                "c_eventState": "Nevada",
+                "c_eventStatus": "Final",
+                "c_eventTimeZone": [
+                  "GMT-07:00"
+                ],
+                "c_eventTriCode": "USA",
+                "c_fightID": [
+                  {
+                    "entityId": "9403-Fight",
+                    "name": "Kasanganay vs   Harris"
+                  },
+                  {
+                    "entityId": "9398-Fight",
+                    "name": "Buckley vs   Arroyo"
+                  },
+                  {
+                    "entityId": "9337-Fight",
+                    "name": "Maness vs   Gravely"
+                  },
+                  {
+                    "entityId": "9404-Fight",
+                    "name": "Whitmire vs   Goldy"
+                  },
+                  {
+                    "entityId": "9399-Fight",
+                    "name": "Rodriguez vs   Nchukwi"
+                  },
+                  {
+                    "entityId": "9338-Fight",
+                    "name": "Zhu vs   Jenkins"
+                  },
+                  {
+                    "entityId": "9400-Fight",
+                    "name": "Kianzad vs   Pennington"
+                  },
+                  {
+                    "entityId": "9397-Fight",
+                    "name": "Tsarukyan vs   Giagos"
+                  },
+                  {
+                    "entityId": "9339-Fight",
+                    "name": "Lopez vs   Alatengheili"
+                  },
+                  {
+                    "entityId": "9336-Fight",
+                    "name": "Smith vs   Spann"
+                  },
+                  {
+                    "entityId": "9394-Fight",
+                    "name": "Cutelaba vs   Clark"
+                  },
+                  {
+                    "entityId": "9402-Fight",
+                    "name": "Blanchfield vs   Alpar"
+                  },
+                  {
+                    "entityId": "9401-Fight",
+                    "name": "Jackson vs   Buys"
+                  },
+                  {
+                    "entityId": "9396-Fight",
+                    "name": "Lipski vs   Bohm"
+                  }
+                ],
+                "c_fightPassURL": "https://welcome.ufcfightpass.com/",
+                "c_organizerID": "1",
+                "c_streamingServiceURL": "https://plus.espn.com/ufc",
+                "c_ticketsURL": "https://www.ticketmaster.com/",
+                "c_venueID": "316",
+                "uid": "36637626"
+              }
+            }
+          ],
+          "appliedQueryFilters": [
+            {
+              "displayKey": "Fight ID Fight - Linked Fighters Last Name",
+              "displayValue": "Blanchfield",
+              "filter": {
+                "c_fightID.c_fightLinkedFighters.lastName": {
+                  "$eq": "Blanchfield"
+                }
+              },
+              "type": "FIELD_VALUE"
+            }
+          ],
+          "queryDurationMillis": 136,
+          "source": "KNOWLEDGE_MANAGER"
+        },
+        {
+          "verticalConfigId": "links",
+          "resultsCount": 1600,
+          "encodedState": "BLANCHFIELD",
+          "results": [
+            {
+              "htmlTitle": "Erin <b>Blanchfield</b> | UFC",
+              "link": "https://www.ufc.com/athlete/erin-blanchfield",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "Sep 18, 2021 <b>...</b> Erin &quot;Cold Blooded&quot; <b>Blanchfield</b> is an American professional mixed martial artist in the UFC women&#39;s flyweight division."
+            },
+            {
+              "htmlTitle": "Fight By Fight Preview | UFC Fight Night: Andrade vs <b>Blanchfield</b> | UFC",
+              "link": "https://www.ufc.com/news/fight-fight-preview-ufc-fight-night-andrade-vs-blanchfield-ufc-vegas-69",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "4 days ago <b>...</b> Preview Every Fight On UFC Fight Night: Andrade vs <b>Blanchfield</b>, As We Prepare To Watch Top Flyweight Contenders Battle It Out At The UFC&nbsp;..."
+            },
+            {
+              "htmlTitle": "Erin <b>Blanchfield</b> Believes She&#39;s Right On Schedule | UFC",
+              "link": "https://www.ufc.com/news/erin-blanchfield-believes-shes-right-on-schedule-flyweight-main-event-ufc-vegas-69",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "2 days ago <b>...</b> It&#39;s Been A Fast Rise For UFC Flyweight Erin <b>Blanchfield</b>, But She&#39;s Confident That She&#39;s Right Where She&#39;s Supposed To Be Heading Into Her&nbsp;..."
+            },
+            {
+              "htmlTitle": "UFC Fight Night: Andrade vs <b>Blanchfield</b> | UFC",
+              "link": "https://www.ufc.com/event/ufc-fight-night-february-18-2023",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "3 hours ago <b>...</b> Don&#39;t Miss A Moment Of UFC Fight Night: Andrade vs <b>Blanchfield</b>, Live From The UFC APEX On February 18, 2023."
+            },
+            {
+              "htmlTitle": "Fighters On The Rise | UFC Fight Night: Andrade vs <b>Blanchfield</b> | UFC",
+              "link": "https://www.ufc.com/news/fighters-rise-ufc-fight-night-andrade-vs-blanchfield-bueno-silva-Askhabov-carpenter",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "3 days ago <b>...</b> Before Jessica Andrade and Erin <b>Blanchfield</b> close out the night, a handful of interesting ascending competitors and promising newcomers will&nbsp;..."
+            },
+            {
+              "htmlTitle": "Updates To UFC Fight Night: Santos vs <b>Blanchfield</b> | UFC",
+              "link": "https://www.ufc.com/news/updates-ufc-fight-night-santos-vs-blanchfield",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "6 days ago <b>...</b> UFC FIGHT NIGHT: SANTOS vs <b>BLANCHFIELD</b> Updates. Due to personal issues, Taila Santos has been removed from her flyweight main event with&nbsp;..."
+            },
+            {
+              "htmlTitle": "Erin <b>Blanchfield</b> Is Pursuing A &#39;Flawless&#39; Performance | UFC",
+              "link": "https://www.ufc.com/news/erin-blanchfield-is-pursuing-a-flawless-performance-ufc-281-adesanya-vs-pereira",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "Nov 10, 2022 <b>...</b> Erin <b>Blanchfield</b> Wants To Make It Look Easy Against Molly McCann At UFC 281: Adesanya vs Pereira."
+            },
+            {
+              "htmlTitle": "Weigh-In Results | UFC Fight Night: Andrade vs <b>Blanchfield</b> | UFC",
+              "link": "https://www.ufc.com/news/weigh-results-ufc-fight-night-andrade-vs-blanchfield-vegas-69",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "18 hours ago <b>...</b> MAIN CARD. Main Event - Women&#39;s Flyweight Bout: Jessica Andrade (124) vs Erin <b>Blanchfield</b> (125.5). Co-Main Event - Light Heavyweight Bout:&nbsp;..."
+            },
+            {
+              "htmlTitle": "Erin <b>Blanchfield</b> Is Just Meeting Her Own Expectations | UFC",
+              "link": "https://www.ufc.com/news/erin-blanchfield-just-meeting-her-own-expectations",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "Jan 6, 2023 <b>...</b> Erin <b>Blanchfield</b> sent a clear message the last time she stepped into the Octagon. Facing Molly McCann in Madison Square Garden at UFC 281:&nbsp;..."
+            },
+            {
+              "htmlTitle": "Erin <b>Blanchfield</b> Knows Composure Is Her Strength | UFC",
+              "link": "https://www.ufc.com/news/erin-blanchfield-knows-composure-her-strength",
+              "displayLink": "www.ufc.com",
+              "htmlSnippet": "Jan 5, 2022 <b>...</b> Flyweight Up-And-Comer Erin <b>Blanchfield</b> Impressed In Her First Two UFC Outings And Hopes To Continue That Momentum In 2022."
+            }
+          ],
+          "queryDurationMillis": 283,
+          "source": "GOOGLE_CSE"
+        }
+      ],
+      "queryId": "018663ad-f901-01ba-84ca-4d9f38fc6a90",
+      "locationBias": {
+        "latitude": 43.319703,
+        "longitude": 45.693431,
+        "locationDisplayName": "Grozny, Chechnya, Russia",
+        "accuracy": "IP"
+      }
+    }
+  }

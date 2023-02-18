@@ -11,7 +11,8 @@ class FighterUsecase implements FighterRepository {
   const FighterUsecase(this.repository);
 
   @override
-  Future<Either<Failure, Fighter>> getFighterByName(String name) {
-    return repository.getFighterByName(name);
+  Future<Either<Failure, Fighter>> searchFighter(
+      String query, String opponentName) {
+    return repository.searchFighter(query, opponentName);
   }
 }

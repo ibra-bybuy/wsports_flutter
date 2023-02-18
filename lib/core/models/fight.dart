@@ -72,6 +72,10 @@ class Fight extends Equatable {
       ),
     );
   }
+
+  factory Fight.fromJson(Map<String, dynamic> map) => Fight.fromMap(map);
+
+  Map<String, dynamic> toJson() => toMap();
 }
 
 class FightHistoryItem extends Equatable {
@@ -117,4 +121,9 @@ class FightHistoryItem extends Equatable {
       won: (map["won"] ?? false) as bool,
     );
   }
+
+  Map<String, dynamic> toJson() => toMap();
+
+  factory FightHistoryItem.fromJson(Map<String, dynamic> map) =>
+      FightHistoryItem.fromMap(map);
 }

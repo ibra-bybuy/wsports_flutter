@@ -7,11 +7,13 @@ class EmptyText extends StatelessWidget {
   final String title;
   final FontWeight? fontWeight;
   final double? fontSize;
+  final Color? color;
   const EmptyText(
     this.title, {
     super.key,
     this.fontWeight = FontWeight.bold,
     this.fontSize,
+    this.color,
   });
 
   @override
@@ -21,6 +23,7 @@ class EmptyText extends StatelessWidget {
         title,
         fontWeight: fontWeight,
         fontSize: fontSize ?? SizeConfig(context, 16.0)(),
+        color: color,
       ),
     );
   }

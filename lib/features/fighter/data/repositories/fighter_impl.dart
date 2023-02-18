@@ -12,9 +12,10 @@ class FighterRepositoryImpl implements FighterRepository {
   const FighterRepositoryImpl(this.source);
 
   @override
-  Future<Either<Failure, Fighter>> getFighterByName(String name) async {
+  Future<Either<Failure, Fighter>> searchFighter(
+      String query, String opponentName) async {
     try {
-      final response = await source.getFighterByName(name);
+      final response = await source.searchFighter(query, opponentName);
       return Right(response);
     } on Failure catch (e) {
       return Left(e);

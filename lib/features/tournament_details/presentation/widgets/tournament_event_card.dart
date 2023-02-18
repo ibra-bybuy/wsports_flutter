@@ -24,6 +24,7 @@ class TournamentEventCard extends StatelessWidget {
         fontSize: SizeConfig(context, 30.0)(),
         fontStyle: FontStyle.italic,
       ),
+      openTeams: true,
     );
   }
 }

@@ -5,11 +5,16 @@ abstract class Failure extends Equatable {
   final List<dynamic> properties;
   const Failure(this.message, [this.properties = const <dynamic>[]]);
 
+  int get statusCode {
+    return 0;
+  }
+
   @override
   List<Object> get props => [properties];
 }
 
 class ServerFailure extends Failure {
+  @override
   final int statusCode;
   const ServerFailure(String message, this.statusCode) : super(message);
 
@@ -32,6 +37,7 @@ class IncorrectFormatFailure extends Failure {
 }
 
 class ApiResponseFailure extends Failure {
+  @override
   final int statusCode;
   const ApiResponseFailure(String msg, this.statusCode) : super(msg);
 

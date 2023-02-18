@@ -1,5 +1,12 @@
+import '../functions/ufc_utils.dart';
+
 extension StringExt on String {
   bool get isSvg => toLowerCase().contains(".svg");
+  bool get isPng => toLowerCase().contains(".png");
+  bool get isJpg =>
+      toLowerCase().contains(".jpg") || toLowerCase().contains(".jpeg");
+  bool get isWebp => toLowerCase().contains(".webp");
+  bool get isImageFormat => isSvg || isPng || isJpg || isWebp;
   bool get isUrl => toLowerCase().contains("http");
   String get removeNumbers => replaceAll(RegExp(r"[0-9]"), "");
   String get leaveOnlyEng => replaceAll(RegExp(r"[^A-Za-z]"), "");
@@ -19,5 +26,17 @@ extension StringExt on String {
 
   String get firstWord {
     return split(" ")[0];
+  }
+
+  String get urlName {
+    if (toLowerCase().contains(UfcUtils.urlNameIdentififes)) {
+      return UfcUtils.getNameByUrl(this);
+    }
+
+    return "";
+  }
+
+  DateTime? get toDateTime {
+    return DateTime.tryParse(this);
   }
 }
