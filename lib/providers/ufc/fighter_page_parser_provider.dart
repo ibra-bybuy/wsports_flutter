@@ -237,10 +237,10 @@ class UfcFighterPageParserProvider {
       final names = event
               .querySelector(".c-card-event--athlete-results__headline")
               ?.text
-              ?.split(" ") ??
+              ?.split(" vs ") ??
           [""];
       final redCornerName = names.first;
-      final blueCornerName = names.length >= 3 ? names[2] : "";
+      final blueCornerName = names.length >= 2 ? names[1] : "";
       final redCornerImgSelector =
           event.querySelector(".c-card-event--athlete-results__red-image");
 

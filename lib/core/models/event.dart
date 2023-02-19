@@ -151,20 +151,23 @@ class Event extends Equatable {
   }
 
   List<Team> get engTeams {
-    final myLangTeams =
-        teams.where((element) => element.lang == LocalLang.eng).toList();
+    final sortTeams = List<Team>.from(teams)
+      ..sort((a, b) => a.position.compareTo(b.position));
 
-    myLangTeams.sort((a, b) => a.position.compareTo(b.position));
+    final myLangTeams =
+        sortTeams.where((element) => element.lang == LocalLang.eng).toList();
 
     if (myLangTeams.length >= 2) {
       return myLangTeams;
     }
 
-    return teams;
+    return sortTeams;
   }
 
   List<Team> get localizedTeams {
-    final myLangTeams = teams
+    final sortTeams = List<Team>.from(teams)
+      ..sort((a, b) => a.position.compareTo(b.position));
+    final myLangTeams = sortTeams
         .where((element) => element.lang == localizationInstance.lang)
         .toList();
 
@@ -174,6 +177,6 @@ class Event extends Equatable {
       return myLangTeams;
     }
 
-    return teams;
+    return sortTeams;
   }
 }
