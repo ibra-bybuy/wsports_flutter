@@ -31,7 +31,7 @@ enum FlagEnum {
   bouvet(["bouvet island"], "bv"),
   brazil(["brazil"], "br"),
   british(["british indian ocean territory (the)"], "io"),
-  brunei(["brunei darussalam"], "bn"),
+
   bulgaria(["bulgaria"], "bg"),
   burkina(["burkina faso"], "bf"),
   burundi(["burundi"], "bi"),
@@ -249,7 +249,9 @@ enum FlagEnum {
   yemen(["yemen"], "ye"),
   zambia(["zambia"], "zm"),
   zimbabwe(["zimbabwe"], "zw"),
-  aland(["Åland islands"], "ax");
+  aland(["Åland islands"], "ax"),
+  brunei(["brunei darussalam"], "bn"),
+  ;
 
   final List<String> alias;
   final String code;
