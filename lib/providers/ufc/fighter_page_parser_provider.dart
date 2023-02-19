@@ -6,7 +6,7 @@ class UfcFighterPageParserProvider {
   const UfcFighterPageParserProvider(this.url);
 
   Future<FighterDto?> getFighter() async {
-    final page = await _request();
+    final page = await request();
 
     if (page != null) {
       final fighter = FighterDto(
@@ -23,7 +23,7 @@ class UfcFighterPageParserProvider {
         winsByKo: _getWinsByKo(page),
         winsByDec: _getWinsByDec(page),
         winsBySub: _getWinsBySub(page),
-        fightHistory: _getFightsHistory(page),
+        fightHistory: getFightsHistory(page),
       );
 
       return fighter;
@@ -32,7 +32,7 @@ class UfcFighterPageParserProvider {
     return null;
   }
 
-  Future<Parser?> _request() async {
+  Future<Parser?> request() async {
     return await Chaleno().load(url);
   }
 
@@ -202,13 +202,13 @@ class UfcFighterPageParserProvider {
     }).toList();
   }
 
-  List<FighterDtoFightHistory> _getFightsHistory(Parser page) {
-    List<FighterDtoFightHistory> history = _getFights(page);
+  List<FighterDtoFightHistory> getFightsHistory(Parser page) {
+    List<FighterDtoFightHistory> history = getFights(page);
 
     return history;
   }
 
-  List<FighterDtoFightHistory> _getFights(Parser page) {
+  List<FighterDtoFightHistory> getFights(Parser page) {
     List<FighterDtoFightHistory> fights = [];
     final events = page
         .querySelectorAll('.l-listing__item .c-card-event--athlete-results');

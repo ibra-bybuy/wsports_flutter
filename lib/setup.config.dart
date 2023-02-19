@@ -30,7 +30,7 @@ import 'features/comment_section/domain/usecases/comment_section_usecase.dart'
 import 'features/comment_section/presentation/cubits/comment_section_cubit.dart'
     as _i84;
 import 'features/comment_section/presentation/cubits/send_comment/send_comment_cubit.dart'
-    as _i95;
+    as _i96;
 import 'features/event_details/data/repositories/event_details_impl.dart'
     as _i86;
 import 'features/event_details/data/sources/event_details_network.dart' as _i64;
@@ -40,7 +40,7 @@ import 'features/event_details/domain/repositories/event_details_repository.dart
 import 'features/event_details/domain/usecases/event_details_usecase.dart'
     as _i87;
 import 'features/event_details/presentation/cubits/event_details_cubit.dart'
-    as _i100;
+    as _i101;
 import 'features/fighter/data/repositories/fighter_impl.dart' as _i92;
 import 'features/fighter/data/sources/fighter_network.dart' as _i68;
 import 'features/fighter/data/sources/fighter_source.dart' as _i67;
@@ -48,7 +48,8 @@ import 'features/fighter/domain/repositories/fighter_repository.dart' as _i91;
 import 'features/fighter/domain/usecases/fighter_usecase.dart' as _i93;
 import 'features/fighter/presentation/cubits/cached/cached_fighter_cubit.dart'
     as _i9;
-import 'features/fighter/presentation/cubits/fighter_cubit.dart' as _i102;
+import 'features/fighter/presentation/cubits/fighter_cubit.dart' as _i103;
+import 'features/fighter/presentation/cubits/fights_cubit.dart' as _i94;
 import 'features/home/data/repositories/app_versions_impl.dart' as _i79;
 import 'features/home/data/repositories/banners_impl.dart' as _i82;
 import 'features/home/data/repositories/events_impl.dart' as _i89;
@@ -65,9 +66,9 @@ import 'features/home/domain/usecases/app_versions_usecase.dart' as _i80;
 import 'features/home/domain/usecases/banners_usecase.dart' as _i83;
 import 'features/home/domain/usecases/events_usecase.dart' as _i90;
 import 'features/home/presentation/cubits/app_versions/app_versions_cubit.dart'
-    as _i98;
-import 'features/home/presentation/cubits/banners_cubit.dart' as _i99;
-import 'features/home/presentation/cubits/events/events_cubit.dart' as _i101;
+    as _i99;
+import 'features/home/presentation/cubits/banners_cubit.dart' as _i100;
+import 'features/home/presentation/cubits/events/events_cubit.dart' as _i102;
 import 'features/main/data/repositories/main_impl.dart' as _i45;
 import 'features/main/data/sources/main_network.dart' as _i25;
 import 'features/main/data/sources/main_source.dart' as _i24;
@@ -85,7 +86,7 @@ import 'features/search/data/sources/search_network.dart' as _i51;
 import 'features/search/data/sources/search_source.dart' as _i50;
 import 'features/search/domain/repositories/search_repository.dart' as _i69;
 import 'features/search/domain/usecases/search_usecase.dart' as _i71;
-import 'features/search/presentation/cubits/search_cubit.dart' as _i94;
+import 'features/search/presentation/cubits/search_cubit.dart' as _i95;
 import 'features/tournament_details/data/repositories/tournament_details_impl.dart'
     as _i73;
 import 'features/tournament_details/data/sources/tournament_details_network.dart'
@@ -97,7 +98,7 @@ import 'features/tournament_details/domain/repositories/tournament_details_repos
 import 'features/tournament_details/domain/usecases/tournament_details_usecase.dart'
     as _i74;
 import 'features/tournament_details/presentation/cubits/tournament_details_cubit.dart'
-    as _i96;
+    as _i97;
 import 'features/tournaments/data/repositories/tournaments_impl.dart' as _i76;
 import 'features/tournaments/data/sources/tournaments_network.dart' as _i55;
 import 'features/tournaments/data/sources/tournaments_source.dart' as _i54;
@@ -105,7 +106,7 @@ import 'features/tournaments/domain/repositories/tournaments_repository.dart'
     as _i75;
 import 'features/tournaments/domain/usecases/tournaments_usecase.dart' as _i77;
 import 'features/tournaments/presentation/cubits/tournaments_cubit.dart'
-    as _i97;
+    as _i98;
 import 'providers/app_update/app_update.dart' as _i5;
 import 'providers/app_update/ota_update.dart' as _i6;
 import 'providers/cache_manager/cache_manager.dart' as _i7;
@@ -264,34 +265,38 @@ _i1.GetIt $initGetIt(
       () => _i92.FighterRepositoryImpl(get<_i67.FighterSource>()));
   gh.lazySingleton<_i93.FighterUsecase>(
       () => _i93.FighterUsecase(get<_i91.FighterRepository>()));
-  gh.factory<_i94.SearchCubit>(
-      () => _i94.SearchCubit(get<_i71.SearchUsecase>()));
-  gh.lazySingleton<_i95.SendCommentCubit>(() => _i95.SendCommentCubit(
+  gh.factory<_i94.FightsCubit>(
+      () => _i94.FightsCubit(get<_i93.FighterUsecase>()));
+  gh.factory<_i95.SearchCubit>(
+      () => _i95.SearchCubit(get<_i71.SearchUsecase>()));
+  gh.lazySingleton<_i96.SendCommentCubit>(() => _i96.SendCommentCubit(
         get<_i31.TokenProvider>(instanceName: 'CommentsTokenImpl'),
         get<_i36.UserCubit>(),
         get<_i62.CommentSectionUsecase>(),
         get<_i12.DeviceInfoProvider>(),
         get<_i84.CommentSectionCubit>(),
       ));
-  gh.factory<_i96.TournamentDetailsCubit>(
-      () => _i96.TournamentDetailsCubit(get<_i74.TournamentDetailsUsecase>()));
-  gh.lazySingleton<_i97.TournamentsCubit>(() => _i97.TournamentsCubit(
+  gh.factory<_i97.TournamentDetailsCubit>(
+      () => _i97.TournamentDetailsCubit(get<_i74.TournamentDetailsUsecase>()));
+  gh.lazySingleton<_i98.TournamentsCubit>(() => _i98.TournamentsCubit(
         get<_i11.CachedTournamentsCubit>(),
         get<_i77.TournamentsUsecase>(),
       ));
-  gh.lazySingleton<_i98.AppVersionsCubit>(() => _i98.AppVersionsCubit(
+  gh.lazySingleton<_i99.AppVersionsCubit>(() => _i99.AppVersionsCubit(
         get<_i80.AppVersionsUseCase>(),
         get<_i26.PackageInfo>(),
       ));
-  gh.lazySingleton<_i99.BannersCubit>(() => _i99.BannersCubit(
+  gh.lazySingleton<_i100.BannersCubit>(() => _i100.BannersCubit(
         get<_i83.BannersUseCase>(),
         get<_i8.CachedBannersCubit>(),
       ));
-  gh.factory<_i100.EventDetailsCubit>(
-      () => _i100.EventDetailsCubit(get<_i87.EventDetailsUsecase>()));
-  gh.lazySingleton<_i101.EventsCubit>(
-      () => _i101.EventsCubit(get<_i90.EventsUseCase>()));
-  gh.factory<_i102.FighterCubit>(
-      () => _i102.FighterCubit(get<_i93.FighterUsecase>()));
+  gh.factory<_i101.EventDetailsCubit>(
+      () => _i101.EventDetailsCubit(get<_i87.EventDetailsUsecase>()));
+  gh.lazySingleton<_i102.EventsCubit>(
+      () => _i102.EventsCubit(get<_i90.EventsUseCase>()));
+  gh.factory<_i103.FighterCubit>(() => _i103.FighterCubit(
+        get<_i93.FighterUsecase>(),
+        get<_i94.FightsCubit>(),
+      ));
   return get;
 }

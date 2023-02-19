@@ -6,11 +6,13 @@ class EventTeamCard extends StatefulWidget {
   final String imageUrl;
   final String title;
   final Color? titleColor;
+  final bool showWon;
   const EventTeamCard({
     super.key,
     this.imageUrl = "",
     this.title = "",
     this.titleColor,
+    this.showWon = false,
   });
 
   @override
@@ -24,7 +26,10 @@ class _EventTeamCardState extends State<EventTeamCard> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        EventAvatar(imageUrl: widget.imageUrl),
+        EventAvatar(
+          imageUrl: widget.imageUrl,
+          showWon: widget.showWon,
+        ),
         const SizedBox(height: 15.0),
         GoogleText(
           widget.title,

@@ -23,6 +23,7 @@ class FighterHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const SizedBox(width: 5.0),
             Expanded(
               child: GoogleText(
                 title,

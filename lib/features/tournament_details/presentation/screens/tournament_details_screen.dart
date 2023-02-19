@@ -73,9 +73,10 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
           bloc: uiCubit.eventCubit,
           builder: (context, state) {
             return Scaffold(
-              backgroundColor: Colors.black,
+              backgroundColor: const Color.fromARGB(255, 18, 18, 32),
               appBar: SimpleAppBar(
                 title: state.name,
+                backgroundColor: const Color.fromARGB(255, 18, 18, 32),
                 actions: !state.isStarted
                     ? [
                         EventNotificationBuilder(eventListState.events),
@@ -126,7 +127,7 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
                             },
                             child: SingleChildScrollView(
                               child: Container(
-                                color: Colors.black,
+                                color: const Color.fromARGB(255, 18, 18, 32),
                                 child: Column(
                                   children: [
                                     if (state.startTimeDateTime != null) ...[

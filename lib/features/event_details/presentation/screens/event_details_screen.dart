@@ -73,9 +73,10 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
         bloc: uiCubit.eventCubit,
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: const Color.fromARGB(255, 18, 18, 32),
             appBar: SimpleAppBar(
               title: state.name,
+              backgroundColor: const Color.fromARGB(255, 18, 18, 32),
               actions: !state.isStarted
                   ? [
                       EventNotificationBuilder([state]),
@@ -118,7 +119,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                 if (!state.isLive) ...[
                   Expanded(
                     child: Container(
-                      color: Colors.black,
+                      color: const Color.fromARGB(255, 18, 18, 32),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [

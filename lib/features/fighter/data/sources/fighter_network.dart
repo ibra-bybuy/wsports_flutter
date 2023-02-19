@@ -16,7 +16,7 @@ class FighterUFCSource implements FighterSource {
   final MainApi api;
   FighterUFCSource(this.api);
 
-  String ufcUrl = "";
+  String _ufcUrl = "";
 
   @override
   Future<FighterDto> searchFighter(String name, String opponentName) async {
@@ -33,7 +33,7 @@ class FighterUFCSource implements FighterSource {
 
       final athlete = response.athlete(opponentName);
       if (athlete?.cUFcLink.isNotEmpty == true) {
-        ufcUrl = athlete!.cUFcLink;
+        _ufcUrl = athlete!.cUFcLink;
         final ufcFighter =
             await UfcFighterPageParserProvider(athlete.cUFcLink).getFighter();
         final fighter = response.toFighter(opponentName);
@@ -64,5 +64,21 @@ class FighterUFCSource implements FighterSource {
     final iframe = await api.client(baseUrl: _iframeBaseUrl).getUfcIframe();
     final apiKey = FighterUtilsIframe(iframe).getApiKey();
     return apiKey;
+  }
+
+  @override
+  Future<List<FighterDtoFightHistory>> getFights(String query, int page) async {
+    try {
+      final provider = UfcFighterPageParserProvider("$_ufcUrl?page=$page");
+      final parser = await provider.request();
+
+      if (parser != null) {
+        return provider.getFights(parser);
+      }
+
+      throw const ServerFailure("", 404);
+    } catch (e) {
+      return HandleDioError<List<FighterDtoFightHistory>>(e)();
+    }
   }
 }

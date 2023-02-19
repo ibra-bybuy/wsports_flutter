@@ -1,15 +1,16 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watch_sports/core/components/listview/listview_builder.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/cubits/custom/bool_cubit/bool_cubit.dart';
 import 'package:watch_sports/core/functions/size_config.dart';
 import 'package:watch_sports/i18n/i18n.dart';
 
+import '../../../../core/models/fight.dart';
 import '../../../../core/models/fighter.dart';
 import '../../../home/presentation/widgets/event_avatar.dart';
 
-import 'chart.dart';
+import 'fight_card.dart';
 import 'fighter_about_card.dart';
 import 'fighter_wins_stats.dart';
 import 'header.dart';
@@ -98,6 +99,18 @@ class _FighterCardState extends State<FighterCard> {
                     TakeDownStats(widget.fighter),
                   ],
                 ],
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 30.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: horizontalPadding),
+          child: CustomListViewBuilder<Fight>(
+            items: widget.fighter.fightHistory,
+            itemBuilder: (context, index, item) {
+              return FightCard(
+                item,
               );
             },
           ),

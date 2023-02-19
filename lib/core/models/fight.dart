@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+import 'package:watch_sports/i18n/i18n.dart';
 
 class Fight extends Equatable {
   final String date;
@@ -76,6 +77,39 @@ class Fight extends Equatable {
   factory Fight.fromJson(Map<String, dynamic> map) => Fight.fromMap(map);
 
   Map<String, dynamic> toJson() => toMap();
+
+  DateTime? get dateToDateTime {
+    var parsingDate = date;
+    var splitDate = parsingDate.split(".");
+
+    if (splitDate.length >= 3) {
+      final year = splitDate[2];
+      if (year.length == 2) {
+        splitDate[2] = (2000 + (int.tryParse(year) ?? 0)).toString();
+      }
+    }
+
+    return DateTime.tryParse(splitDate.reversed.join("-"));
+  }
+
+  bool get isFinished {
+    return DateTime.now()
+        .isAfter(dateToDateTime ?? DateTime.fromMillisecondsSinceEpoch(0));
+  }
+
+  String get localizeMethod {
+    final method = byMethod.toLowerCase();
+
+    if (method.contains("split")) {
+      return localizationInstance.splitDec;
+    } else if (method.contains("dec")) {
+      return localizationInstance.dec;
+    } else if (method.contains("отправление") || method.contains("sub")) {
+      return localizationInstance.sub;
+    }
+
+    return byMethod;
+  }
 }
 
 class FightHistoryItem extends Equatable {

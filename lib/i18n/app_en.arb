@@ -43,9 +43,11 @@
   "permissionNotGranted": "Permission was not granted",
   "poundsShort": "P.",
   "reach": "Reach",
+  "round": "Round",
   "save": "Save",
   "searchHint": "Search events",
   "settings": "Settings",
+  "splitDec": "Split dec.",
   "stats": "Stats",
   "stream": "Stream",
   "sub": "Sub.",
@@ -56,6 +58,7 @@
   "update": "Update",
   "updating": "Updating",
   "weight": "Weight",
+  "win": "Win",
   "writeCommentHint": "Write a comment",
   "years": "Years"
 }

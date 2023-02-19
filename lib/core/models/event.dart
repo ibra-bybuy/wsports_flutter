@@ -8,6 +8,13 @@ import 'package:watch_sports/i18n/i18n.dart';
 
 import 'stream.dart' as my;
 
+enum EventType {
+  mma("mma");
+
+  final String str;
+  const EventType(this.str);
+}
+
 class Event extends Equatable {
   final String id;
   final String name;

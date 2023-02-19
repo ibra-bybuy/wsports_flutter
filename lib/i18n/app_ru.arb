@@ -43,9 +43,11 @@
   "permissionNotGranted": "Разрешение было отклонено",
   "poundsShort": "Д.",
   "reach": "Дл. рук",
+  "round": "Раунд",
   "save": "Сохранить",
   "searchHint": "Введите текст",
   "settings": "Настройки",
+  "splitDec": "Раз. реш.",
   "stats": "Статистика",
   "stream": "Стрим",
   "sub": "Саб.",
@@ -56,6 +58,7 @@
   "update": "Обновить",
   "updating": "Обновление",
   "weight": "Вес",
+  "win": "Победа",
   "writeCommentHint": "Написать комментарий",
   "years": "Лет"
 }
