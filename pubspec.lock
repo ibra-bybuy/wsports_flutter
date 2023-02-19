@@ -185,6 +185,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  chaleno:
+    dependency: "direct main"
+    description:
+      name: chaleno
+      sha256: d4732915d065c634a7ec13f4c50efbef4815dceb9c3dc50c6d340252e1c7e1a6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.6"
   characters:
     dependency: transitive
     description:
@@ -385,6 +393,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  fl_chart:
+    dependency: "direct main"
+    description:
+      name: fl_chart
+      sha256: "155556c4aba56c8474308d51b4e5446b80a07db9ab66a3cb74aff05c110df982"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.60.0"
   flare_flutter:
     dependency: transitive
     description:

@@ -5,15 +5,18 @@ import 'package:watch_sports/core/extensions/ufc_search_response.dart';
 import 'package:watch_sports/features/fighter/data/models/fighter_dto.dart';
 import 'package:watch_sports/features/fighter/data/sources/utils/iframe.dart';
 import '../../../../core/errors/handle_dio_error.dart';
+import '../../../../providers/ufc/fighter_page_parser_provider.dart';
 import 'fighter_source.dart';
 
 const _iframeBaseUrl = 'https://answers-embed-client.ufc.com.pagescdn.com';
 const _searchBaseUrl = "https://liveapi.yext.com/v2";
 
 @LazySingleton(as: FighterSource)
-class FighterNetworkSource implements FighterSource {
+class FighterUFCSource implements FighterSource {
   final MainApi api;
-  const FighterNetworkSource(this.api);
+  FighterUFCSource(this.api);
+
+  String ufcUrl = "";
 
   @override
   Future<FighterDto> searchFighter(String name, String opponentName) async {
@@ -28,10 +31,25 @@ class FighterNetworkSource implements FighterSource {
             "PRODUCTION",
           );
 
-      final fighter = response.toFighter(opponentName);
+      final athlete = response.athlete(opponentName);
+      if (athlete?.cUFcLink.isNotEmpty == true) {
+        ufcUrl = athlete!.cUFcLink;
+        final ufcFighter =
+            await UfcFighterPageParserProvider(athlete.cUFcLink).getFighter();
+        final fighter = response.toFighter(opponentName);
 
-      if (fighter != null) {
-        return fighter;
+        if (fighter != null) {
+          return fighter.copyWith(
+            winsByKo: ufcFighter?.winsByKo,
+            winsByDec: ufcFighter?.winsByDec,
+            winsBySub: ufcFighter?.winsBySub,
+            allStrikes: ufcFighter?.allStrikes,
+            landedStrikes: ufcFighter?.landedStrikes,
+            allTakeDowns: ufcFighter?.allTakeDowns,
+            landedTakeDowns: ufcFighter?.landedTakeDowns,
+            fightHistory: ufcFighter?.fightHistory,
+          );
+        }
       }
 
       throw const ServerFailure("", 404);

@@ -32,6 +32,9 @@ FighterDto _$FighterDtoFromJson(Map<String, dynamic> json) => FighterDto(
       weightPounds: json['weightPounds'] as num? ?? 0,
       gender: json['gender'] as String? ?? '',
       reach: json['reach'] as num? ?? 0,
+      winsByKo: json['winsByKo'] as int? ?? 0,
+      winsByDec: json['winsByDec'] as int? ?? 0,
+      winsBySub: json['winsBySub'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$FighterDtoToJson(FighterDto instance) =>
@@ -55,6 +58,9 @@ Map<String, dynamic> _$FighterDtoToJson(FighterDto instance) =>
       'weightPounds': instance.weightPounds,
       'gender': instance.gender,
       'reach': instance.reach,
+      'winsByKo': instance.winsByKo,
+      'winsByDec': instance.winsByDec,
+      'winsBySub': instance.winsBySub,
     };
 
 FighterDtoFightHistory _$FighterDtoFightHistoryFromJson(

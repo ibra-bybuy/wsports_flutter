@@ -82,6 +82,8 @@ dependencies:
   image_picker: ^0.8.6+1
   flutter_emoji: ^2.4.0
   age_calculator: ^1.0.0
+  chaleno: ^0.0.6
+  fl_chart: ^0.60.0
 
 dev_dependencies:
   flutter_test:

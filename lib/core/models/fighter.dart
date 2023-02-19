@@ -31,6 +31,9 @@ class Fighter extends Equatable {
   final num weightPounds;
   final String gender;
   final num reach;
+  final int winsByKo;
+  final int winsByDec;
+  final int winsBySub;
   const Fighter({
     this.firstName = '',
     this.lastName = '',
@@ -51,6 +54,9 @@ class Fighter extends Equatable {
     this.weightPounds = 0,
     this.gender = '',
     this.reach = 0,
+    this.winsByKo = 0,
+    this.winsByDec = 0,
+    this.winsBySub = 0,
   });
 
   Fighter copyWith({
@@ -73,6 +79,9 @@ class Fighter extends Equatable {
     num? weightPounds,
     String? gender,
     num? reach,
+    int? winsByKo,
+    int? winsByDec,
+    int? winsBySub,
   }) {
     return Fighter(
       firstName: firstName ?? this.firstName,
@@ -94,6 +103,9 @@ class Fighter extends Equatable {
       weightPounds: weightPounds ?? this.weightPounds,
       gender: gender ?? this.gender,
       reach: reach ?? this.reach,
+      winsByKo: winsByKo ?? this.winsByKo,
+      winsByDec: winsByDec ?? this.winsByDec,
+      winsBySub: winsBySub ?? this.winsBySub,
     );
   }
 
@@ -122,6 +134,9 @@ class Fighter extends Equatable {
       weightPounds,
       gender,
       reach,
+      winsByKo,
+      winsByDec,
+      winsBySub,
     ];
   }
 
@@ -148,6 +163,9 @@ class Fighter extends Equatable {
       'weightPounds': weightPounds,
       'gender': gender,
       'reach': reach,
+      'winsByKo': winsByKo,
+      'winsByDec': winsByDec,
+      'winsBySub': winsBySub,
     };
   }
 
@@ -179,6 +197,9 @@ class Fighter extends Equatable {
       weightPounds: (map["weightPounds"] ?? 0) as num,
       gender: (map["gender"] ?? '') as String,
       reach: (map["reach"] ?? 0) as num,
+      winsByKo: (map["winsByKo"] ?? 0) as int,
+      winsByDec: (map["winsByDec"] ?? 0) as int,
+      winsBySub: (map["winsBySub"] ?? 0) as int,
     );
   }
 

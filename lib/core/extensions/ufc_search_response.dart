@@ -20,6 +20,10 @@ extension UfcSearchResponseExt on UfcSearchResponseDto {
 
     return null;
   }
+
+  UfcSearchResponseDtoResponseModulesResultsData? athlete(String opponentName) {
+    return getAthletes.getAthleteByOpponentName(opponentName);
+  }
 }
 
 extension UfcSearchResponseDtoResponseModulesResultsDataListExt
