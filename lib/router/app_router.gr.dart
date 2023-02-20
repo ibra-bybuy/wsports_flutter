@@ -86,7 +86,9 @@ class _$AppRouter extends RootStackRouter {
         child: FighterScreen(
           args.item,
           key: args.key,
+          title: args.title,
           opponent: args.opponent,
+          searchByAvatar: args.searchByAvatar,
         ),
       );
     },
@@ -420,14 +422,18 @@ class FighterRoute extends PageRouteInfo<FighterRouteArgs> {
   FighterRoute({
     required Team item,
     Key? key,
+    required String title,
     required Team opponent,
+    bool searchByAvatar = false,
   }) : super(
           FighterRoute.name,
           path: '/fighter-screen',
           args: FighterRouteArgs(
             item: item,
             key: key,
+            title: title,
             opponent: opponent,
+            searchByAvatar: searchByAvatar,
           ),
         );
 
@@ -438,18 +444,24 @@ class FighterRouteArgs {
   const FighterRouteArgs({
     required this.item,
     this.key,
+    required this.title,
     required this.opponent,
+    this.searchByAvatar = false,
   });
 
   final Team item;
 
   final Key? key;
 
+  final String title;
+
   final Team opponent;
+
+  final bool searchByAvatar;
 
   @override
   String toString() {
-    return 'FighterRouteArgs{item: $item, key: $key, opponent: $opponent}';
+    return 'FighterRouteArgs{item: $item, key: $key, title: $title, opponent: $opponent, searchByAvatar: $searchByAvatar}';
   }
 }
 

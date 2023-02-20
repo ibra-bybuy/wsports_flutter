@@ -12,13 +12,18 @@ class FighterUsecase implements FighterRepository {
   const FighterUsecase(this.repository);
 
   @override
-  Future<Either<Failure, Fighter>> searchFighter(
+  Future<Either<Failure, Fighter>> searchFighterByOpponentName(
       String query, String opponentName) {
-    return repository.searchFighter(query, opponentName);
+    return repository.searchFighterByOpponentName(query, opponentName);
   }
 
   @override
   Future<Either<Failure, List<Fight>>> getFights(String query, int page) {
     return repository.getFights(query, page);
+  }
+
+  @override
+  Future<Either<Failure, Fighter>> searchByAvatar(String query, String avatar) {
+    return repository.searchByAvatar(query, avatar);
   }
 }

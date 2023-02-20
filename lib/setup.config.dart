@@ -226,8 +226,10 @@ _i1.GetIt $initGetIt(
       () => _i64.EventDetailsNetworkSource(get<_i43.MainApi>()));
   gh.lazySingleton<_i65.EventsSource>(
       () => _i66.EventsNetwork(get<_i43.MainApi>()));
-  gh.lazySingleton<_i67.FighterSource>(
-      () => _i68.FighterUFCSource(get<_i43.MainApi>()));
+  gh.lazySingleton<_i67.FighterSource>(() => _i68.FighterUFCSource(
+        get<_i43.MainApi>(),
+        get<_i19.LoggerProvider>(),
+      ));
   gh.lazySingleton<_i69.SearchRepository>(
       () => _i70.SearchRepositoryImpl(get<_i50.SearchSource>()));
   gh.lazySingleton<_i71.SearchUsecase>(

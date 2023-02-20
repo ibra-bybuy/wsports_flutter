@@ -19,16 +19,38 @@ class FighterCubit extends Cubit<FetchState<Fighter>> {
     this.fightsCubit,
   ) : super(FetchInitial());
 
-  Future<void> call(String query, String opponentName,
-      {String? secondTryQuery}) async {
+  Future<void> searchFighterByOpponentName(
+    String query,
+    String opponentName, {
+    String? secondTryQuery,
+  }) async {
     emit(FetchLoading());
-    final res = await usecase.searchFighter(query, opponentName);
+    final res = await usecase.searchFighterByOpponentName(query, opponentName);
     res.fold((l) {
       if (l.statusCode == 404 && secondTryQuery != null) {
-        call(secondTryQuery, opponentName);
+        searchFighterByOpponentName(secondTryQuery, opponentName);
         return;
       }
 
+      emit(FetchError(l));
+    }, (r) {
+      cachedFighter.setFighter(r);
+      emit(FetchLoaded(r));
+    });
+  }
+
+  Future<void> searchByAvatar(
+    String query,
+    String avatar, {
+    String? secondTryQuery,
+  }) async {
+    emit(FetchLoading());
+    final res = await usecase.searchByAvatar(query, avatar);
+    res.fold((l) {
+      if (l.statusCode == 404 && secondTryQuery != null) {
+        searchByAvatar(secondTryQuery, avatar);
+        return;
+      }
       emit(FetchError(l));
     }, (r) {
       cachedFighter.setFighter(r);

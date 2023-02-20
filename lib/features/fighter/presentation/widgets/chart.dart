@@ -16,7 +16,7 @@ class FighterStatChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final precentage = landed / all * 100;
+    final precentage = all > 0 ? landed / all * 100 : 0.0;
     final precentInt = precentage.ceil().toInt();
 
     return SizedBox(

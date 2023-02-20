@@ -9,7 +9,7 @@ class ShowAlert {
   final String title;
   final String body;
   final String confirmBtnText;
-  final void Function()? onConfirmed;
+  final void Function(BuildContext)? onConfirmed;
   final bool barrierDismissible;
   const ShowAlert(
     this.context, {
@@ -28,7 +28,7 @@ class ShowAlert {
       title: title,
       text: body,
       confirmBtnText: confirmBtnText,
-      onConfirmBtnTap: onConfirmed,
+      onConfirmBtnTap: () => onConfirmed?.call(context),
       barrierDismissible: barrierDismissible,
     );
   }

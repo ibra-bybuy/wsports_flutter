@@ -1,9 +1,12 @@
 import 'package:chaleno/chaleno.dart';
 import 'package:watch_sports/features/fighter/data/models/fighter_dto.dart';
 
+import '../logger/logger_provider.dart';
+
 class UfcFighterPageParserProvider {
   final String url;
-  const UfcFighterPageParserProvider(this.url);
+  final LoggerProvider? logger;
+  const UfcFighterPageParserProvider(this.url, {this.logger});
 
   Future<FighterDto?> getFighter() async {
     final page = await request();
@@ -33,7 +36,10 @@ class UfcFighterPageParserProvider {
   }
 
   Future<Parser?> request() async {
-    return await Chaleno().load(url);
+    logger?.i("Ufc parse request $url");
+    final response = await Chaleno().load(url);
+    logger?.i("Ufc parse response $url");
+    return response;
   }
 
   String _getNickname(Parser page) {

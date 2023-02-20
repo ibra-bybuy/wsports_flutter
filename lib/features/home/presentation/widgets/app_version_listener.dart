@@ -36,8 +36,9 @@ class _AppVersionListenerState extends State<AppVersionListener> {
       title: localizationInstance.newVersion,
       body: localizationInstance.newVersionBody,
       confirmBtnText: localizationInstance.update,
-      onConfirmed: () {
-        Navigator.of(context).pop();
+      onConfirmed: (ctx) {
+        Navigator.of(ctx).pop();
+
         appUpdate.update(
           url: version.url,
           listener: (status, progress) {

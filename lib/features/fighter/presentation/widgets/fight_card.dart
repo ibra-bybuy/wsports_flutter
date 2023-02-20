@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:watch_sports/core/extensions/fight_history_item.dart';
+import 'package:watch_sports/core/models/team.dart';
 import 'package:watch_sports/features/fighter/presentation/widgets/fight_info_card.dart';
 import '../../../../core/models/fight.dart';
+import '../../../../router/app_router.dart';
+import '../../../../setup.dart';
 import '../../../home/presentation/widgets/event_team.dart';
 
 class FightCard extends StatelessWidget {
   final Fight fight;
   const FightCard(this.fight, {super.key});
+
+  void openFighter(Team item, String title) {
+    getIt<AppRouter>().push(
+      FighterRoute(
+        item: item,
+        opponent: const Team(),
+        title: title,
+        searchByAvatar: true,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +37,15 @@ class FightCard extends StatelessWidget {
             if (fight.fighters.isNotEmpty) ...[
               Flexible(
                 flex: 4,
-                child: EventTeamCard(
-                  title: fight.fighters.first.name,
-                  imageUrl: fight.fighters.first.picture,
-                  titleColor: Colors.white,
-                  showWon: fight.fighters.first.won,
+                child: GestureDetector(
+                  onTap: () => openFighter(
+                      fight.fighters.first.toTeam(), fight.fighters.first.name),
+                  child: EventTeamCard(
+                    title: fight.fighters.first.name,
+                    imageUrl: fight.fighters.first.picture,
+                    titleColor: Colors.white,
+                    showWon: fight.fighters.first.won,
+                  ),
                 ),
               ),
             ],
@@ -39,11 +58,15 @@ class FightCard extends StatelessWidget {
             if (fight.fighters.isNotEmpty) ...[
               Flexible(
                 flex: 4,
-                child: EventTeamCard(
-                  title: fight.fighters.last.name,
-                  imageUrl: fight.fighters.last.picture,
-                  titleColor: Colors.white,
-                  showWon: fight.fighters.last.won,
+                child: GestureDetector(
+                  onTap: () => openFighter(
+                      fight.fighters.last.toTeam(), fight.fighters.last.name),
+                  child: EventTeamCard(
+                    title: fight.fighters.last.name,
+                    imageUrl: fight.fighters.last.picture,
+                    titleColor: Colors.white,
+                    showWon: fight.fighters.last.won,
+                  ),
                 ),
               )
             ],

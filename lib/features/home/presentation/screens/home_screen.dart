@@ -14,7 +14,6 @@ import '../../../../core/components/app_bar/search_app_bar.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/cubits/custom/string_cubit.dart/string_cubit.dart';
 import '../cubits/events/events_cubit.dart';
-import '../widgets/app_version_listener.dart';
 import '../widgets/banners_builder.dart';
 import '../widgets/container_title.dart';
 import '../widgets/events_builder.dart';
@@ -64,69 +63,64 @@ class _HomeScreenState extends State<HomeScreen>
     return AlertLoadListener<EventsState>(
       cubit: eventsCubit,
       isLoading: (state) => state is EventsLoading,
-      child: AppVersionListener(
-        child: Scaffold(
-          appBar: const MainAppBar(
-            children: [
-              SearchAppBar(),
-            ],
-          ),
-          body: Refresher(
-            scrollController: scrollController,
-            controller: _refreshController,
-            onRefresh: () async {
-              await _load();
-              _refreshController.refreshCompleted();
-            },
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 20.0),
-                  HomeBannersBuilder(
-                    bannersCubit: bannersCubit,
-                    horizontalPadding: horizontalPadding,
-                    appRouter: appRouter,
-                  ),
-                  const SizedBox(height: 35.0),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: horizontalPadding),
-                    child: HomeContainerTitle(
-                        title: localizationInstance.topEvents),
-                  ),
-                  const SizedBox(height: 20.0),
-                  HomeCategories(
-                    paddingHorizontal: horizontalPadding,
-                    selectedCategoryCubit: selectedCategoryCubit,
-                    onCategoryClicked: (category) {
-                      final stateToSet = selectedCategoryCubit.state == category
-                          ? ""
-                          : category;
-                      selectedCategoryCubit.set(stateToSet);
-                      eventsCubit.call(category: stateToSet);
+      child: Scaffold(
+        appBar: const MainAppBar(
+          children: [
+            SearchAppBar(),
+          ],
+        ),
+        body: Refresher(
+          scrollController: scrollController,
+          controller: _refreshController,
+          onRefresh: () async {
+            await _load();
+            _refreshController.refreshCompleted();
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20.0),
+                HomeBannersBuilder(
+                  bannersCubit: bannersCubit,
+                  horizontalPadding: horizontalPadding,
+                  appRouter: appRouter,
+                ),
+                const SizedBox(height: 35.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                  child:
+                      HomeContainerTitle(title: localizationInstance.topEvents),
+                ),
+                const SizedBox(height: 20.0),
+                HomeCategories(
+                  paddingHorizontal: horizontalPadding,
+                  selectedCategoryCubit: selectedCategoryCubit,
+                  onCategoryClicked: (category) {
+                    final stateToSet =
+                        selectedCategoryCubit.state == category ? "" : category;
+                    selectedCategoryCubit.set(stateToSet);
+                    eventsCubit.call(category: stateToSet);
+                  },
+                ),
+                const SizedBox(height: 20.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                  child: BlocBuilder<EventsCubit, EventsState>(
+                    bloc: eventsCubit,
+                    buildWhen: (prev, curr) => curr is EventsLoaded,
+                    builder: (context, state) {
+                      return EventsBuilder(
+                        homeEventsCubit: eventsCubit.getCurrentCategoryCubit,
+                        eventsState: state,
+                        appRouter: appRouter,
+                        groupedBuilder: selectedCategoryCubit.state ==
+                            CategoryEnum.mma.value,
+                      );
                     },
                   ),
-                  const SizedBox(height: 20.0),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: horizontalPadding),
-                    child: BlocBuilder<EventsCubit, EventsState>(
-                      bloc: eventsCubit,
-                      buildWhen: (prev, curr) => curr is EventsLoaded,
-                      builder: (context, state) {
-                        return EventsBuilder(
-                          homeEventsCubit: eventsCubit.getCurrentCategoryCubit,
-                          eventsState: state,
-                          appRouter: appRouter,
-                          groupedBuilder: selectedCategoryCubit.state ==
-                              CategoryEnum.mma.value,
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

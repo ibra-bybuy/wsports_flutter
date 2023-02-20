@@ -33,9 +33,10 @@ class EventCard extends StatefulWidget {
 }
 
 class _EventCardState extends State<EventCard> {
-  void openTeam(Team team, Team opponent) {
+  void openTeam(Team team, Team opponent, String title) {
     if (widget.event.isMma) {
-      getIt<AppRouter>().push(FighterRoute(item: team, opponent: opponent));
+      getIt<AppRouter>()
+          .push(FighterRoute(item: team, opponent: opponent, title: title));
     }
   }
 
@@ -66,8 +67,11 @@ class _EventCardState extends State<EventCard> {
                     flex: 4,
                     child: InkWell(
                       onTap: widget.openTeams
-                          ? () => openTeam(widget.event.engTeams.first,
-                              widget.event.engTeams.last)
+                          ? () => openTeam(
+                                widget.event.engTeams.first,
+                                widget.event.engTeams.last,
+                                widget.event.localizedTeams.first.name,
+                              )
                           : null,
                       child: EventTeamCard(
                         title: widget.event.localizedTeams.first.name,
@@ -94,8 +98,11 @@ class _EventCardState extends State<EventCard> {
                     flex: 4,
                     child: InkWell(
                       onTap: widget.openTeams
-                          ? () => openTeam(widget.event.engTeams.last,
-                              widget.event.engTeams.first)
+                          ? () => openTeam(
+                                widget.event.engTeams.last,
+                                widget.event.engTeams.first,
+                                widget.event.localizedTeams.last.name,
+                              )
                           : null,
                       child: EventTeamCard(
                         title: widget.event.localizedTeams.last.name,

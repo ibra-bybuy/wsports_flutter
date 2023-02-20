@@ -15,12 +15,16 @@ import '../../../../setup.dart';
 import '../cubits/fighter_cubit.dart';
 
 class FighterScreen extends StatefulWidget {
+  final String title;
   final Team item;
   final Team opponent;
+  final bool searchByAvatar;
   const FighterScreen(
     this.item, {
     Key? key,
+    required this.title,
     required this.opponent,
+    this.searchByAvatar = false,
   }) : super(key: key);
 
   @override
@@ -37,11 +41,19 @@ class _FighterScreenState extends State<FighterScreen> {
     uiCubit.setTeam(widget.item);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      uiCubit.call(
-        widget.item.name,
-        widget.opponent.name,
-        secondTryQuery: widget.item.avatarUrl.urlName,
-      );
+      if (widget.searchByAvatar) {
+        uiCubit.searchByAvatar(
+          widget.item.name,
+          widget.item.avatarUrl,
+          secondTryQuery: widget.item.avatarUrl.urlName,
+        );
+      } else {
+        uiCubit.searchFighterByOpponentName(
+          widget.item.name,
+          widget.opponent.name,
+          secondTryQuery: widget.item.avatarUrl.urlName,
+        );
+      }
 
       controller.addListener(
         () {
@@ -62,7 +74,7 @@ class _FighterScreenState extends State<FighterScreen> {
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 18, 18, 32),
         appBar: SimpleAppBar(
-          title: widget.item.name,
+          title: widget.title,
           backgroundColor: const Color.fromARGB(255, 18, 18, 32),
         ),
         body: BlocBuilder<CachedFighterCubit, CachedFighterState>(

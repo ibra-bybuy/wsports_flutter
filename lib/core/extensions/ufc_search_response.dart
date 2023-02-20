@@ -1,3 +1,4 @@
+import 'package:watch_sports/core/extensions/string.dart';
 import 'package:watch_sports/features/fighter/data/models/fighter_dto.dart';
 import 'package:watch_sports/features/fighter/data/models/ufc_search_response_dto.dart';
 
@@ -11,7 +12,7 @@ extension UfcSearchResponseExt on UfcSearchResponseDto {
         .toList();
   }
 
-  FighterDto? toFighter(String opponentName) {
+  FighterDto? toFighterByOpponentName(String opponentName) {
     final athlete = getAthletes.getAthleteByOpponentName(opponentName);
 
     if (athlete != null) {
@@ -21,8 +22,24 @@ extension UfcSearchResponseExt on UfcSearchResponseDto {
     return null;
   }
 
-  UfcSearchResponseDtoResponseModulesResultsData? athlete(String opponentName) {
+  FighterDto? toFighterByAvatar(String avatar) {
+    final athlete = getAthletes.getAthleteByAvatar(avatar);
+
+    if (athlete != null) {
+      return athlete.toFighter();
+    }
+
+    return null;
+  }
+
+  UfcSearchResponseDtoResponseModulesResultsData? athleteByOpponentName(
+      String opponentName) {
     return getAthletes.getAthleteByOpponentName(opponentName);
+  }
+
+  UfcSearchResponseDtoResponseModulesResultsData? athleteByAvatar(
+      String avatar) {
+    return getAthletes.getAthleteByAvatar(avatar);
   }
 }
 
@@ -33,6 +50,23 @@ extension UfcSearchResponseDtoResponseModulesResultsDataListExt
     for (final athelete in this) {
       final names = athelete.cLinkedFights.map((e) => e.name).toSet().join(",");
       if (names.contains(opponentName)) {
+        return athelete;
+      }
+    }
+
+    return null;
+  }
+
+  UfcSearchResponseDtoResponseModulesResultsData? getAthleteByAvatar(
+      String avatar) {
+    for (final athelete in this) {
+      final athleteName = athelete.name.toLowerCase().split(" ");
+      final avatarName = avatar.urlName.toLowerCase();
+
+      final containsEveryWord =
+          athleteName.every((element) => avatarName.contains(element));
+
+      if (containsEveryWord) {
         return athelete;
       }
     }

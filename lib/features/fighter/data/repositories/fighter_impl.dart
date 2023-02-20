@@ -13,10 +13,11 @@ class FighterRepositoryImpl implements FighterRepository {
   const FighterRepositoryImpl(this.source);
 
   @override
-  Future<Either<Failure, Fighter>> searchFighter(
+  Future<Either<Failure, Fighter>> searchFighterByOpponentName(
       String query, String opponentName) async {
     try {
-      final response = await source.searchFighter(query, opponentName);
+      final response =
+          await source.searchFighterByOpponentName(query, opponentName);
       return Right(response);
     } on Failure catch (e) {
       return Left(e);
@@ -27,6 +28,17 @@ class FighterRepositoryImpl implements FighterRepository {
   Future<Either<Failure, List<Fight>>> getFights(String query, int page) async {
     try {
       final response = await source.getFights(query, page);
+      return Right(response);
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Failure, Fighter>> searchByAvatar(
+      String query, String avatar) async {
+    try {
+      final response = await source.searchByAvatar(query, avatar);
       return Right(response);
     } on Failure catch (e) {
       return Left(e);

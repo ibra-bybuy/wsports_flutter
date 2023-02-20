@@ -7,11 +7,12 @@ class UfcUtils {
     final splitBySlash = url.split("/");
 
     if (splitBySlash.last.isImageFormat) {
-      final splitByUnderScore = splitBySlash.last.split("_");
+      final splitByUnderScore = splitBySlash.last.split(".")[0].split("_");
 
       if (splitByUnderScore.length > 1) {
         final name = splitByUnderScore
-            .where((element) => !element.isImageFormat)
+            .where(
+                (element) => !element.isImageFormat && !element.contains("="))
             .toList()
             .join(" ");
 

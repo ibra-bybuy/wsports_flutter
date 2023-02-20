@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:watch_sports/i18n/i18n.dart';
 import 'package:watch_sports/router/app_router.dart';
 
+import '../../../home/presentation/widgets/app_version_listener.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -25,34 +27,36 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      routes: const [
-        HomeRoutes(),
-        TournamentsRoutes(),
-        ProfileRoutes(),
-      ],
-      bottomNavigationBuilder: (context, tabsRouter) {
-        return CustomNavigationBar(
-          items: [
-            CustomNavigationBarItem(
-              icon: const Icon(Icons.home),
-              title: Text(localizationInstance.home),
-            ),
-            CustomNavigationBarItem(
-              icon: const Icon(Icons.emoji_events),
-              title: Text(localizationInstance.tournaments),
-            ),
-            CustomNavigationBarItem(
-              icon: const Icon(Icons.account_circle),
-              title: Text(localizationInstance.account),
-            ),
-          ],
-          currentIndex: tabsRouter.activeIndex,
-          onTap: (index) {
-            tabsRouter.setActiveIndex(index);
-          },
-        );
-      },
+    return AppVersionListener(
+      child: AutoTabsScaffold(
+        routes: const [
+          HomeRoutes(),
+          TournamentsRoutes(),
+          ProfileRoutes(),
+        ],
+        bottomNavigationBuilder: (context, tabsRouter) {
+          return CustomNavigationBar(
+            items: [
+              CustomNavigationBarItem(
+                icon: const Icon(Icons.home),
+                title: Text(localizationInstance.home),
+              ),
+              CustomNavigationBarItem(
+                icon: const Icon(Icons.emoji_events),
+                title: Text(localizationInstance.tournaments),
+              ),
+              CustomNavigationBarItem(
+                icon: const Icon(Icons.account_circle),
+                title: Text(localizationInstance.account),
+              ),
+            ],
+            currentIndex: tabsRouter.activeIndex,
+            onTap: (index) {
+              tabsRouter.setActiveIndex(index);
+            },
+          );
+        },
+      ),
     );
   }
 }
