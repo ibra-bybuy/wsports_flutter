@@ -1,4 +1,5 @@
 import 'package:chaleno/chaleno.dart';
+import 'package:watch_sports/core/extensions/string.dart';
 import 'package:watch_sports/features/fighter/data/models/fighter_dto.dart';
 
 import '../logger/logger_provider.dart';
@@ -240,13 +241,17 @@ class UfcFighterPageParserProvider {
       final method =
           eventStats != null && eventStats.length >= 3 ? eventStats[2] : "";
 
-      final names = event
-              .querySelector(".c-card-event--athlete-results__headline")
-              ?.text
-              ?.split(" vs ") ??
-          [""];
-      final redCornerName = names.first;
-      final blueCornerName = names.length >= 2 ? names[1] : "";
+      final headline = (event
+                  .querySelector(".c-card-event--athlete-results__headline")
+                  ?.text
+                  ?.trim() ??
+              "")
+          .removeHtml
+          .removeExtraWhitespaces;
+
+      final names = headline.split(" vs ");
+      final redCornerName = names.first.trim();
+      final blueCornerName = names.length >= 2 ? names[1].trim() : "";
       final redCornerImgSelector =
           event.querySelector(".c-card-event--athlete-results__red-image");
 

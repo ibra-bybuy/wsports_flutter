@@ -1,3 +1,5 @@
+import 'package:html/parser.dart';
+
 import '../functions/ufc_utils.dart';
 
 extension StringExt on String {
@@ -38,5 +40,17 @@ extension StringExt on String {
 
   DateTime? get toDateTime {
     return DateTime.tryParse(this);
+  }
+
+  String get removeHtml {
+    final document = parse(this);
+
+    return parse(document.body?.text).documentElement?.text ?? this;
+  }
+
+  String get removeExtraWhitespaces {
+    final exp = RegExp(r"\s+");
+
+    return replaceAll(exp, " ");
   }
 }
