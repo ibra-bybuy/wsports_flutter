@@ -4,6 +4,9 @@ import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:watch_sports/core/components/app_bar/main_app_bar.dart';
 import 'package:watch_sports/core/components/loader/alert_loader/alert_loading_listener.dart';
 import 'package:watch_sports/core/extensions/scroll_controller.dart';
+import 'package:watch_sports/core/models/event.dart';
+import 'package:watch_sports/features/event_details/domain/usecases/event_score_usecase.dart';
+import 'package:watch_sports/features/event_details/presentation/cubits/event_score_cubit.dart';
 import 'package:watch_sports/features/home/presentation/cubits/banners_cubit.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
 import 'package:watch_sports/features/home/presentation/widgets/categories.dart';
@@ -34,10 +37,14 @@ class _HomeScreenState extends State<HomeScreen>
   final appRouter = getIt<AppRouter>();
   final scrollController = ScrollController();
   final _refreshController = RefreshController(initialRefresh: false);
+  final scoreUsecase = getIt<EventScoreUsecase>();
+  final scoresCubit = getIt<EventScoreCubit>();
 
   @override
   void initState() {
     super.initState();
+    scoreUsecase.init();
+    scoresCubit.call(EventType.football);
 
     _load();
 
@@ -55,6 +62,12 @@ class _HomeScreenState extends State<HomeScreen>
   Future<void> _load() async {
     bannersCubit.call();
     eventsCubit.call();
+  }
+
+  @override
+  void dispose() {
+    scoreUsecase.dispose();
+    super.dispose();
   }
 
   @override

@@ -1,0 +1,98 @@
+{
+    "Stages": [
+      {
+        "Sid": "12369",
+        "Snm": "Round of 16",
+        "Scd": "round-of-16-2022-2023",
+        "Cid": "130",
+        "Cnm": "Champions League",
+        "Csnm": "Champions League",
+        "Ccd": "champions-league",
+        "CompId": "60",
+        "CompN": "Champions League",
+        "CompD": "UEFA",
+        "Scu": 1,
+        "Chi": 0,
+        "Shi": 0,
+        "Ccdiso": "NON",
+        "Sdn": "Round of 16",
+        "Events": [
+          {
+            "Eid": "844281",
+            "Tr1": "0",
+            "Tr2": "0",
+            "Tr1OR": "0",
+            "Tr2OR": "0",
+            "T1": [
+              {
+                "Nm": "Inter",
+                "ID": "3415",
+                "Img": "enet/8636.png",
+                "NewsTag": "/team/inter-2021020913320920836-247/",
+                "Abr": "INT",
+                "tbd": 0,
+                "Gd": 1,
+                "CoNm": "Italy",
+                "CoId": "ITA",
+                "HasVideo": true
+              }
+            ],
+            "T2": [
+              {
+                "Nm": "FC Porto",
+                "ID": "262",
+                "Img": "enet/9773.png",
+                "NewsTag": "/team/fc-porto-2021020913320920836-451/",
+                "Abr": "POR",
+                "tbd": 0,
+                "Gd": 1,
+                "CoNm": "Portugal",
+                "CoId": "PRT",
+                "HasVideo": true
+              }
+            ],
+            "Eps": "13'",
+            "Esid": 2,
+            "Epr": 1,
+            "Ecov": 0,
+            "Ern": 1008,
+            "ErnInf": "1/8",
+            "Et": 1,
+            "Esd": 20230222230000,
+            "LuUT": 20230222231155,
+            "Eds": 20230222230016,
+            "Eact": 1,
+            "EO": 228049767,
+            "IncsX": 0,
+            "ComX": 1,
+            "LuX": 1,
+            "StatX": 1,
+            "SubsX": 0,
+            "SDFowX": 0,
+            "SDInnX": 0,
+            "LuC": 1,
+            "Ehid": 0,
+            "Spid": 1,
+            "Stg": {
+              "Sid": "12369",
+              "Snm": "Round of 16",
+              "Scd": "round-of-16-2022-2023",
+              "Cid": "130",
+              "Cnm": "Champions League",
+              "Csnm": "Champions League",
+              "Ccd": "champions-league",
+              "CompId": "60",
+              "CompN": "Champions League",
+              "CompD": "UEFA",
+              "Scu": 1,
+              "Chi": 0,
+              "Shi": 0,
+              "Ccdiso": "NON",
+              "Sdn": "Round of 16"
+            },
+            "Pid": 8
+          }
+        ]
+      }
+    ]
+  }

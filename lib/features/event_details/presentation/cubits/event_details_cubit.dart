@@ -16,7 +16,7 @@ class EventDetailsCubit
 
   Future<void> call(String eventId) async {
     emit(FetchLoading());
-    final response = await usecase.call(eventId);
+    final response = await usecase.getDetails(eventId);
     response.fold((l) => emit(FetchError(l)), (r) {
       setEvent(r.event);
       emit(FetchLoaded(r));

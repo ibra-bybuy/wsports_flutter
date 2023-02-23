@@ -24,12 +24,16 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     EventDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<EventDetailsRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<EventDetailsRouteArgs>(
+          orElse: () =>
+              EventDetailsRouteArgs(eventId: pathParams.optString('id')));
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: EventDetailsScreen(
           key: args.key,
           event: args.event,
+          eventId: args.eventId,
         ),
       );
     },
@@ -176,7 +180,7 @@ class _$AppRouter extends RootStackRouter {
         ),
         RouteConfig(
           EventDetailsRoute.name,
-          path: '/event-details-screen',
+          path: '/event/:id',
         ),
         RouteConfig(
           CommentSectionRoute.name,
@@ -219,14 +223,17 @@ class MainRoute extends PageRouteInfo<void> {
 class EventDetailsRoute extends PageRouteInfo<EventDetailsRouteArgs> {
   EventDetailsRoute({
     Key? key,
-    required Event event,
+    Event? event,
+    String? eventId,
   }) : super(
           EventDetailsRoute.name,
-          path: '/event-details-screen',
+          path: '/event/:id',
           args: EventDetailsRouteArgs(
             key: key,
             event: event,
+            eventId: eventId,
           ),
+          rawPathParams: {'id': eventId},
         );
 
   static const String name = 'EventDetailsRoute';
@@ -235,16 +242,19 @@ class EventDetailsRoute extends PageRouteInfo<EventDetailsRouteArgs> {
 class EventDetailsRouteArgs {
   const EventDetailsRouteArgs({
     this.key,
-    required this.event,
+    this.event,
+    this.eventId,
   });
 
   final Key? key;
 
-  final Event event;
+  final Event? event;
+
+  final String? eventId;
 
   @override
   String toString() {
-    return 'EventDetailsRouteArgs{key: $key, event: $event}';
+    return 'EventDetailsRouteArgs{key: $key, event: $event, eventId: $eventId}';
   }
 }
 

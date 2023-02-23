@@ -4,6 +4,7 @@ import 'package:watch_sports/features/tournament_details/data/models/events_deta
 import 'package:watch_sports/features/tournaments/data/models/tournaments_response_dto.dart';
 
 import '../../features/event_details/data/models/event_details_response.dart';
+import '../../features/event_details/data/models/score_response_dto.dart';
 import '../../features/fighter/data/models/ufc_search_response_dto.dart';
 import '../../features/home/data/models/app_versions_response.dart';
 import '../../features/home/data/models/banners_response.dart';
@@ -68,4 +69,7 @@ abstract class RestClient {
     @Query('v') String v,
     @Query('version') String version,
   );
+
+  @GET('/app/live/soccer/3')
+  Future<ScoreResponseDto> getScores();
 }

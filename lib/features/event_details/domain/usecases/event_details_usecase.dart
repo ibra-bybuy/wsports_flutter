@@ -11,7 +11,8 @@ class EventDetailsUsecase implements EventDetailsRepository {
   const EventDetailsUsecase(this.repository);
 
   @override
-  Future<Either<Failure, EventDetailsResponseEntities>> call(String eventId) {
-    return repository.call(eventId);
+  Future<Either<Failure, EventDetailsResponseEntities>> getDetails(
+      String eventId) {
+    return repository.getDetails(eventId);
   }
 }

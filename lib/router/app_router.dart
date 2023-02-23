@@ -46,7 +46,7 @@ part 'app_router.gr.dart';
         ),
       ],
     ),
-    AutoRoute(page: EventDetailsScreen),
+    AutoRoute(path: '/event/:id', page: EventDetailsScreen),
     AutoRoute(page: CommentSectionScreen),
     AutoRoute(page: SearchScreen),
     AutoRoute(page: TournamentDetailsScreen),

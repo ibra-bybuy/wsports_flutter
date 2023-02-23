@@ -293,45 +293,5 @@ class UfcFighterPageParserProvider {
     }
 
     return fights;
-    // final winImages = page.getElementAttribute(
-    //     '.c-card-event--athlete-results__plaque + div img', 'src');
-    // print(winImages);
-
-    // List<FighterDtoFightHistory> fights = [];
-    // List<String> dates =
-    //     page.getElementTitle(".c-card-event--athlete-results__date");
-    // List<String?> redCornersImg = page.getElementAttribute(
-    //     ".c-card-event--athlete-results__red-image img", 'src');
-    // List<String?> blueCornersImg = page.getElementAttribute(
-    //     ".c-card-event--athlete-results__blue-image img", 'src');
-
-    // List<String> names =
-    //     page.getElementTitle('.c-card-event--athlete-results__headline');
-
-    // for (int i = 0; i < dates.length; i++) {
-    //   final splitNames = names.length > i ? names[i].split(" ") : [""];
-    //   final redCornerName = splitNames.first;
-    //   final blueCornerName = splitNames.length >= 3 ? splitNames[2] : "";
-
-    //   fights.add(
-    //     FighterDtoFightHistory(
-    //       date: dates[i],
-    //       fighters: [
-    //         // RED FIGHTER
-    //         FighterDtoFightHistoryFighters(
-    //           picture: redCornersImg.length > i ? redCornersImg[i] ?? "" : "",
-    //           name: redCornerName,
-    //         ),
-
-    //         // BLUE CORNER
-    //         FighterDtoFightHistoryFighters(
-    //           picture: blueCornersImg.length > i ? blueCornersImg[i] ?? "" : "",
-    //           name: blueCornerName,
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
-    // return fights;
   }
 }

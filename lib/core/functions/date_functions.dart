@@ -40,9 +40,14 @@ class DateFunctions {
   bool isDaysAgo(int days) =>
       passedDate.toLocal().day == DateTime.now().toLocal().day - days;
 
+  bool isDaysAhead(int days) =>
+      passedDate.toLocal().day == DateTime.now().toLocal().day + days;
+
   bool isYesterday() => isThisYear() && isThisMonth() && isDaysAgo(1);
 
   bool isToday() => isThisYear() && isThisMonth() && isThisDay();
+
+  bool isTomorrow() => isThisYear() && isThisMonth() && isDaysAhead(1);
 
   String yearMonthDay() {
     return passedDate.toString().split(" ")[0];
@@ -59,10 +64,23 @@ class DateFunctions {
     return formatter.format(passedDate);
   }
 
+  String dayMonth() {
+    DateFormat formatter = DateFormat.MMMMd(locale);
+
+    return formatter.format(passedDate);
+  }
+
   String dayMonthYearHuman() {
     if (isToday()) return localizationInstance.today;
 
     return dayMonthYear();
+  }
+
+  String dayMonthHuman() {
+    if (isToday()) return localizationInstance.today;
+    if (isTomorrow()) return localizationInstance.tomorrow;
+
+    return dayMonth();
   }
 
   String hourMinute() => DateFormat("HH:mm").format(passedDate.toLocal());

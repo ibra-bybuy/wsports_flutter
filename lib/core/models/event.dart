@@ -9,10 +9,22 @@ import 'package:watch_sports/i18n/i18n.dart';
 import 'stream.dart' as my;
 
 enum EventType {
-  mma("mma");
+  mma("mma"),
+  football("football"),
+  undefined("undefined");
 
   final String str;
   const EventType(this.str);
+
+  static EventType getByCode(String code) {
+    for (final item in EventType.values) {
+      if (item.str.toLowerCase() == code.toLowerCase()) {
+        return item;
+      }
+    }
+
+    return EventType.undefined;
+  }
 }
 
 class Event extends Equatable {

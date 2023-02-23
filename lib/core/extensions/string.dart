@@ -53,4 +53,14 @@ extension StringExt on String {
 
     return replaceAll(exp, " ");
   }
+
+  bool containsAnyWord(List<String> words) {
+    for (final word in words) {
+      if (toLowerCase().contains(word.toLowerCase())) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }

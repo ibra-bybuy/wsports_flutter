@@ -58,5 +58,20 @@
 		<string>This app requires access to the photo library.</string>
 		<key>NSCameraUsageDescription</key>
 		<string>This app requires access to the camera.</string>
+		<key>FlutterDeepLinkingEnabled</key>
+		<true/>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>wsports.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+			<string>https</string>
+			</array>
+			</dict>
+		</array>
 	</dict>
 </plist>

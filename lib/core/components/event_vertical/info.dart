@@ -6,71 +6,56 @@ import '../../../../core/components/text/animated_text/animated_text.dart';
 import '../../../../core/components/text/animated_text/animated_text_model.dart';
 import '../../../../core/components/text/google_text.dart';
 
-class EventInfo extends StatelessWidget {
-  final String eventName;
+class EventVerticalCardInfo extends StatelessWidget {
   final DateTime? eventTime;
-  final void Function()? onTap;
   final bool isLive;
   final bool isFinished;
-  final Color? dateColor;
-  final Color? hoursColor;
-  const EventInfo({
+  final String eventCurrentTime;
+  const EventVerticalCardInfo({
     super.key,
-    this.eventName = "",
     this.eventTime,
-    this.onTap,
     this.isLive = false,
     this.isFinished = false,
-    this.dateColor,
-    this.hoursColor,
+    this.eventCurrentTime = "",
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (eventName.isNotEmpty) ...[
-          GoogleText(
-            eventName,
-            fontSize: 13.0,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20.0),
-        ],
         if (eventTime != null) ...[
-          if (!isLive) ...[
+          if (!isLive && !DateFunctions(passedDate: eventTime!).isToday()) ...[
             GoogleText(
-              DateFunctions(passedDate: eventTime!).dayMonthYearHuman(),
+              DateFunctions(passedDate: eventTime!).dayMonthHuman(),
               fontSize: 12.0,
-              color: dateColor ?? const Color.fromARGB(255, 134, 134, 134),
+              color: const Color.fromARGB(255, 134, 134, 134),
               textAlign: TextAlign.center,
             ),
+            const SizedBox(width: 5.0),
           ],
           const SizedBox(height: 10.0),
           if (isLive) ...[
             AnimatedText(
               [
-                const AnimatedTextModel("LIVE"),
-                AnimatedTextModel(
-                    DateFunctions(passedDate: eventTime!).hourMinute())
+                AnimatedTextModel("LIVE $eventCurrentTime".trim()),
               ],
-              onTap: onTap,
-            )
+            ),
           ] else if (isFinished) ...[
             GoogleText(
               localizationInstance.finished,
               fontWeight: FontWeight.bold,
-              fontSize: 14.0,
-              color: dateColor ?? Colors.grey,
+              fontSize: 13.5,
+              color: Colors.grey,
               textAlign: TextAlign.center,
             )
           ] else ...[
             GoogleText(
               DateFunctions(passedDate: eventTime!).hourMinute(),
               fontWeight: FontWeight.bold,
-              fontSize: 15.0,
-              color: hoursColor ?? Colors.black,
+              fontSize: 13.5,
+              color: Colors.black87,
               textAlign: TextAlign.center,
             )
           ]

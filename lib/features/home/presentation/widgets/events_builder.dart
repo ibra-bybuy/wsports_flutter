@@ -7,11 +7,9 @@ import 'package:watch_sports/features/home/presentation/widgets/grouped_events_b
 import 'package:watch_sports/i18n/i18n.dart';
 import 'package:watch_sports/router/app_router.dart';
 
-import '../../../../core/components/listview/listview_builder.dart';
+import '../../../../core/components/event_vertical/events_vertical_card.dart';
 import '../../../../core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import '../../../../core/cubits/cached/event_list_cubit/event_list_state.dart';
-import '../../../../core/models/event.dart';
-import 'event_card.dart';
 
 class EventsBuilder extends StatelessWidget {
   final EventListCubit homeEventsCubit;
@@ -40,21 +38,23 @@ class EventsBuilder extends StatelessWidget {
                 return GroupedEventsBuilder(notFinished);
               }
 
-              return CustomListViewBuilder<Event>(
-                items: notFinished,
-                itemBuilder: (context, _, item) {
-                  return EventCard(
-                    event: item,
-                    onTap: () {
-                      if (item.isMma) {
-                        appRouter.push(TournamentDetailsRoute(events: [item]));
-                      } else {
-                        appRouter.push(EventDetailsRoute(event: item));
-                      }
-                    },
-                  );
-                },
-              );
+              return EventsVerticalCard(notFinished);
+
+              // return CustomListViewBuilder<Event>(
+              //   items: notFinished,
+              //   itemBuilder: (context, _, item) {
+              //     return EventCard(
+              //       event: item,
+              //       onTap: () {
+              //         if (item.isMma) {
+              //           appRouter.push(TournamentDetailsRoute(events: [item]));
+              //         } else {
+              //           appRouter.push(EventDetailsRoute(event: item));
+              //         }
+              //       },
+              //     );
+              //   },
+              // );
             }
 
             if (eventsState is EventsLoaded && notFinished.isEmpty) {

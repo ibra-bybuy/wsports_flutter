@@ -22,6 +22,7 @@ class AnimatedText extends StatelessWidget {
       return GoogleText(
         items.map((e) => e.title).join(" "),
         color: Colors.red,
+        fontSize: 13.5,
       );
     }
 
@@ -32,7 +33,7 @@ class AnimatedText extends StatelessWidget {
               e.title,
               textStyle: e.style ??
                   const TextStyle(
-                    fontSize: 14.0,
+                    fontSize: 13.5,
                     fontWeight: FontWeight.bold,
                   ),
               speed: const Duration(milliseconds: 700),

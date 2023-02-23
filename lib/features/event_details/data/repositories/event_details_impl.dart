@@ -12,10 +12,10 @@ class EventDetailsRepositoryImpl implements EventDetailsRepository {
   const EventDetailsRepositoryImpl(this.source);
 
   @override
-  Future<Either<Failure, EventDetailsResponseEntities>> call(
+  Future<Either<Failure, EventDetailsResponseEntities>> getDetails(
       String eventId) async {
     try {
-      final res = await source.call(eventId);
+      final res = await source.getDetails(eventId);
 
       return Right(EventDetailsResponseEntities(event: res.data));
     } on Failure catch (e) {

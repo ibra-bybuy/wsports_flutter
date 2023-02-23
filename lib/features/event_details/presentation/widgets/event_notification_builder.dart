@@ -10,9 +10,11 @@ import '../../../../setup.dart';
 
 class EventNotificationBuilder extends StatefulWidget {
   final List<Event> events;
+  final Widget Function(bool)? iconBuilder;
   const EventNotificationBuilder(
     this.events, {
     super.key,
+    this.iconBuilder,
   });
 
   @override
@@ -32,10 +34,11 @@ class _EventNotificationBuilderState extends State<EventNotificationBuilder> {
 
         return IconButton(
           onPressed: () => provider.toggle(widget.events),
-          icon: Icon(
-            Icons.notifications_on,
-            color: contains ? Colors.yellow : null,
-          ),
+          icon: widget.iconBuilder?.call(contains) ??
+              Icon(
+                Icons.notifications_on,
+                color: contains ? Colors.yellow : null,
+              ),
         );
       },
     );
