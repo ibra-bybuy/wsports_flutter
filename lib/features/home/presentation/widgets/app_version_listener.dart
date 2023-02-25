@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watch_sports/core/functions/launch_url.dart';
 import 'package:watch_sports/features/home/presentation/cubits/app_versions/app_versions_state.dart';
 import 'package:watch_sports/i18n/i18n.dart';
 import 'package:watch_sports/providers/local_notifications/local_notifications.dart';
-
 import '../../../../core/components/alert/cool_alert.dart';
 import '../../../../core/models/app_version.dart';
 import '../../../../providers/app_update/app_update.dart';
@@ -49,8 +49,12 @@ class _AppVersionListenerState extends State<AppVersionListener> {
                 title: localizationInstance.error,
                 body: status == AppUpdateStatus.error
                     ? localizationInstance.appUpdateError
-                    : localizationInstance.permissionNotGranted,
+                    : "${localizationInstance.permissionNotGranted} ${localizationInstance.downloadFromSite}",
                 type: AlertType.error,
+                onConfirmed: (ctx) {
+                  Navigator.of(ctx).pop();
+                  launchUrl(version.url);
+                },
               ).call();
             }
             if (status == AppUpdateStatus.downloading) {
