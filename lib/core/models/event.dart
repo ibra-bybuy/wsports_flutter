@@ -176,6 +176,19 @@ class Event extends Equatable {
     return sortTeams;
   }
 
+  List<String> get joinEngTeamsForSearch {
+    final words = engTeams
+        .map((e) {
+          final eWord = e.name.split(" ");
+
+          return eWord.where((element) => element.length >= 3).toList();
+        })
+        .expand((element) => element)
+        .toList();
+
+    return words;
+  }
+
   List<Team> get localizedTeams {
     final sortTeams = List<Team>.from(teams)
       ..sort((a, b) => a.position.compareTo(b.position));

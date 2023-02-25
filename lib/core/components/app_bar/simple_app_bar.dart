@@ -11,6 +11,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? titleColor;
   final Color? leadingColor;
   final List<Widget>? actions;
+  final Widget? leading;
   const SimpleAppBar({
     super.key,
     required this.title,
@@ -24,6 +25,7 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleColor = Colors.white,
     this.leadingColor = const Color(0XFFC4C4C4),
     this.actions,
+    this.leading,
   });
 
   @override
@@ -33,9 +35,10 @@ class SimpleAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor,
       shadowColor: shadowColor,
       systemOverlayStyle: systemUiOverlayStyle,
-      leading: Navigator.of(context).canPop()
-          ? AppBarLeadingBackBtn(color: leadingColor)
-          : null,
+      leading: leading ??
+          (Navigator.of(context).canPop()
+              ? AppBarLeadingBackBtn(color: leadingColor)
+              : null),
       title: GoogleText(
         title,
         color: titleColor,

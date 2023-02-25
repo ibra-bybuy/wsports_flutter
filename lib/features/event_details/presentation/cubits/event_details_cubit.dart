@@ -18,9 +18,13 @@ class EventDetailsCubit
     emit(FetchLoading());
     final response = await usecase.getDetails(eventId);
     response.fold((l) => emit(FetchError(l)), (r) {
-      setEvent(r.event);
-      emit(FetchLoaded(r));
+      setSuccess(r);
     });
+  }
+
+  void setSuccess(EventDetailsResponseEntities r) {
+    setEvent(r.event);
+    emit(FetchLoaded(r));
   }
 
   void setEvent(Event event) {

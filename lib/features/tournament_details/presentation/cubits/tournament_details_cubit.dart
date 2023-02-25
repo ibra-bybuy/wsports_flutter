@@ -24,7 +24,7 @@ class TournamentDetailsCubit
 
     if (startTime.isNotEmpty) {
       final res = await usecase.call(
-        eventCubit.state.name,
+        Uri.decodeFull(eventCubit.state.name),
         startTime[0],
       );
 

@@ -1,6 +1,7 @@
 import 'package:html/parser.dart';
 
 import '../functions/ufc_utils.dart';
+import '../models/event.dart';
 
 extension StringExt on String {
   bool get isSvg => toLowerCase().contains(".svg");
@@ -62,5 +63,15 @@ extension StringExt on String {
     }
 
     return false;
+  }
+
+  Event? toEventByLink() {
+    final str = split(",");
+
+    if (str.length >= 2) {
+      return Event(name: str[0], startTime: str[1]);
+    }
+
+    return null;
   }
 }

@@ -27,9 +27,11 @@ class CachedEventScoresCubit extends HydratedCubit<EventsScoresState> {
   EventScore? getScoreByEvent(Event event) {
     final reversedItems = List<EventScore>.from(state.items.reversed.toList());
     for (final item in reversedItems) {
-      final names = item.joinTeamNames.toLowerCase();
-      final contains =
-          names.containsAnyWord(event.engTeams.map((e) => e.name).toList());
+      final names = item.joinTeamNames
+          .toLowerCase()
+          .replaceAll(RegExp(r'[^a-zA-Z0-9, ]'), "");
+      final teams = event.joinEngTeamsForSearch;
+      final contains = names.containsAnyWord(teams);
       if (contains) {
         return item;
       }
