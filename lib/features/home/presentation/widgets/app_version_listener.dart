@@ -26,7 +26,10 @@ class _AppVersionListenerState extends State<AppVersionListener> {
   @override
   void initState() {
     super.initState();
-    uiCubit.call();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      uiCubit.call();
+    });
   }
 
   void _showDialog(BuildContext context, AppVersion version) {
@@ -37,8 +40,6 @@ class _AppVersionListenerState extends State<AppVersionListener> {
       body: localizationInstance.newVersionBody,
       confirmBtnText: localizationInstance.update,
       onConfirmed: (ctx) {
-        Navigator.of(ctx).pop();
-
         appUpdate.update(
           url: version.url,
           listener: (status, progress) {
