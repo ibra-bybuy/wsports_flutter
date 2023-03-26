@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
@@ -26,6 +27,7 @@ import '../../../event_details/presentation/widgets/share_event.dart';
 import '../../../event_details/presentation/widgets/write_comment.dart';
 import '../cubits/tournament_details_cubit.dart';
 
+@RoutePage()
 class TournamentDetailsScreen extends StatefulWidget {
   final List<Event> events;
   const TournamentDetailsScreen({

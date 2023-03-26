@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/listview/listview_builder.dart';
@@ -10,6 +11,7 @@ import '../../../../setup.dart';
 import '../cubits/comment_section_cubit.dart';
 import '../widgets/bottom_area.dart';
 
+@RoutePage()
 class CommentSectionScreen extends StatefulWidget {
   final String eventId;
   const CommentSectionScreen({Key? key, required this.eventId})

@@ -6,6 +6,7 @@ import 'package:watch_sports/router/app_router.dart';
 
 import '../../../home/presentation/widgets/app_version_listener.dart';
 
+@RoutePage()
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -30,9 +31,9 @@ class _MainScreenState extends State<MainScreen> {
     return AppVersionListener(
       child: AutoTabsScaffold(
         routes: const [
-          HomeRoutes(),
-          TournamentsRoutes(),
-          ProfileRoutes(),
+          HomeRoute(),
+          TournamentsRoute(),
+          ProfileRoute(),
         ],
         bottomNavigationBuilder: (context, tabsRouter) {
           return CustomNavigationBar(

@@ -1,4 +1,5 @@
 import 'package:app_settings/app_settings.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -23,6 +24,7 @@ import '../../../../setup.dart';
 import '../widgets/change_name_dialog.dart';
 import '../widgets/user_builder.dart';
 
+@RoutePage()
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 

@@ -30,6 +30,7 @@ import '../widgets/team_card.dart';
 import '../widgets/tournament_listener.dart';
 import '../widgets/write_comment.dart';
 
+@RoutePage()
 class EventDetailsScreen extends StatefulWidget {
   final Event? event;
   final String? eventId;

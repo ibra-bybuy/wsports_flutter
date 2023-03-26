@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/features/comment_section/presentation/screens/comment_section_screen.dart';
 import 'package:watch_sports/features/event_details/presentation/screens/event_details_screen.dart';
@@ -16,43 +15,27 @@ import '../features/profile/presentation/screens/settings_screen.dart';
 import '../features/search/presentation/screens/search_screen.dart';
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
+@singleton
+@AutoRouterConfig(
   replaceInRouteName: 'Screen,Route',
-  routes: <AutoRoute>[
+)
+class AppRouter extends _$AppRouter {
+  @override
+  final List<AutoRoute> routes = [
     AutoRoute(
-      page: MainScreen,
-      initial: true,
+      path: "/",
+      page: MainRoute.page,
       children: [
-        AutoRoute(
-          name: "HomeRoutes",
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(page: HomeScreen, initial: true),
-          ],
-        ),
-        AutoRoute(
-          name: "TournamentsRoutes",
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(page: TournamentsScreen, initial: true),
-          ],
-        ),
-        AutoRoute(
-          name: "ProfileRoutes",
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(page: ProfileScreen, initial: true),
-          ],
-        ),
+        AutoRoute(page: HomeRoute.page),
+        AutoRoute(page: TournamentsRoute.page),
+        AutoRoute(page: ProfileRoute.page),
       ],
     ),
-    AutoRoute(path: '/event/:id', page: EventDetailsScreen),
-    AutoRoute(page: CommentSectionScreen),
-    AutoRoute(page: SearchScreen),
-    AutoRoute(page: TournamentDetailsScreen),
-    AutoRoute(page: SettingsScreen),
-    AutoRoute(page: FighterScreen),
-  ],
-)
-@singleton
-class AppRouter extends _$AppRouter {}
+    AutoRoute(path: '/event/:id', page: EventDetailsRoute.page),
+    AutoRoute(page: CommentSectionRoute.page),
+    AutoRoute(page: SearchRoute.page),
+    AutoRoute(page: TournamentDetailsRoute.page),
+    AutoRoute(page: SettingsRoute.page),
+    AutoRoute(page: FighterRoute.page),
+  ];
+}

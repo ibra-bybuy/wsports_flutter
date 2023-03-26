@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/app_bar/simple_app_bar.dart';
@@ -14,6 +15,7 @@ import '../../../../i18n/i18n.dart';
 import '../../../../setup.dart';
 import '../cubits/fighter_cubit.dart';
 
+@RoutePage()
 class FighterScreen extends StatefulWidget {
   final String title;
   final Team item;

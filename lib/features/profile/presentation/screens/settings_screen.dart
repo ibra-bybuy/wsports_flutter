@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:watch_sports/core/components/settings/settings_wrapper.dart';
@@ -5,6 +6,7 @@ import 'package:watch_sports/core/components/settings/settings_wrapper.dart';
 import '../../../../core/components/app_bar/main_app_bar.dart';
 import '../../../../core/components/text/google_text.dart';
 
+@RoutePage()
 class SettingsScreen extends StatefulWidget {
   final String title;
   final List<SettinsItem> items;

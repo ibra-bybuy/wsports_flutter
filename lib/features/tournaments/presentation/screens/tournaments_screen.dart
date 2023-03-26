@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/textfield/sarchfield.dart';
@@ -13,6 +14,7 @@ import '../../../../core/cubits/cached/tournaments_cubit/tournaments_state.dart'
 import '../../../../i18n/i18n.dart';
 import '../../../../setup.dart';
 
+@RoutePage()
 class TournamentsScreen extends StatefulWidget {
   const TournamentsScreen({Key? key}) : super(key: key);
 
