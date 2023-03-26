@@ -23,21 +23,16 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  final storage = await HydratedStorage.build(
+  HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
 
-  HydratedBlocOverrides.runZoned(
-    () async {
-      await configureDependencies();
+  await configureDependencies();
 
-      runApp(
-        Phoenix(child: const MyApp()),
-      );
-    },
-    storage: storage,
+  runApp(
+    Phoenix(child: const MyApp()),
   );
 }
 
