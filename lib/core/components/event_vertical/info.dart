@@ -30,7 +30,7 @@ class EventVerticalCardInfo extends StatelessWidget {
             GoogleText(
               DateFunctions(passedDate: eventTime!).dayMonthHuman(),
               fontSize: 12.0,
-              color: const Color.fromARGB(255, 134, 134, 134),
+              color: Theme.of(context).textTheme.bodySmall?.color,
               textAlign: TextAlign.center,
             ),
             const SizedBox(width: 5.0),
@@ -55,7 +55,7 @@ class EventVerticalCardInfo extends StatelessWidget {
               DateFunctions(passedDate: eventTime!).hourMinute(),
               fontWeight: FontWeight.bold,
               fontSize: 13.5,
-              color: Colors.black87,
+              color: Theme.of(context).textTheme.bodySmall?.color,
               textAlign: TextAlign.center,
             )
           ]

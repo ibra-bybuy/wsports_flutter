@@ -12,17 +12,14 @@ class HomeContainerTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: 0.4,
-      child: SizedBox(
-        width: double.infinity,
-        child: GoogleText(
-          title,
-          color: Colors.black,
-          fontSize: SizeConfig(context, 22.0)(),
-          fontWeight: FontWeight.bold,
-          textAlign: isDesktop ? TextAlign.center : TextAlign.start,
-        ),
+    return SizedBox(
+      width: double.infinity,
+      child: GoogleText(
+        title,
+        color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.6),
+        fontSize: SizeConfig(context, 22.0)(),
+        fontWeight: FontWeight.bold,
+        textAlign: isDesktop ? TextAlign.center : TextAlign.start,
       ),
     );
   }

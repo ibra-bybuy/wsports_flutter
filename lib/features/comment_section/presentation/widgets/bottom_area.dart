@@ -35,10 +35,10 @@ class CommentBottomArea extends StatelessWidget {
           const SizedBox(width: 15.0),
           InkWell(
             onTap: onSend,
-            child: const Icon(
+            child: Icon(
               Icons.send,
               size: 36.0,
-              color: Colors.black,
+              color: Theme.of(context).iconTheme.color,
             ),
           ),
           const SizedBox(width: 10.0),

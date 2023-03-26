@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen>
       cubit: eventsCubit,
       isLoading: (state) => state is EventsLoading,
       child: Scaffold(
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: const MainAppBar(
           children: [
             SearchAppBar(),

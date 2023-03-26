@@ -11,8 +11,11 @@ class SettingsWrapper extends StatelessWidget {
       platform: DevicePlatform.android,
       shrinkWrap: true,
       applicationType: ApplicationType.material,
-      lightTheme: const SettingsThemeData(
-        settingsListBackground: Colors.white,
+      lightTheme: SettingsThemeData(
+        settingsListBackground: Theme.of(context).appBarTheme.backgroundColor,
+      ),
+      darkTheme: SettingsThemeData(
+        settingsListBackground: Theme.of(context).appBarTheme.backgroundColor,
       ),
       sections: sections,
     );

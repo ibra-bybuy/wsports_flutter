@@ -9,10 +9,14 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:watch_sports/core/cubits/cached/mode/mode_cubit.dart';
+import 'package:watch_sports/core/extensions/theme_mode.dart';
+import 'package:watch_sports/themes/dark.dart';
 
 import 'app.dart';
 import 'core/cubits/cached/lang/lang_cubit.dart';
 import 'core/cubits/cached/lang/lang_state.dart';
+import 'core/cubits/cached/mode/mode_state.dart';
 import 'i18n/i18n.dart';
 import 'router/app_router.dart';
 import 'setup.dart';
@@ -46,6 +50,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late final AppRouter _appRouter;
   final langCubit = getIt<CachedLangCubit>();
+  final modeCubit = getIt<ModeCubit>();
 
   @override
   void initState() {
@@ -56,26 +61,33 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CachedLangCubit, LangState>(
-      bloc: langCubit,
-      builder: (context, state) {
-        return MaterialApp.router(
-          routerDelegate: _appRouter.delegate(),
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          scaffoldMessengerKey: App.scaffoldKey,
-          title: 'Watch sports',
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: [
-            I18n.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: I18n.supportedLocales,
-          theme: LightTheme().getTheme(),
-          themeMode: ThemeMode.light,
-          builder: EasyLoading.init(),
-          locale: I18n.getLocaleByCode(state.langCode),
+    return BlocBuilder<ModeCubit, ModeState>(
+      bloc: modeCubit,
+      builder: (context, themeModeState) {
+        return BlocBuilder<CachedLangCubit, LangState>(
+          bloc: langCubit,
+          builder: (context, langState) {
+            return MaterialApp.router(
+              routerDelegate: _appRouter.delegate(),
+              routeInformationParser: _appRouter.defaultRouteParser(),
+              scaffoldMessengerKey: App.scaffoldKey,
+              title: 'Watch sports',
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: [
+                I18n.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: I18n.supportedLocales,
+              theme: themeModeState.mode.isDarkMode
+                  ? DarkTheme().getTheme()
+                  : LightTheme().getTheme(),
+              themeMode: themeModeState.mode,
+              builder: EasyLoading.init(),
+              locale: I18n.getLocaleByCode(langState.langCode),
+            );
+          },
         );
       },
     );

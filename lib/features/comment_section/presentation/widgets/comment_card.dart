@@ -55,7 +55,7 @@ class _CommentCardState extends State<CommentCard> {
                     child: GoogleText(
                       widget.comment.device,
                       maxLines: 1,
-                      color: Colors.grey,
+                      color: Theme.of(context).textTheme.bodySmall?.color,
                       fontSize: SizeConfig(context, 09)(),
                     ),
                   ),

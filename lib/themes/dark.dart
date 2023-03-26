@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LightTheme {
+class DarkTheme {
   static const MaterialColor primaryBlack = MaterialColor(
     _blackPrimaryValue,
     <int, Color>{
@@ -19,45 +19,49 @@ class LightTheme {
     },
   );
   static const int _blackPrimaryValue = 0xFF000000;
-  Color iconColor = Colors.black;
+
+  Color appBarColor = const Color.fromARGB(255, 42, 42, 42);
+  Color iconColor = const Color.fromARGB(255, 225, 225, 225);
 
   ThemeData getTheme() => ThemeData(
         primarySwatch: primaryBlack,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         textSelectionTheme: const TextSelectionThemeData(
-          cursorColor: Colors.black,
+          cursorColor: Colors.white,
         ),
-        appBarTheme: const AppBarTheme(
+        canvasColor: Colors.black,
+        appBarTheme: AppBarTheme(
           centerTitle: false,
-          systemOverlayStyle: SystemUiOverlayStyle(
+          systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
-            statusBarIconBrightness: Brightness.dark,
-            statusBarBrightness: Brightness.light,
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.dark,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: appBarColor,
         ),
         iconTheme: IconThemeData(
           color: iconColor,
         ),
         inputDecorationTheme: InputDecorationTheme(
-          fillColor: const Color(0XFFF3F4F5),
+          fillColor: const Color.fromARGB(255, 73, 72, 72),
           hintStyle: GoogleFonts.roboto(
-            color: Colors.black,
+            color: iconColor,
           ),
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(
           bodyLarge: GoogleFonts.roboto(
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         tabBarTheme: const TabBarTheme(
-          labelColor: Color(0XFF000000),
-          unselectedLabelColor: Color(0XFFF3F4F5),
+          labelColor: Colors.white,
+          indicatorColor: Color.fromARGB(255, 144, 11, 2),
+          unselectedLabelColor: Color.fromARGB(255, 6, 6, 6),
         ),
-        dividerColor: const Color(0XFFE4E5E5),
+        dividerColor: const Color.fromARGB(255, 25, 25, 25),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 36, 36, 36),
         ),
       );
 }

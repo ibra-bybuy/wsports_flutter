@@ -17,6 +17,7 @@ class EventDetailsWriteCommentField extends StatelessWidget {
           context: context,
           builder: (context) => CommentSectionScreen(eventId: eventId),
           barrierColor: Colors.black.withOpacity(0.5),
+          backgroundColor: Colors.transparent,
         );
       },
       child: IgnorePointer(

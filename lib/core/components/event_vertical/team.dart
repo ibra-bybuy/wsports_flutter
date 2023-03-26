@@ -29,7 +29,7 @@ class EventVerticalCardTeam extends StatelessWidget {
         Expanded(
           child: GoogleText(
             team.name,
-            color: Colors.black87,
+            color: Theme.of(context).textTheme.bodySmall?.color,
             maxLines: 1,
           ),
         ),

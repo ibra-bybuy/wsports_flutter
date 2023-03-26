@@ -13,7 +13,7 @@ class CommentBody extends StatelessWidget {
     Color? color;
 
     if (comment.isSending) {
-      color = Colors.grey;
+      color = Theme.of(context).textTheme.bodySmall?.color;
     } else if (comment.isError) {
       color = Colors.red;
     }

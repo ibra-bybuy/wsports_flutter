@@ -43,7 +43,7 @@ class EventInfo extends StatelessWidget {
             GoogleText(
               DateFunctions(passedDate: eventTime!).dayMonthYearHuman(),
               fontSize: 12.0,
-              color: dateColor ?? const Color.fromARGB(255, 134, 134, 134),
+              color: dateColor,
               textAlign: TextAlign.center,
             ),
           ],
@@ -70,7 +70,12 @@ class EventInfo extends StatelessWidget {
               DateFunctions(passedDate: eventTime!).hourMinute(),
               fontWeight: FontWeight.bold,
               fontSize: 15.0,
-              color: hoursColor ?? Colors.black,
+              color: hoursColor ??
+                  Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.color
+                      ?.withOpacity(0.8),
               textAlign: TextAlign.center,
             )
           ]

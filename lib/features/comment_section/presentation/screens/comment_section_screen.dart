@@ -37,6 +37,7 @@ class _CommentSectionScreenState extends State<CommentSectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).appBarTheme.backgroundColor,
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       constraints: BoxConstraints(

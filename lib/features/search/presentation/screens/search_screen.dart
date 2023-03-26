@@ -75,6 +75,7 @@ class _SearchScreenState extends State<SearchScreen> {
       isLoading: (state) => state is FetchLoading,
       darkenBackground: false,
       child: Scaffold(
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: MainAppBar(
           children: [
             if (widget.showSearch) ...[
@@ -87,7 +88,7 @@ class _SearchScreenState extends State<SearchScreen> {
               GoogleText(
                 widget.titleText!,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Theme.of(context).textTheme.bodyLarge?.color,
               ),
             ],
           ],

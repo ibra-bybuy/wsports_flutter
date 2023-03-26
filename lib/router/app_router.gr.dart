@@ -359,7 +359,7 @@ class SettingsRoute extends PageRouteInfo<SettingsRouteArgs> {
   SettingsRoute({
     Key? key,
     required String title,
-    required List<SettinsItem> items,
+    required List<SettingsItem> items,
     void Function(
       BuildContext,
       String,
@@ -394,7 +394,7 @@ class SettingsRouteArgs {
 
   final String title;
 
-  final List<SettinsItem> items;
+  final List<SettingsItem> items;
 
   final void Function(
     BuildContext,

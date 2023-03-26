@@ -22,7 +22,9 @@ class HomeCategoryCard extends StatelessWidget {
       child: Container(
         height: double.infinity,
         decoration: BoxDecoration(
-          color: enabled ? const Color(0XFF000000) : const Color(0XFFF3F4F5),
+          color: enabled
+              ? Theme.of(context).tabBarTheme.indicatorColor
+              : Theme.of(context).tabBarTheme.unselectedLabelColor,
           borderRadius: const BorderRadius.all(
             Radius.circular(10.0),
           ),
@@ -35,7 +37,9 @@ class HomeCategoryCard extends StatelessWidget {
             Icon(
               icon,
               size: 22.0,
-              color: enabled ? Colors.white : Colors.black,
+              color: enabled
+                  ? Theme.of(context).tabBarTheme.labelColor
+                  : Theme.of(context).tabBarTheme.labelColor,
             ),
             const SizedBox(width: 10.0),
             GoogleText(
@@ -43,7 +47,9 @@ class HomeCategoryCard extends StatelessWidget {
               fontSize: SizeConfig(context, 12)(),
               maxLines: 1,
               fontWeight: FontWeight.bold,
-              color: enabled ? Colors.white : Colors.black,
+              color: enabled
+                  ? Theme.of(context).tabBarTheme.labelColor
+                  : Theme.of(context).tabBarTheme.labelColor,
             ),
           ],
         ),

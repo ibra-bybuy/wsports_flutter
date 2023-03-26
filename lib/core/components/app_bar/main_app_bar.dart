@@ -12,9 +12,9 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      iconTheme: const IconThemeData(
-        color: Colors.black,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      iconTheme: IconThemeData(
+        color: Theme.of(context).iconTheme.color,
       ),
       elevation: 0.0,
       toolbarHeight: preferredSize.height,

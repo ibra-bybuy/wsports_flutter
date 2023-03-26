@@ -18,9 +18,9 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomTextField(
       controller: controller,
-      prefixIcon: const Icon(
+      prefixIcon: Icon(
         Icons.search,
-        color: Colors.black,
+        color: Theme.of(context).iconTheme.color,
       ),
       hint: localizationInstance.searchHint,
       autofocus: autofocus,

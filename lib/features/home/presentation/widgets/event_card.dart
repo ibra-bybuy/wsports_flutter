@@ -50,7 +50,7 @@ class _EventCardState extends State<EventCard> {
           decoration: BoxDecoration(
             border: widget.border ??
                 Border.all(
-                  color: const Color(0XFFE4E5E5),
+                  color: Theme.of(context).dividerColor,
                 ),
             borderRadius: const BorderRadius.all(Radius.circular(15.0)),
             color: widget.cardColor,

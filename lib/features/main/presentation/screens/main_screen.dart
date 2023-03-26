@@ -37,6 +37,9 @@ class _MainScreenState extends State<MainScreen> {
         ],
         bottomNavigationBuilder: (context, tabsRouter) {
           return CustomNavigationBar(
+            backgroundColor:
+                Theme.of(context).bottomNavigationBarTheme.backgroundColor ??
+                    Colors.white,
             items: [
               CustomNavigationBarItem(
                 icon: const Icon(Icons.home),

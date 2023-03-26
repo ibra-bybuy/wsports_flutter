@@ -52,6 +52,7 @@ class _TournamentsScreenState extends State<TournamentsScreen>
         return state is FetchLoading;
       },
       child: Scaffold(
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         appBar: MainAppBar(
           children: [
             SearchField(

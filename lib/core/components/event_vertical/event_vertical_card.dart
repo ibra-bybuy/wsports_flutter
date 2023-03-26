@@ -38,7 +38,7 @@ class _EventVerticalCardState extends State<EventVerticalCard> {
           return Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: const Color(0XFFE4E5E5),
+                color: Theme.of(context).dividerColor,
                 width: 0.4,
               ),
               borderRadius: const BorderRadius.all(Radius.circular(3.0)),
@@ -71,7 +71,8 @@ class _EventVerticalCardState extends State<EventVerticalCard> {
                             EventVerticalCardTeam(
                               widget.event.localizedTeams.last,
                               score: score?.lastScore,
-                              showScore: widget.event.isLive,
+                              showScore:
+                                  widget.event.isLive && !widget.event.isMma,
                             ),
                           ],
                         ],

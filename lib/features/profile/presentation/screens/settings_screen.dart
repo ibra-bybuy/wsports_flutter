@@ -9,7 +9,7 @@ import '../../../../core/components/text/google_text.dart';
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
   final String title;
-  final List<SettinsItem> items;
+  final List<SettingsItem> items;
   final void Function(BuildContext context, String code)? onTap;
   const SettingsScreen({
     super.key,
@@ -26,12 +26,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       appBar: MainAppBar(
         centerTitle: true,
         children: [
           GoogleText(
             widget.title,
-            color: Colors.black,
+            color: Theme.of(context).textTheme.bodyLarge?.color,
           ),
         ],
       ),
@@ -56,9 +57,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 }
 
-class SettinsItem {
+class SettingsItem {
   final String code;
   final String value;
 
-  const SettinsItem(this.code, this.value);
+  const SettingsItem(this.code, this.value);
 }

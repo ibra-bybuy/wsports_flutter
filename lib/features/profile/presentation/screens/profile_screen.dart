@@ -6,8 +6,11 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:watch_sports/core/components/text/google_text.dart';
 import 'package:watch_sports/core/cubits/cached/lang/lang_state.dart';
+import 'package:watch_sports/core/cubits/cached/mode/mode_cubit.dart';
+import 'package:watch_sports/core/cubits/cached/mode/mode_state.dart';
 import 'package:watch_sports/core/cubits/cached/user_cubit/user_cubit.dart';
 import 'package:watch_sports/core/cubits/custom/bool_cubit/bool_cubit.dart';
+import 'package:watch_sports/core/extensions/theme_mode.dart';
 import 'package:watch_sports/core/functions/pick_image.dart';
 import 'package:watch_sports/features/profile/presentation/screens/settings_screen.dart';
 import 'package:watch_sports/i18n/i18n.dart';
@@ -19,6 +22,7 @@ import '../../../../core/components/image/cached_avatar/cached_avatar.dart';
 import '../../../../core/components/lifecycles/lifecycle_handler.dart';
 import '../../../../core/components/settings/settings_wrapper.dart';
 import '../../../../core/components/taps/ink_well_circle.dart';
+import '../../../../core/constants/modes.dart';
 import '../../../../core/cubits/cached/lang/lang_cubit.dart';
 import '../../../../setup.dart';
 import '../widgets/change_name_dialog.dart';
@@ -38,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   final userCubit = getIt<UserCubit>();
   final localNotifications = getIt<LocalNotifications>();
   final langCubit = getIt<CachedLangCubit>();
+  final modeCubit = getIt<ModeCubit>();
   final notificationsCubit = BoolCubit(true);
 
   @override
@@ -70,6 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     super.build(context);
 
     return Scaffold(
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       appBar: MainAppBar(
         centerTitle: true,
         children: [
@@ -78,7 +84,8 @@ class _ProfileScreenState extends State<ProfileScreen>
             builder: (context, state) {
               return GoogleText(
                 userCubit.name,
-                color: Colors.black,
+                color: Theme.of(context).textTheme.bodyLarge?.color,
+                fontWeight: FontWeight.w600,
               );
             },
           ),
@@ -160,13 +167,45 @@ class _ProfileScreenState extends State<ProfileScreen>
                               SettingsRoute(
                                 title: localizationInstance.language,
                                 items: LocalLang.values
-                                    .map((e) => SettinsItem(e.code, e.name))
+                                    .map((e) => SettingsItem(e.code, e.name))
                                     .toList(),
                                 onTap: (context, itemCode) {
                                   Navigator.of(context)
                                       .popUntil((route) => route.isFirst);
                                   langCubit.setLangCode(itemCode);
                                   Phoenix.rebirth(context);
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                        SettingsTile.navigation(
+                          leading: const Icon(Icons.dark_mode),
+                          title: Text(localizationInstance.theme),
+                          value: BlocBuilder<ModeCubit, ModeState>(
+                            bloc: modeCubit,
+                            builder: (context, state) {
+                              return Text(state.mode.localizedName);
+                            },
+                          ),
+                          onPressed: (_) {
+                            appRouter.push(
+                              SettingsRoute(
+                                title: localizationInstance.theme,
+                                items: Modes.values
+                                    .map((e) => SettingsItem(
+                                        e.mode.index.toString(),
+                                        e.mode.localizedName))
+                                    .toList(),
+                                onTap: (context, itemCode) {
+                                  final index = int.tryParse(itemCode);
+
+                                  if (index != null) {
+                                    Navigator.of(context)
+                                        .popUntil((route) => route.isFirst);
+                                    modeCubit.setMode(ThemeMode.values[index]);
+                                    Phoenix.rebirth(context);
+                                  }
                                 },
                               ),
                             );

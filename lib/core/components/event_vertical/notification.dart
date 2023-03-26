@@ -14,7 +14,9 @@ class EventVerticalCardTrailing extends StatelessWidget {
       iconBuilder: (contains) {
         return Icon(
           contains ? Icons.notifications : Icons.notifications_outlined,
-          color: contains ? Colors.red : Colors.black87,
+          color: contains
+              ? Colors.red
+              : Theme.of(context).textTheme.bodySmall?.color,
         );
       },
     );

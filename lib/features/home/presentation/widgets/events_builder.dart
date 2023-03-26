@@ -39,22 +39,6 @@ class EventsBuilder extends StatelessWidget {
               }
 
               return EventsVerticalCard(notFinished);
-
-              // return CustomListViewBuilder<Event>(
-              //   items: notFinished,
-              //   itemBuilder: (context, _, item) {
-              //     return EventCard(
-              //       event: item,
-              //       onTap: () {
-              //         if (item.isMma) {
-              //           appRouter.push(TournamentDetailsRoute(events: [item]));
-              //         } else {
-              //           appRouter.push(EventDetailsRoute(event: item));
-              //         }
-              //       },
-              //     );
-              //   },
-              // );
             }
 
             if (eventsState is EventsLoaded && notFinished.isEmpty) {
