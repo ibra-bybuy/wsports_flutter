@@ -13,10 +13,12 @@ import '../loader/alert_loader/alert_loader.dart';
 class MyWebView extends StatefulWidget {
   final String url;
   final PullToRefreshController? pullToRefreshController;
+  final Color? loadingColor;
   const MyWebView(
     this.url, {
     super.key,
     this.pullToRefreshController,
+    this.loadingColor,
   });
 
   @override
@@ -70,53 +72,86 @@ class _MyWebViewState extends State<MyWebView> {
       bloc: loadingCubit,
       listener: (context, state) {
         if (state) {
-          alertLoader.show();
+          alertLoader.show(darkenBackground: true);
         } else {
           alertLoader.dismiss();
         }
       },
-      child: InAppWebView(
-        pullToRefreshController: widget.pullToRefreshController,
-        gestureRecognizers: <Factory<VerticalDragGestureRecognizer>>{}..add(
-            Factory<VerticalDragGestureRecognizer>(
-                () => VerticalDragGestureRecognizer()),
-          ),
-        onWebViewCreated: (controller) {
-          inAppWebViewController = controller;
-        },
-        initialOptions: InAppWebViewGroupOptions(
-          android: AndroidInAppWebViewOptions(
-            useHybridComposition: true,
-            useShouldInterceptRequest: true,
-          ),
-          crossPlatform: InAppWebViewOptions(
-            useShouldOverrideUrlLoading: true,
-            userAgent:
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
-          ),
-        ),
-        shouldOverrideUrlLoading: (controller, navAction) async {
-          final uri = navAction.request.url;
+      child: Stack(
+        children: [
+          InAppWebView(
+            pullToRefreshController: widget.pullToRefreshController,
+            gestureRecognizers: <Factory<VerticalDragGestureRecognizer>>{}..add(
+                Factory<VerticalDragGestureRecognizer>(
+                    () => VerticalDragGestureRecognizer()),
+              ),
+            onWebViewCreated: (controller) {
+              controller.addUserScript(
+                  userScript: UserScript(
+                source: '''
+                  document.getElementsByClassName('nav-wrapper')[0].style.display = 'none';
+                  document.getElementsByClassName('cp')[0].style.display = 'none';
+                  document.getElementsByClassName('servers')[0].style.display = 'none';
+                  document.getElementsByClassName('footer')[0].style.display = 'none';
+                ''',
+                injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
+              ));
+              inAppWebViewController = controller;
+            },
+            initialOptions: InAppWebViewGroupOptions(
+              android: AndroidInAppWebViewOptions(
+                useHybridComposition: true,
+                useShouldInterceptRequest: true,
+              ),
+              crossPlatform: InAppWebViewOptions(
+                useShouldOverrideUrlLoading: true,
+                userAgent:
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+              ),
+            ),
+            shouldOverrideUrlLoading: (controller, navAction) async {
+              final uri = navAction.request.url;
 
-          if (uri != null &&
-              currentUrl != null &&
-              AdBlocker(uri, currentUrl!).block) {
-            return NavigationActionPolicy.CANCEL;
-          }
+              if (uri != null &&
+                  currentUrl != null &&
+                  AdBlocker(uri, currentUrl!).block) {
+                return NavigationActionPolicy.CANCEL;
+              }
 
-          return NavigationActionPolicy.ALLOW;
-        },
-        initialUrlRequest: URLRequest(
-          url: Uri.tryParse(
-            widget.url,
+              return NavigationActionPolicy.ALLOW;
+            },
+            initialUrlRequest: URLRequest(
+              url: Uri.tryParse(
+                widget.url,
+              ),
+            ),
+            onLoadStart: (controller, url) {
+              loadingCubit.set(true);
+            },
+            onLoadStop: (context, url) async {
+              await Future.delayed(const Duration(milliseconds: 500));
+              if (mounted) {
+                loadingCubit.set(false);
+              }
+            },
           ),
-        ),
-        onLoadStart: (controller, url) {
-          loadingCubit.set(true);
-        },
-        onLoadStop: (context, url) {
-          loadingCubit.set(false);
-        },
+          BlocBuilder<BoolCubit, bool>(
+            bloc: loadingCubit,
+            builder: (context, state) {
+              if (state) {
+                return Container(
+                  color: widget.loadingColor,
+                  child: const SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                );
+              }
+
+              return const SizedBox();
+            },
+          ),
+        ],
       ),
     );
   }

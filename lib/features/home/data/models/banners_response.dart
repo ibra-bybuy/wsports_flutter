@@ -6,10 +6,10 @@ part 'banners_response.g.dart';
 
 @JsonSerializable()
 class BannersResponse {
-  final int statusCode;
+  final bool success;
   final List<BannerApi> data;
   const BannersResponse({
-    this.statusCode = 0,
+    this.success = false,
     this.data = const [],
   });
 

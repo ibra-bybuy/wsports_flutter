@@ -147,6 +147,8 @@ import 'providers/websocket/socket_io.dart' as _i40;
 import 'providers/websocket/websocket_provider.dart' as _i39;
 import 'router/app_router.dart' as _i4;
 
+// ignore_for_file: unnecessary_lambdas
+// ignore_for_file: lines_longer_than_80_chars
 // initializes the registration of main-scope dependencies inside of GetIt
 _i1.GetIt $initGetIt(
   _i1.GetIt getIt, {

@@ -2,34 +2,40 @@
 import 'package:equatable/equatable.dart';
 
 class Banner extends Equatable {
-  final String imageUrl;
-  final String routeUrl;
+  final String code;
+  final String name;
+  final String avatarUrl;
   const Banner({
-    this.imageUrl = '',
-    this.routeUrl = '',
+    this.code = '',
+    this.name = '',
+    this.avatarUrl = '',
   });
 
   Banner copyWith({
-    String? imageUrl,
-    String? routeUrl,
+    String? code,
+    String? name,
+    String? avatarUrl,
   }) {
     return Banner(
-      imageUrl: imageUrl ?? this.imageUrl,
-      routeUrl: routeUrl ?? this.routeUrl,
+      code: code ?? this.code,
+      name: name ?? this.name,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'imageUrl': imageUrl,
-      'routeUrl': routeUrl,
+      'code': code,
+      'name': name,
+      'avatarUrl': avatarUrl,
     };
   }
 
   factory Banner.fromMap(Map<String, dynamic> map) {
     return Banner(
-      imageUrl: (map["imageUrl"] ?? '') as String,
-      routeUrl: (map["routeUrl"] ?? '') as String,
+      code: (map["code"] ?? '') as String,
+      name: (map["name"] ?? '') as String,
+      avatarUrl: (map["avatarUrl"] ?? '') as String,
     );
   }
 
@@ -37,10 +43,5 @@ class Banner extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [imageUrl, routeUrl];
-
-  String get label {
-    final stripped = routeUrl.split(":");
-    return stripped.join("\n");
-  }
+  List<Object> get props => [code, name, avatarUrl];
 }

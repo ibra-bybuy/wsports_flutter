@@ -5,16 +5,14 @@ part 'banner.g.dart';
 
 @JsonSerializable()
 class BannerApi extends Banner {
-  final String name;
-  final String endTime;
-  final String link;
   const BannerApi({
-    this.name = "",
-    this.endTime = "",
-    this.link = "",
+    String code = "",
+    String name = "",
+    String avatarUrl = "",
   }) : super(
-          imageUrl: link,
-          routeUrl: name,
+          code: code,
+          name: name,
+          avatarUrl: avatarUrl,
         );
 
   factory BannerApi.fromJson(Map<String, dynamic> json) =>

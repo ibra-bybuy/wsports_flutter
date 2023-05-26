@@ -88,6 +88,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const color = Color.fromARGB(255, 18, 18, 32);
     return EventTournamentByLinkListener(
       tournamentDetailsCubit,
       eventByLink: eventByLink,
@@ -110,13 +111,13 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
               bloc: uiCubit.eventCubit,
               builder: (context, state) {
                 return Scaffold(
-                  backgroundColor: const Color.fromARGB(255, 18, 18, 32),
+                  backgroundColor: color,
                   appBar: SimpleAppBar(
                     title: state.name,
                     leading: !Navigator.of(context).canPop()
                         ? const AppBarLeadingBackForceBtn()
                         : null,
-                    backgroundColor: const Color.fromARGB(255, 18, 18, 32),
+                    backgroundColor: color,
                     actions: !state.isStarted
                         ? [
                             EventNotificationBuilder([state]),
@@ -150,11 +151,14 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             bloc: selectedStream,
                             builder: (context, streamState) {
                               return MyWebView(
-                                streamState.isEmpty
-                                    ? state.streams.first.url
-                                    : streamState,
+                                "https://strikeout.ws/chelsea-w-vs-everton-w-stream-1",
+                                // TODO
+                                // streamState.isEmpty
+                                //     ? state.streams.first.url
+                                //     : streamState,
                                 pullToRefreshController:
                                     _pullToRefreshController,
+                                loadingColor: color,
                               );
                             },
                           ),
@@ -163,7 +167,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                       if (!state.isLive) ...[
                         Expanded(
                           child: Container(
-                            color: const Color.fromARGB(255, 18, 18, 32),
+                            color: color,
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [

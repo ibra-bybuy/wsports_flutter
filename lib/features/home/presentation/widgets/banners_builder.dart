@@ -30,9 +30,9 @@ class HomeBannersBuilder extends StatelessWidget {
             onTap: (banner) {
               appRouter.push(
                 SearchRoute(
-                  initialQuery: banner.routeUrl,
+                  initialQuery: banner.code,
                   showSearch: false,
-                  titleText: banner.routeUrl,
+                  titleText: banner.name,
                   showPreviousResults: false,
                 ),
               );

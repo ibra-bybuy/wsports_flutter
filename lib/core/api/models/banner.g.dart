@@ -7,13 +7,13 @@ part of 'banner.dart';
 // **************************************************************************
 
 BannerApi _$BannerApiFromJson(Map<String, dynamic> json) => BannerApi(
+      code: json['code'] as String? ?? "",
       name: json['name'] as String? ?? "",
-      endTime: json['endTime'] as String? ?? "",
-      link: json['link'] as String? ?? "",
+      avatarUrl: json['avatarUrl'] as String? ?? "",
     );
 
 Map<String, dynamic> _$BannerApiToJson(BannerApi instance) => <String, dynamic>{
+      'code': instance.code,
       'name': instance.name,
-      'endTime': instance.endTime,
-      'link': instance.link,
+      'avatarUrl': instance.avatarUrl,
     };

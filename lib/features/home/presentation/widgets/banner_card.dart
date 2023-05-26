@@ -27,7 +27,7 @@ class _HomeScreenBannerCardState extends State<HomeScreenBannerCard> {
         maxHeight: double.infinity,
       ),
       child: CachedNetworkImage(
-        imageUrl: widget.item.imageUrl,
+        imageUrl: widget.item.avatarUrl,
         fadeInDuration: const Duration(milliseconds: 100),
         placeholder: (context, str) {
           return CustomShimmer(
@@ -47,7 +47,7 @@ class _HomeScreenBannerCardState extends State<HomeScreenBannerCard> {
           return BannerImage(
             borderRadius: _borderRadius,
             image: imageProvider,
-            centerText: widget.item.label,
+            centerText: widget.item.name,
           );
         },
       ),

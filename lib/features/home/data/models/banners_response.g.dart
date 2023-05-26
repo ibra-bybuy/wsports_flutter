@@ -8,7 +8,7 @@ part of 'banners_response.dart';
 
 BannersResponse _$BannersResponseFromJson(Map<String, dynamic> json) =>
     BannersResponse(
-      statusCode: json['statusCode'] as int? ?? 0,
+      success: json['success'] as bool? ?? false,
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => BannerApi.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -17,6 +17,6 @@ BannersResponse _$BannersResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$BannersResponseToJson(BannersResponse instance) =>
     <String, dynamic>{
-      'statusCode': instance.statusCode,
+      'success': instance.success,
       'data': instance.data,
     };

@@ -8,12 +8,6 @@
 			"name": "watch_sports",
 			"request": "launch",
 			"type": "dart"
-		},
-		{
-			"name": "watch_sports (debug mode)",
-			"request": "launch",
-			"type": "dart",
-			"flutterMode": "debug"
 		}
 	]
 }
