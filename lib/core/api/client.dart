@@ -50,12 +50,7 @@ abstract class RestClient {
   );
 
   @GET("/tournaments")
-  Future<TournamentsResponseDto> getTournaments(
-    @Query("d") String date,
-    @Query("type") String? type,
-    @Query("page") int page,
-    @Query("limit") int limit,
-  );
+  Future<TournamentsResponseDto> getTournaments();
 
   @GET('/iframe.js')
   Future<String> getUfcIframe();

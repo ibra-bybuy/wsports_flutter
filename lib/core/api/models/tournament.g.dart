@@ -8,12 +8,12 @@ part of 'tournament.dart';
 
 TournamentApi _$TournamentApiFromJson(Map<String, dynamic> json) =>
     TournamentApi(
-      id: json['id'] as int? ?? 0,
+      code: json['code'] as String? ?? "",
       name: json['name'] as String? ?? "",
     );
 
 Map<String, dynamic> _$TournamentApiToJson(TournamentApi instance) =>
     <String, dynamic>{
+      'code': instance.code,
       'name': instance.name,
-      'id': instance.id,
     };

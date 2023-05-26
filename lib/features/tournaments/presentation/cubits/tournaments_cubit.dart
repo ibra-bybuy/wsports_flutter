@@ -5,61 +5,31 @@ import 'package:watch_sports/core/cubits/fetch_state.dart';
 import 'package:watch_sports/features/tournaments/domain/usecases/tournaments_usecase.dart';
 import '../../../../core/cubits/cached/tournaments_cubit/tournaments_cubit.dart';
 import '../../../../core/errors/failures.dart';
-import '../../../../core/functions/date_functions.dart';
-import '../../../../core/models/pagination.dart';
-import '../../../../providers/pagination/pagination_provider.dart';
 import '../../domain/entities/tournament_entity.dart';
 
 @LazySingleton()
 class TournamentsCubit extends Cubit<FetchState<TournamentEntities>> {
   final CachedTournamentsCubit cachedTournamentsCubit;
   final TournamentsUsecase usecase;
-  late final PaginationProvider paginationProvider;
-  final _limit = 80;
 
   TournamentsCubit(this.cachedTournamentsCubit, this.usecase)
-      : super(FetchInitial()) {
-    paginationProvider =
-        PaginationProvider(limit: _limit, page: 1, request: _onPagination);
-  }
+      : super(FetchInitial());
 
   Future<Either<Failure, TournamentEntities>> call({
-    int? limit,
-    int? page,
     void Function(TournamentEntities)? onSuccessEmit,
   }) async {
     emit(FetchLoading());
-    final response = await usecase.call(
-      date: DateFunctions(passedDate: DateTime.now().toUtc())
-          .yearMonthDayHoursSecsMilliSecs(),
-      type: "",
-      limit: limit ?? _limit,
-      page: page ?? 1,
-    );
+    final response = await usecase.call();
 
     response.fold((l) => emit(FetchError(l)), (r) {
       if (onSuccessEmit != null) {
         onSuccessEmit(r);
       } else {
-        paginationProvider.clear();
-        paginationProvider.setTotalPages(r.pagination.totalPages);
         emit(FetchLoaded(r));
         cachedTournamentsCubit.setItems(r.items);
       }
     });
 
     return response;
-  }
-
-  Future<int> _onPagination(Pagination pagination) async {
-    final res = await call(
-        limit: pagination.limit,
-        page: pagination.currentPage,
-        onSuccessEmit: (r) {
-          emit(FetchLoaded(r));
-          cachedTournamentsCubit.addItems(r.items);
-        });
-
-    return res.fold((l) => 0, (r) => r.items.length);
   }
 }

@@ -7,11 +7,7 @@ import '../../../../core/models/tournament.dart';
 
 class TournamentEntities extends Equatable {
   final List<Tournament> items;
-  final Pagination pagination;
-  const TournamentEntities({
-    this.items = const [],
-    required this.pagination,
-  });
+  const TournamentEntities({this.items = const []});
 
   TournamentEntities copyWith({
     List<Tournament>? items,
@@ -19,7 +15,6 @@ class TournamentEntities extends Equatable {
   }) {
     return TournamentEntities(
       items: items ?? this.items,
-      pagination: pagination ?? this.pagination,
     );
   }
 
@@ -27,14 +22,13 @@ class TournamentEntities extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object> get props => [items, pagination];
+  List<Object> get props => [items];
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'items': items.map((x) {
         return x.toMap();
       }).toList(growable: false),
-      'pagination': pagination.toMap(),
     };
   }
 
@@ -46,8 +40,6 @@ class TournamentEntities extends Equatable {
               (x ?? Map<String, dynamic>.from({})) as Map<String, dynamic>);
         }),
       ),
-      pagination: Pagination.fromMap((map["pagination"] ??
-          Map<String, dynamic>.from({})) as Map<String, dynamic>),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_sports/core/components/textfield/sarchfield.dart';
 import 'package:watch_sports/core/cubits/fetch_state.dart';
-import 'package:watch_sports/core/extensions/scroll_controller.dart';
 import 'package:watch_sports/features/tournaments/presentation/cubits/tournaments_cubit.dart';
 import 'package:watch_sports/features/tournaments/presentation/widgets/tournaments_list_card.dart';
 import '../../../../core/components/app_bar/main_app_bar.dart';
@@ -34,12 +33,6 @@ class _TournamentsScreenState extends State<TournamentsScreen>
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       uiCubit.call();
-
-      scrollController.addListener(() {
-        if (scrollController.isScrolledToBottom) {
-          uiCubit.paginationProvider.onBottomScrolled();
-        }
-      });
     });
   }
 

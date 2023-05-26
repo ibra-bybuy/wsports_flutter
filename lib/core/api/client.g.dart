@@ -179,20 +179,9 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<TournamentsResponseDto> getTournaments(
-    date,
-    type,
-    page,
-    limit,
-  ) async {
+  Future<TournamentsResponseDto> getTournaments() async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'd': date,
-      r'type': type,
-      r'page': page,
-      r'limit': limit,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
