@@ -8,10 +8,12 @@ part of 'stream.dart';
 
 StreamApi _$StreamApiFromJson(Map<String, dynamic> json) => StreamApi(
       link: json['link'] as String? ?? '',
-      lang: json['lang'] as String? ?? "",
+      langApi: json['langApi'] == null
+          ? const LangApi()
+          : LangApi.fromJson(json['langApi'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$StreamApiToJson(StreamApi instance) => <String, dynamic>{
-      'lang': instance.lang,
       'link': instance.link,
+      'langApi': instance.langApi,
     };

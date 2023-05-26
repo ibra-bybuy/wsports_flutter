@@ -66,6 +66,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
           ),
     );
     commentSectionCubit.init(eventId);
+    uiCubit.call(eventId);
 
     _pullToRefreshController = PullToRefreshController(
       onRefresh: () async {

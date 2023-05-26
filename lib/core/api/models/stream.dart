@@ -1,16 +1,18 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:watch_sports/core/api/models/lang.dart';
 import '../../models/stream.dart' as my;
 part 'stream.g.dart';
 
 @JsonSerializable()
 class StreamApi extends my.Stream {
   final String link;
-  const StreamApi({
+  final LangApi langApi;
+  StreamApi({
     this.link = '',
-    String lang = "",
+    this.langApi = const LangApi(),
   }) : super(
-          lang: lang,
           url: link,
+          lang: langApi.name,
         );
 
   factory StreamApi.fromJson(Map<String, dynamic> json) =>

@@ -9,13 +9,13 @@ part of 'event_details_response.dart';
 EventDetailsResponse _$EventDetailsResponseFromJson(
         Map<String, dynamic> json) =>
     EventDetailsResponse(
-      statusCode: json['statusCode'] as int? ?? 0,
+      success: json['success'] as bool? ?? false,
       data: EventApi.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EventDetailsResponseToJson(
         EventDetailsResponse instance) =>
     <String, dynamic>{
-      'statusCode': instance.statusCode,
+      'success': instance.success,
       'data': instance.data,
     };

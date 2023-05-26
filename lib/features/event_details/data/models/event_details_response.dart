@@ -5,10 +5,10 @@ part 'event_details_response.g.dart';
 
 @JsonSerializable()
 class EventDetailsResponse {
-  final int statusCode;
+  final bool success;
   final EventApi data;
   const EventDetailsResponse({
-    this.statusCode = 0,
+    this.success = false,
     required this.data,
   });
 

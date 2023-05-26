@@ -29,9 +29,9 @@ abstract class RestClient {
     @Query("page") int page,
   );
 
-  @GET("/events/{id}")
+  @GET("/events")
   Future<EventDetailsResponse> getEventById(
-    @Path("id") String eventId,
+    @Query("id") String eventId,
   );
 
   @GET("/events")

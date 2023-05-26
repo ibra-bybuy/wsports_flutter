@@ -83,7 +83,7 @@ class _RestClient implements RestClient {
   @override
   Future<EventDetailsResponse> getEventById(eventId) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': eventId};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -94,7 +94,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              '/events/${eventId}',
+              '/events',
               queryParameters: queryParameters,
               data: _data,
             )
