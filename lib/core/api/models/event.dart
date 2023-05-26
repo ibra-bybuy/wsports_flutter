@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:watch_sports/core/api/models/lang.dart';
 import '../../../../core/models/event.dart';
 import 'stream.dart';
 import 'team.dart';
@@ -7,22 +8,35 @@ part 'event.g.dart';
 
 @JsonSerializable()
 class EventApi extends Event {
-  EventApi({
-    int id = 0,
+  final String uuid;
+  final String startAt;
+  final String endAt;
+  final String avatarUrl;
+  final String address;
+  final LangApi lang;
+  final String sport;
+  const EventApi({
+    this.uuid = "",
+    String id = "",
     String name = '',
-    String startTime = '',
-    String endTime = '',
     List<TeamApi> teams = const [],
-    String type = '',
+    this.startAt = '',
+    this.endAt = '',
+    this.avatarUrl = "",
+    this.address = "",
+    this.lang = const LangApi(),
+    String hideElements = "",
+    this.sport = '',
     List<StreamApi> streams = const [],
   }) : super(
-          id: id.toString(),
+          id: id,
           name: name,
-          startTime: startTime,
+          startTime: startAt,
           teams: teams,
           streams: streams,
-          endTime: endTime,
-          type: type,
+          endTime: endAt,
+          type: sport,
+          hideElements: hideElements,
         );
 
   factory EventApi.fromJson(Map<String, dynamic> json) =>

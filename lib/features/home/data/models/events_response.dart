@@ -7,10 +7,10 @@ part 'events_response.g.dart';
 
 @JsonSerializable()
 class EventsResponse {
-  final int statusCode;
+  final bool success;
   final EventsResponseData data;
   const EventsResponse({
-    this.statusCode = 0,
+    this.success = false,
     this.data = const EventsResponseData(),
   });
 
@@ -23,10 +23,10 @@ class EventsResponse {
 @JsonSerializable()
 class EventsResponseData {
   final List<EventApi> items;
-  final MetaApi meta;
+  final MetaApi pagination;
   const EventsResponseData({
     this.items = const [],
-    this.meta = const MetaApi(),
+    this.pagination = const MetaApi(),
   });
 
   factory EventsResponseData.fromJson(Map<String, dynamic> json) =>

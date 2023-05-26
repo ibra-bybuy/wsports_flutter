@@ -19,20 +19,17 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<EventsResponse> getEventsByDate(
-    date,
+  Future<EventsResponse> getEventsBySport(
     limit,
     page,
-    type,
+    sport,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'd': date,
       r'limit': limit,
       r'page': page,
-      r'type': type,
+      r'sport': sport,
     };
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -43,7 +40,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              '/events/date',
+              '/events',
               queryParameters: queryParameters,
               data: _data,
             )

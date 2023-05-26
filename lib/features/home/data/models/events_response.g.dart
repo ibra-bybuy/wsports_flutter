@@ -8,7 +8,7 @@ part of 'events_response.dart';
 
 EventsResponse _$EventsResponseFromJson(Map<String, dynamic> json) =>
     EventsResponse(
-      statusCode: json['statusCode'] as int? ?? 0,
+      success: json['success'] as bool? ?? false,
       data: json['data'] == null
           ? const EventsResponseData()
           : EventsResponseData.fromJson(json['data'] as Map<String, dynamic>),
@@ -16,7 +16,7 @@ EventsResponse _$EventsResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$EventsResponseToJson(EventsResponse instance) =>
     <String, dynamic>{
-      'statusCode': instance.statusCode,
+      'success': instance.success,
       'data': instance.data,
     };
 
@@ -26,13 +26,13 @@ EventsResponseData _$EventsResponseDataFromJson(Map<String, dynamic> json) =>
               ?.map((e) => EventApi.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      meta: json['meta'] == null
+      pagination: json['pagination'] == null
           ? const MetaApi()
-          : MetaApi.fromJson(json['meta'] as Map<String, dynamic>),
+          : MetaApi.fromJson(json['pagination'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EventsResponseDataToJson(EventsResponseData instance) =>
     <String, dynamic>{
       'items': instance.items,
-      'meta': instance.meta,
+      'pagination': instance.pagination,
     };

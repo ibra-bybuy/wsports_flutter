@@ -17,16 +17,15 @@ class EventsRepositoryImpl implements EventsRepository {
     EventsRequestEntities request,
   ) async {
     try {
-      final res = await source.getEventsByDate(
-        request.date,
+      final res = await source.getEventsBySport(
         request.limit,
         request.page,
-        request.type.trim().isNotEmpty ? request.type : null,
+        request.type.trim().isNotEmpty ? request.type : "",
       );
 
       return Right(
         EventsResponseEntities(
-          pagination: res.data.meta,
+          pagination: res.data.pagination,
           items: res.data.items,
         ),
       );

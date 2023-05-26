@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/core/cubits/cached/event_list_cubit/event_list_cubit.dart';
-import 'package:watch_sports/core/functions/date_functions.dart';
 import 'package:watch_sports/core/models/pagination.dart';
 import 'package:watch_sports/features/home/presentation/cubits/events/events_state.dart';
 
@@ -44,7 +43,6 @@ class EventsCubit extends Cubit<EventsState> {
 
   Future<Either<Failure, EventsResponseEntities>> call({
     String? category,
-    String? date,
     int? limit,
     int? page,
     void Function(EventsResponseEntities)? onSuccessEmit,
@@ -53,9 +51,6 @@ class EventsCubit extends Cubit<EventsState> {
     _currentCategoryValue = category ?? _currentCategoryValue;
     _entities = _entities.copyWith(
       type: _currentCategoryValue,
-      date: date ??
-          DateFunctions(passedDate: DateTime.now().toUtc())
-              .yearMonthDayHoursSecsMilliSecs(),
       limit: limit ?? 20,
       page: page ?? 1,
     );
@@ -76,7 +71,6 @@ class EventsCubit extends Cubit<EventsState> {
   Future<int> _onPagination(Pagination pagination) async {
     final res = await call(
         category: _entities.type,
-        date: _entities.date,
         limit: pagination.limit,
         page: pagination.currentPage,
         onSuccessEmit: (r) {

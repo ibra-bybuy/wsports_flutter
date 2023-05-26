@@ -25,7 +25,7 @@ class SearchRepositoryImpl implements SearchRepository {
 
       return Right(
         EventsResponseEntities(
-          pagination: res.data.meta,
+          pagination: res.data.pagination,
           items: res.data.items,
         ),
       );

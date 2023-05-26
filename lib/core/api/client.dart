@@ -16,12 +16,11 @@ part 'client.g.dart';
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @GET("/events/date")
-  Future<EventsResponse> getEventsByDate(
-    @Query("d") String date,
+  @GET("/events")
+  Future<EventsResponse> getEventsBySport(
     @Query("limit") int limit,
     @Query("page") int page,
-    @Query("type") String? type,
+    @Query("sport") String sport,
   );
 
   @GET("/events/search")

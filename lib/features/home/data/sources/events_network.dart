@@ -11,18 +11,16 @@ class EventsNetwork implements EventsSource {
   const EventsNetwork(this.api);
 
   @override
-  Future<EventsResponse> getEventsByDate(
-    String date,
+  Future<EventsResponse> getEventsBySport(
     int limit,
     int page,
-    String? type,
+    String sport,
   ) async {
     try {
-      final response = await api.client().getEventsByDate(
-            date,
+      final response = await api.client().getEventsBySport(
             limit,
             page,
-            type,
+            sport,
           );
       return response;
     } catch (e) {

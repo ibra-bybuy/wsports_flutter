@@ -7,15 +7,22 @@ part of 'event.dart';
 // **************************************************************************
 
 EventApi _$EventApiFromJson(Map<String, dynamic> json) => EventApi(
-      id: json['id'] as int? ?? 0,
+      uuid: json['uuid'] as String? ?? "",
+      id: json['id'] as String? ?? "",
       name: json['name'] as String? ?? '',
-      startTime: json['startTime'] as String? ?? '',
-      endTime: json['endTime'] as String? ?? '',
       teams: (json['teams'] as List<dynamic>?)
               ?.map((e) => TeamApi.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      type: json['type'] as String? ?? '',
+      startAt: json['startAt'] as String? ?? '',
+      endAt: json['endAt'] as String? ?? '',
+      avatarUrl: json['avatarUrl'] as String? ?? "",
+      address: json['address'] as String? ?? "",
+      lang: json['lang'] == null
+          ? const LangApi()
+          : LangApi.fromJson(json['lang'] as Map<String, dynamic>),
+      hideElements: json['hideElements'] as String? ?? "",
+      sport: json['sport'] as String? ?? '',
       streams: (json['streams'] as List<dynamic>?)
               ?.map((e) => StreamApi.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -25,9 +32,14 @@ EventApi _$EventApiFromJson(Map<String, dynamic> json) => EventApi(
 Map<String, dynamic> _$EventApiToJson(EventApi instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'startTime': instance.startTime,
       'teams': instance.teams,
       'streams': instance.streams,
-      'endTime': instance.endTime,
-      'type': instance.type,
+      'hideElements': instance.hideElements,
+      'uuid': instance.uuid,
+      'startAt': instance.startAt,
+      'endAt': instance.endAt,
+      'avatarUrl': instance.avatarUrl,
+      'address': instance.address,
+      'lang': instance.lang,
+      'sport': instance.sport,
     };

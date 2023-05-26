@@ -2,7 +2,6 @@
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
-
 import 'package:watch_sports/core/models/team.dart';
 import 'package:watch_sports/i18n/i18n.dart';
 
@@ -35,6 +34,7 @@ class Event extends Equatable {
   final List<my.Stream> streams;
   final String endTime;
   final String type;
+  final String hideElements;
   const Event({
     this.id = "",
     this.name = '',
@@ -43,6 +43,7 @@ class Event extends Equatable {
     this.streams = const [],
     this.endTime = '',
     this.type = "",
+    this.hideElements = '',
   });
 
   Event copyWith({
@@ -53,6 +54,7 @@ class Event extends Equatable {
     List<my.Stream>? streams,
     String? endTime,
     String? type,
+    String? hideElements,
   }) {
     return Event(
       id: id ?? this.id,
@@ -62,6 +64,7 @@ class Event extends Equatable {
       streams: streams ?? this.streams,
       endTime: endTime ?? this.endTime,
       type: type ?? this.type,
+      hideElements: hideElements ?? this.hideElements,
     );
   }
 
@@ -78,6 +81,7 @@ class Event extends Equatable {
       }).toList(growable: false),
       'endTime': endTime,
       'type': type,
+      'hideElements': hideElements,
     };
   }
 
@@ -104,6 +108,7 @@ class Event extends Equatable {
       ),
       endTime: (map["endTime"] ?? '') as String,
       type: (map["type"] ?? '') as String,
+      hideElements: (map["hideElements"] ?? '') as String,
     );
   }
 
@@ -129,6 +134,7 @@ class Event extends Equatable {
       streams,
       endTime,
       type,
+      hideElements,
     ];
   }
 

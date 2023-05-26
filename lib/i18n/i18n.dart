@@ -27,7 +27,7 @@ AppLocalizations get localizationInstance =>
 
 enum LocalLang {
   ru("ru", "Русский"),
-  eng("eng", "English"),
+  eng("en", "English"),
   undefined("", "");
 
   final String code;

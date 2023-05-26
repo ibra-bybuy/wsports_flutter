@@ -9,12 +9,13 @@ import '../models/event.dart';
 extension EventExt on Event {
   EventApi toEventApi() {
     return EventApi(
-      id: int.tryParse(id) ?? 0,
+      id: id,
       name: name,
-      startTime: startTime,
-      endTime: endTime,
+      startAt: startTime,
+      endAt: endTime,
       teams: teams.map((e) => e.toTeamApi()).toList(),
-      type: type,
+      sport: type,
+      hideElements: hideElements,
       streams: streams.map((e) => e.toStreamApi()).toList(),
     );
   }
