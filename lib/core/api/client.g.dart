@@ -57,7 +57,7 @@ class _RestClient implements RestClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'q': query,
+      r'query': query,
       r'limit': limit,
       r'page': page,
     };
@@ -71,7 +71,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              '/events/search',
+              '/events',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -104,31 +104,33 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<EventsDetailsResponse> getTournamentEvents(
-    name,
-    startTime,
+  Future<EventsResponse> getTournamentEvents(
+    tournament,
+    limit,
+    page,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'name': name,
-      r'startTime': startTime,
+      r'tournament': tournament,
+      r'limit': limit,
+      r'page': page,
     };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<EventsDetailsResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<EventsResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/events/tournament',
+              '/events',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = EventsDetailsResponse.fromJson(_result.data!);
+    final value = EventsResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -1,5 +1,5 @@
-import '../models/events_details_response.dart';
+import '../../../home/data/models/events_response.dart';
 
 abstract class TournamentDetailsSource {
-  Future<EventsDetailsResponse> call(String name, String startTime);
+  Future<EventsResponse> call(String name);
 }

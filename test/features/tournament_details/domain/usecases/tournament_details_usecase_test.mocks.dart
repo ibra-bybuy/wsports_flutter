@@ -42,16 +42,11 @@ class MockTournamentDetailsRepository extends _i1.Mock
   @override
   _i4.Future<
       _i2.Either<_i5.Failure, _i6.TournamentDetailsResponseEntities>> call(
-    String? name,
-    String? startTime,
-  ) =>
+          String? name) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
-          [
-            name,
-            startTime,
-          ],
+          [name],
         ),
         returnValue: _i4.Future<
                 _i2.Either<_i5.Failure,
@@ -60,10 +55,7 @@ class MockTournamentDetailsRepository extends _i1.Mock
           this,
           Invocation.method(
             #call,
-            [
-              name,
-              startTime,
-            ],
+            [name],
           ),
         )),
         returnValueForMissingStub: _i4.Future<
@@ -73,10 +65,7 @@ class MockTournamentDetailsRepository extends _i1.Mock
           this,
           Invocation.method(
             #call,
-            [
-              name,
-              startTime,
-            ],
+            [name],
           ),
         )),
       ) as _i4.Future<

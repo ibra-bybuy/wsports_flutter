@@ -12,11 +12,11 @@ class TournamentDetailsRepositoryImpl implements TournamentDetailsRepository {
 
   @override
   Future<Either<Failure, TournamentDetailsResponseEntities>> call(
-      String name, String startTime) async {
+      String name) async {
     try {
-      final res = await source.call(name, startTime);
+      final res = await source.call(name);
 
-      return Right(TournamentDetailsResponseEntities(items: res.data));
+      return Right(TournamentDetailsResponseEntities(items: res.data.items));
     } on Failure catch (e) {
       return Left(e);
     }

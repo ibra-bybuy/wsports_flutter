@@ -19,17 +19,16 @@ void main() {
   });
 
   const name = "name";
-  const startTime = "time";
   const details = TournamentDetailsResponseEntities();
 
   test("Should get tournamnt details", () async {
-    when(repository.call(name, startTime))
+    when(repository.call(name))
         .thenAnswer((realInvocation) async => const Right(details));
 
-    final result = await usecase.call(name, startTime);
+    final result = await usecase.call(name);
 
     expect(result, const Right(details));
-    verify(repository.call(name, startTime));
+    verify(repository.call(name));
     verifyNoMoreInteractions(repository);
   });
 }

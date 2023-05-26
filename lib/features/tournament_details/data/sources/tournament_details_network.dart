@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:watch_sports/features/tournament_details/data/models/events_details_response.dart';
 import '../../../../core/api/main_api.dart';
 import '../../../../core/errors/handle_dio_error.dart';
+import '../../../home/data/models/events_response.dart';
 import 'tournament_details_source.dart';
 
 @LazySingleton(as: TournamentDetailsSource)
@@ -10,12 +10,14 @@ class TournamentDetailsNetworkSource implements TournamentDetailsSource {
   const TournamentDetailsNetworkSource(this.api);
 
   @override
-  Future<EventsDetailsResponse> call(String name, String startTime) async {
+  Future<EventsResponse> call(
+    String name,
+  ) async {
     try {
-      final response = await api.client().getTournamentEvents(name, startTime);
+      final response = await api.client().getTournamentEvents(name, 50, 1);
       return response;
     } catch (e) {
-      return HandleDioError<EventsDetailsResponse>(e)();
+      return HandleDioError<EventsResponse>(e)();
     }
   }
 }
