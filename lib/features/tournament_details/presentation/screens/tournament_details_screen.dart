@@ -19,6 +19,7 @@ import '../../../../core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import '../../../../core/cubits/custom/string_cubit.dart/string_cubit.dart';
 import '../../../../core/models/event.dart';
 import '../../../../i18n/i18n.dart';
+import '../../../../providers/metrica/metrica.dart';
 import '../../../../setup.dart';
 import '../../../comment_section/presentation/cubits/comment_section_cubit.dart';
 import '../../../event_details/presentation/widgets/date_card.dart';
@@ -53,6 +54,9 @@ class _TournamentDetailsScreenState extends State<TournamentDetailsScreen> {
 
     final event =
         widget.events.isNotEmpty ? widget.events.first : const Event();
+    getIt<Metrica>().reportEventWithMap("Детальная страница", attr: {
+      "Эвент": event.name,
+    });
     uiCubit.setEvents(event, widget.events);
     commentSectionCubit.init(event.name);
 

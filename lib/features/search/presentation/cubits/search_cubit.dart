@@ -7,6 +7,7 @@ import '../../../../core/cubits/cached/event_list_cubit/event_list_cubit.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/functions/debouncer.dart';
 import '../../../../core/models/pagination.dart';
+import '../../../../providers/metrica/metrica.dart';
 import '../../../../providers/pagination/pagination_provider.dart';
 import '../../../home/domain/entities/events_response_entities.dart';
 import '../../domain/entities/search_entities.dart';
@@ -16,7 +17,8 @@ class SearchCubit extends Cubit<FetchState<EventsResponseEntities>> {
   final SearchUsecase useCase;
   late final PaginationProvider paginationProvider;
   final _limit = 15;
-  SearchCubit(this.useCase) : super(FetchInitial()) {
+  final Metrica metrica;
+  SearchCubit(this.useCase, this.metrica) : super(FetchInitial()) {
     paginationProvider =
         PaginationProvider(limit: _limit, page: 1, request: _onPagination);
   }
@@ -57,6 +59,9 @@ class SearchCubit extends Cubit<FetchState<EventsResponseEntities>> {
       limit: limit ?? _limit,
       page: page ?? 1,
     );
+    metrica.reportEventWithMap("Поиск", attr: {
+      "Запрос": _entities.query,
+    });
     final response = await useCase.call(_entities);
     response.fold((l) => emit(FetchError(l)), (r) {
       if (onSuccessEmit != null) {

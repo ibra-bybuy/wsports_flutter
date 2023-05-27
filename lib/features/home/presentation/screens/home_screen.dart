@@ -17,6 +17,7 @@ import 'package:watch_sports/setup.dart';
 import '../../../../core/components/app_bar/search_app_bar.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/cubits/custom/string_cubit.dart/string_cubit.dart';
+import '../../../../providers/metrica/metrica.dart';
 import '../cubits/events/events_cubit.dart';
 import '../widgets/banners_builder.dart';
 import '../widgets/container_title.dart';
@@ -45,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
+    getIt<Metrica>().reportEventWithMap("Инициализация");
     scoreUsecase.init();
     scoresCubit.call(EventType.football);
 

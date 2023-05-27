@@ -21,6 +21,7 @@ import '../../../../core/components/btn/popup_btns.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/components/webview/webview.dart';
 import '../../../../core/functions/hide_content_user_script.dart';
+import '../../../../providers/metrica/metrica.dart';
 import '../../../../setup.dart';
 import '../../../tournament_details/presentation/cubits/tournament_details_cubit.dart';
 import '../widgets/date_card.dart';
@@ -59,6 +60,9 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   @override
   void initState() {
     super.initState();
+    getIt<Metrica>().reportEventWithMap("Детальная страница", attr: {
+      "Эвент": widget.event?.name ?? "Не определено",
+    });
     uiCubit.setEvent(
       widget.event ??
           Event(

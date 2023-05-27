@@ -12,3 +12,7 @@ bool get isProduction {
 String get appBaseUrl {
   return dotenv.maybeGet("APP_BASE_URL")?.toLowerCase() ?? "";
 }
+
+String get metricsKey {
+  return dotenv.maybeGet("METRICS_KEY")?.toLowerCase() ?? "";
+}
