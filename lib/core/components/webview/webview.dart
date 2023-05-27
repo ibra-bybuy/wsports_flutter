@@ -14,11 +14,13 @@ class MyWebView extends StatefulWidget {
   final String url;
   final PullToRefreshController? pullToRefreshController;
   final Color? loadingColor;
+  final UserScript? userScript;
   const MyWebView(
     this.url, {
     super.key,
     this.pullToRefreshController,
     this.loadingColor,
+    this.userScript,
   });
 
   @override
@@ -30,6 +32,8 @@ class _MyWebViewState extends State<MyWebView> {
   final alertLoader = AlerLoader();
   InAppWebViewController? inAppWebViewController;
   Uri? currentUrl;
+
+  bool _useAdBlocker = false;
 
   @override
   void didUpdateWidget(covariant MyWebView oldWidget) {
@@ -86,16 +90,9 @@ class _MyWebViewState extends State<MyWebView> {
                     () => VerticalDragGestureRecognizer()),
               ),
             onWebViewCreated: (controller) {
-              controller.addUserScript(
-                  userScript: UserScript(
-                source: '''
-                  document.getElementsByClassName('nav-wrapper')[0].style.display = 'none';
-                  document.getElementsByClassName('cp')[0].style.display = 'none';
-                  document.getElementsByClassName('servers')[0].style.display = 'none';
-                  document.getElementsByClassName('footer')[0].style.display = 'none';
-                ''',
-                injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END,
-              ));
+              if (widget.userScript != null) {
+                controller.addUserScript(userScript: widget.userScript!);
+              }
               inAppWebViewController = controller;
             },
             initialOptions: InAppWebViewGroupOptions(
@@ -104,6 +101,7 @@ class _MyWebViewState extends State<MyWebView> {
                 useShouldInterceptRequest: true,
               ),
               crossPlatform: InAppWebViewOptions(
+                clearCache: true,
                 useShouldOverrideUrlLoading: true,
                 userAgent:
                     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
@@ -114,6 +112,7 @@ class _MyWebViewState extends State<MyWebView> {
 
               if (uri != null &&
                   currentUrl != null &&
+                  _useAdBlocker &&
                   AdBlocker(uri, currentUrl!).block) {
                 return NavigationActionPolicy.CANCEL;
               }
@@ -132,6 +131,7 @@ class _MyWebViewState extends State<MyWebView> {
               await Future.delayed(const Duration(milliseconds: 500));
               if (mounted) {
                 loadingCubit.set(false);
+                _useAdBlocker = true;
               }
             },
           ),

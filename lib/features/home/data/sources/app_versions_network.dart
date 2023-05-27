@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:watch_sports/core/api/main_api.dart';
+import 'package:watch_sports/env.dart';
 import '../../../../core/errors/handle_dio_error.dart';
 import '../models/app_versions_response.dart';
 import 'app_versions_source.dart';
@@ -12,7 +13,8 @@ class AppVersionsNetwork implements AppVersionsSource {
   @override
   Future<AppVersionsResponse> call(String platform) async {
     try {
-      final response = await api.client().getAppVersions(platform);
+      final response =
+          await api.client(baseUrl: appBaseUrl).getAppVersions(platform);
       return response;
     } catch (e) {
       return HandleDioError<AppVersionsResponse>(e)();

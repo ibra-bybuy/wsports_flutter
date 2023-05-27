@@ -20,8 +20,8 @@ import '../../../../core/components/app_bar/simple_app_bar.dart';
 import '../../../../core/components/btn/popup_btns.dart';
 import '../../../../core/components/refresh/refresher.dart';
 import '../../../../core/components/webview/webview.dart';
+import '../../../../core/functions/hide_content_user_script.dart';
 import '../../../../setup.dart';
-import '../../../comment_section/presentation/cubits/comment_section_cubit.dart';
 import '../../../tournament_details/presentation/cubits/tournament_details_cubit.dart';
 import '../widgets/date_card.dart';
 import '../widgets/event_details_listener.dart';
@@ -49,7 +49,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   Event? get eventByLink => widget.eventId?.toEventByLink();
 
   final horizontalPadding = 25.0;
-  final commentSectionCubit = getIt<CommentSectionCubit>();
+  //final commentSectionCubit = getIt<CommentSectionCubit>();
   final uiCubit = getIt<EventDetailsCubit>();
   final _refreshController = RefreshController(initialRefresh: false);
   final selectedStream = StringCubit();
@@ -65,7 +65,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
             id: widget.eventId ?? "",
           ),
     );
-    commentSectionCubit.init(eventId);
+    //commentSectionCubit.init(eventId);
     uiCubit.call(eventId);
 
     _pullToRefreshController = PullToRefreshController(
@@ -80,7 +80,7 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
   @override
   void dispose() {
     super.dispose();
-    commentSectionCubit.dispose();
+    //commentSectionCubit.dispose();
   }
 
   Future<void> _onRefresh() async {
@@ -152,14 +152,14 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                             bloc: selectedStream,
                             builder: (context, streamState) {
                               return MyWebView(
-                                "https://strikeout.ws/chelsea-w-vs-everton-w-stream-1",
-                                // TODO
-                                // streamState.isEmpty
-                                //     ? state.streams.first.url
-                                //     : streamState,
+                                streamState.isEmpty
+                                    ? state.streams.first.url
+                                    : streamState,
                                 pullToRefreshController:
                                     _pullToRefreshController,
                                 loadingColor: color,
+                                userScript: hideContentScript(
+                                    ".navbar:0,.row:0,.row:1,.mt-1:0,.row:3,.row:4,.row:5,.col-lg-3:0,.btn-danger:0,.d-none:0"),
                               );
                             },
                           ),

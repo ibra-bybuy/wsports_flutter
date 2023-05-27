@@ -74,4 +74,8 @@ extension StringExt on String {
 
     return null;
   }
+
+  String get removeFirstLetter {
+    return substring(1);
+  }
 }

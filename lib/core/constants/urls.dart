@@ -1,4 +1,4 @@
-import '../../setup.dart';
+import '../../env.dart';
 
 class Urls {
   static const ip = "http://94.131.106.27";
