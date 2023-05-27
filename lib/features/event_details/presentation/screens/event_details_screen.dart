@@ -158,8 +158,8 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                                 pullToRefreshController:
                                     _pullToRefreshController,
                                 loadingColor: color,
-                                userScript: hideContentScript(
-                                    ".navbar:0,.row:0,.row:1,.mt-1:0,.row:3,.row:4,.row:5,.col-lg-3:0,.btn-danger:0,.d-none:0"),
+                                userScript:
+                                    hideContentScript(state.hideElements),
                               );
                             },
                           ),
