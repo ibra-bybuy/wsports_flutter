@@ -23,7 +23,7 @@ class TournamentDetailsCubit
     final startTime = eventCubit.state.startTime.split("+");
 
     if (startTime.isNotEmpty) {
-      final res = await usecase.call(Uri.decodeFull(eventCubit.state.name));
+      final res = await usecase.call(eventCubit.state.name);
 
       res.fold((l) => emit(FetchError(l)), (r) {
         if (r.items.isNotEmpty) {

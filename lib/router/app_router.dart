@@ -13,6 +13,7 @@ import '../core/models/team.dart';
 import '../features/profile/presentation/screens/profile_screen.dart';
 import '../features/profile/presentation/screens/settings_screen.dart';
 import '../features/search/presentation/screens/search_screen.dart';
+import '../features/tournament_events/presentation/screens/tournament_events_screen.dart';
 part 'app_router.gr.dart';
 
 @singleton
@@ -37,5 +38,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: TournamentDetailsRoute.page),
     AutoRoute(page: SettingsRoute.page),
     AutoRoute(page: FighterRoute.page),
+    AutoRoute(page: TournamentEventsRoute.page),
   ];
 }

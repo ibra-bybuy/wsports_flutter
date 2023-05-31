@@ -14,11 +14,9 @@ class TournamentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        getIt<AppRouter>().push(SearchRoute(
-          initialQuery: item.code,
-          showSearch: false,
+        getIt<AppRouter>().push(TournamentEventsRoute(
+          tournamentCode: item.code,
           titleText: item.name,
-          showPreviousResults: false,
         ));
       },
       child: Card(

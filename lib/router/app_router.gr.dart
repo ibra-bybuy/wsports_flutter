@@ -111,6 +111,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainScreen(),
       );
     },
+    TournamentEventsRoute.name: (routeData) {
+      final args = routeData.argsAs<TournamentEventsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TournamentEventsScreen(
+          key: args.key,
+          tournamentCode: args.tournamentCode,
+          titleText: args.titleText,
+        ),
+      );
+    },
   };
 }
 
@@ -363,7 +374,8 @@ class SettingsRoute extends PageRouteInfo<SettingsRouteArgs> {
     void Function(
       BuildContext,
       String,
-    )? onTap,
+    )?
+        onTap,
     List<PageRouteInfo>? children,
   }) : super(
           SettingsRoute.name,
@@ -447,4 +459,47 @@ class MainRoute extends PageRouteInfo<void> {
   static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TournamentEventsScreen]
+class TournamentEventsRoute extends PageRouteInfo<TournamentEventsRouteArgs> {
+  TournamentEventsRoute({
+    Key? key,
+    required String tournamentCode,
+    String? titleText,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TournamentEventsRoute.name,
+          args: TournamentEventsRouteArgs(
+            key: key,
+            tournamentCode: tournamentCode,
+            titleText: titleText,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TournamentEventsRoute';
+
+  static const PageInfo<TournamentEventsRouteArgs> page =
+      PageInfo<TournamentEventsRouteArgs>(name);
+}
+
+class TournamentEventsRouteArgs {
+  const TournamentEventsRouteArgs({
+    this.key,
+    required this.tournamentCode,
+    this.titleText,
+  });
+
+  final Key? key;
+
+  final String tournamentCode;
+
+  final String? titleText;
+
+  @override
+  String toString() {
+    return 'TournamentEventsRouteArgs{key: $key, tournamentCode: $tournamentCode, titleText: $titleText}';
+  }
 }
